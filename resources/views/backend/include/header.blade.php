@@ -1,8 +1,8 @@
 <header>
     <div class="headerwrapper">
         <div class="header-left">
-            <a href="index.php" class="logo">
-                <i class="fa fa-link"></i> বিলিং সফটওয়্যার
+            <a href="{{url('/admin/dashboard')}}" class="logo">
+               ভিজিডি সফটওয়্যার
             </a>
             <div class="pull-right">
                 <a href="" class="menu-collapse">
@@ -14,16 +14,16 @@
         <div class="header-right">
 
             <div class="pull-right">
-
-                <form class="form form-search" action="search-results.html">
+                
+                {{-- <form class="form form-search" action="search-results.html">
                     <input type="search" class="form-control" placeholder="Search"/>
-                </form>
+                </form> --}}
 
                 <div class="btn-group btn-group-list btn-group-notification">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    {{-- <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-bell-o"></i>
                         <span class="badge">1</span>
-                    </button>
+                    </button> --}}
                     <div class="dropdown-menu pull-right">
                         <a href="" class="link-right"></a>
                         <h5>Notification</h5>

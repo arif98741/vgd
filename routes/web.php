@@ -9,7 +9,7 @@ Route::namespace('Admin')
     ->prefix('admin')
     ->as('admin.')
     ->group(function () {
-
+        
         Route::get('dashboard', 'AdminController@index');
     });
 
@@ -26,7 +26,7 @@ Route::namespace('User')
     });
 /** user routes end */
 
-Auth::routes(['register' => false]);
+Auth::routes(['register' => true]);
 
 
 /** public routes start */

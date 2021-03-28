@@ -4,14 +4,14 @@
             <img class="img-circle" src="{{asset('asset/backend/images/photos/profile.png')}}" height="50" alt="">
         </a>
         <div class="media-body">
-            <h4 class="media-heading">রাকিবূল হাসান</h4>
+            <h4 class="media-heading">মোঃ জহুরুল ইসলাম</h4>
             <small class="text-muted">অ্যাডমিন</small>
         </div>
     </div><!-- media -->
 
 
     <ul class="nav nav-pills nav-stacked">
-        <li><a href="index.php"><i class="fa fa-home"></i> <span>ড্যাশবোর্ড</span></a></li>
+        <li><a href="{{url('/admin/dashboard')}}"><i class="fa fa-home"></i> <span>ড্যাশবোর্ড</span></a></li>
 
         <li class="parent"><a href=""><i class="fa fa-users"></i> <span>গ্রাহক</span></a>
             <ul class="children">
