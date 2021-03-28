@@ -15,7 +15,7 @@
 
         <li class="parent"><a href=""><i class="fa fa-users"></i> <span>গ্রাহক</span></a>
             <ul class="children">
-                <li><a href="client_add.php">গ্রাহক সংযোজন</a></li>
+                <li><a href="{{url('admin/add-vgd-beneficiary')}}">গ্রাহক সংযোজন</a></li>
                 <li><a href="client_archive.php">গ্রাহক তালিকা</a></li>
                 <li><a href="client_report.php">গ্রাহক প্রতিবেদন</a></li>
             </ul>

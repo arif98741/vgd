@@ -12,5 +12,4 @@ class AdminController extends Controller
         return view('backend.admin.dashboard');
     }
 
-
 }

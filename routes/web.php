@@ -9,8 +9,9 @@ Route::namespace('Admin')
     ->prefix('admin')
     ->as('admin.')
     ->group(function () {
-        
+
         Route::get('dashboard', 'AdminController@index');
+        Route::get('add-vgd-beneficiary', 'BeneficiaryController@addBeneficiary');
     });
 
 /** admin routes end */
