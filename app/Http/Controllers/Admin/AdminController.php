@@ -11,4 +11,9 @@ class AdminController extends Controller
     {
         return view('backend.admin.dashboard');
     }
+
+    public function test()
+    {
+        //todo:: here is test
+    }
 }
