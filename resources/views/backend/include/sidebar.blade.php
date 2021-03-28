@@ -13,9 +13,9 @@
     <ul class="nav nav-pills nav-stacked">
         <li><a href="{{url('/admin/dashboard')}}"><i class="fa fa-home"></i> <span>ড্যাশবোর্ড</span></a></li>
 
-        <li class="parent"><a href=""><i class="fa fa-users"></i> <span>গ্রাহক</span></a>
+        <li class="parent"><a href=""><i class="fa fa-users"></i> <span>ভিজিডি উপকারভোগী</span></a>
             <ul class="children">
-                <li><a href="{{url('admin/add-vgd-beneficiary')}}">গ্রাহক সংযোজন</a></li>
+                <li><a href="{{url('admin/add-vgd-beneficiary')}}">ভিজিডি উপকারভোগী সংযোজন</a></li>
                 <li><a href="client_archive.php">গ্রাহক তালিকা</a></li>
                 <li><a href="client_report.php">গ্রাহক প্রতিবেদন</a></li>
             </ul>
