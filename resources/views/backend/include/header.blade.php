@@ -14,7 +14,7 @@
         <div class="header-right">
 
             <div class="pull-right">
-                
+
                 {{-- <form class="form form-search" action="search-results.html">
                     <input type="search" class="form-control" placeholder="Search"/>
                 </form> --}}
@@ -45,32 +45,7 @@
                     </div><!-- dropdown-menu -->
                 </div><!-- btn-group -->
 
-                <div class="btn-group btn-group-list btn-group-messages">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-envelope-o"></i>
-                        <span class="badge">1</span>
-                    </button>
-                    <div class="dropdown-menu pull-right">
-                        <a href="" class="link-right"><i class="fa fa-plus"></i></a>
-                        <h5>New Messages</h5>
-                        <ul class="media-list dropdown-list">
-                            <li class="media">
-                                <span class="badge badge-success">New</span>
-                                <img class="img-circle pull-left noti-thumb" src="images/photos/user1.png" alt="">
-                                <div class="media-body">
-                                    <strong>পরীক্ষামূলক</strong>
-                                    <p>পরীক্ষামূলক..............</p>
-                                    <small class="date"><i class="fa fa-clock-o"></i> 15 minutes ago</small>
-                                </div>
-                            </li>
 
-
-                        </ul>
-                        <div class="dropdown-footer text-center">
-                            <a href="messages.php" class="link">See All Messages</a>
-                        </div>
-                    </div><!-- dropdown-menu -->
-                </div><!-- btn-group -->
 
                 <div class="btn-group btn-group-option">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">

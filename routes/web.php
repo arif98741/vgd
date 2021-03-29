@@ -13,6 +13,10 @@ Route::namespace('Admin')
         Route::get('dashboard', 'AdminController@index');
         Route::get('add-vgd-beneficiary', 'BeneficiaryController@addBeneficiary');
         Route::get('view-vgd-beneficiary', 'ViewController@viewbeneficiary');
+        Route::get('pay-vgd-beneficiary', 'payController@paybeneficiary');
+        Route::get('all-union-monthly-report', 'reportController@allUnionMonthlyReport');
+        Route::get('all-union-vgd-report', 'reportController@allUnionReport');
+        Route::get('all-beneficiary-vgd-report', 'reportController@allBeneficiaryVgdReport');
     });
 
 /** admin routes end */

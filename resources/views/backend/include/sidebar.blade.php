@@ -15,9 +15,16 @@
 
         <li class="parent"><a href=""><i class="fa fa-users"></i> <span>ভিজিডি উপকারভোগী</span></a>
             <ul class="children">
-                <li><a href="{{url('admin/add-vgd-beneficiary')}}">ভিজিডি উপকারভোগী সংযোজন</a></li>
-                <li><a href="{{url('admin/view-vgd-beneficiary')}}">ভিজিডি উপকারভোগী তালিকা</a></li>
-                <li><a href="client_report.php">গ্রাহক প্রতিবেদন</a></li>
+                <li><a href="{{url('admin/add-vgd-beneficiary')}}">উপকারভোগী সংযোজন</a></li>
+                <li><a href="{{url('admin/pay-vgd-beneficiary')}}">উপকারভোগী চাউল প্রদান করুন</a></li>
+                <li><a href="{{url('admin/view-vgd-beneficiary')}}">উপকারভোগী তালিকা</a></li>
+            </ul>
+        </li>
+
+        <li class="parent"><a href=""><i class="fa fa-users"></i> <span>ভিজিডি প্রতিবেদন</span></a>
+            <ul class="children">
+                <li><a target="_blank" href="{{url('admin/all-beneficiary-vgd-report')}}">সকল উপকারভোগী প্রতিবেদন</a></li>
+                <li><a href="{{url('admin/all-union-monthly-report')}}">সকল ইউনিয়নের প্রতিবেদন</a></li>
             </ul>
         </li>
 

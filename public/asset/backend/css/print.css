@@ -93,11 +93,11 @@ table {
 	padding: 0px;
 	text-align: center;
 	margin-right: 10px;
-} 
+}
 .table {
 	width: 100%;
 	border-collapse: collapse;
-	
+
 }
 .table td {
 	padding: 3px;
@@ -227,12 +227,12 @@ table {
 
 
 @media print {
-	
+
 	table {
 		border-collapse: collapse;
 	}
-	
-	
+
+
 	.wraper {
 		margin: 0 auto;
 		width: 100%;
@@ -293,11 +293,11 @@ table {
 		padding: 0px;
 		text-align: center;
 		margin-right: 10px;
-	} 
+	}
 	.table {
 		width: 100%;
 		border-collapse: collapse;
-		
+
 	}
 	.table td {
 		padding: 3px;
@@ -345,19 +345,27 @@ table {
 		border-bottom: 1px solid #eee;
 		border-top: 1px solid #eee;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
 }
 .bt-div {
 	display: none;
+}
+tr.custom-design {
+    height: 100px;
+    text-align: center;
+}
+table.table.custom-d td {
+    border: 1px solid #000;
+    padding: 5px;
 }
