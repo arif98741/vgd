@@ -12,6 +12,7 @@ Route::namespace('Admin')
 
         Route::get('dashboard', 'AdminController@index');
         Route::get('add-vgd-beneficiary', 'BeneficiaryController@addBeneficiary');
+        Route::get('view-vgd-beneficiary', 'ViewController@viewbeneficiary');
     });
 
 /** admin routes end */

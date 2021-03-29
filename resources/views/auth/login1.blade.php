@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Billing Suite</title>
+    <title>ভিজিডি ভাতা প্রদান লগিন করুন</title>
 
     <link href="{{asset('asset/backend/css/style.default.css')}}" rel="stylesheet">
 
@@ -35,8 +35,8 @@
                     <input id="email" name="email" type="email" class="form-control" placeholder="Username">
                     @error('email')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                        <strong>{{ $message }}</strong>
+                    </span>
                     @enderror
                 </div><!-- input-group -->
                 <div class="input-group mb15">
@@ -44,8 +44,8 @@
                     <input id="password" type="password" name="password" class="form-control" placeholder="Password">
                     @error('password')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                        <strong>{{ $message }}</strong>
+                    </span>
                     @enderror
                 </div><!-- input-group -->
 

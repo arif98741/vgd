@@ -16,7 +16,7 @@
         <li class="parent"><a href=""><i class="fa fa-users"></i> <span>ভিজিডি উপকারভোগী</span></a>
             <ul class="children">
                 <li><a href="{{url('admin/add-vgd-beneficiary')}}">ভিজিডি উপকারভোগী সংযোজন</a></li>
-                <li><a href="client_archive.php">গ্রাহক তালিকা</a></li>
+                <li><a href="{{url('admin/view-vgd-beneficiary')}}">ভিজিডি উপকারভোগী তালিকা</a></li>
                 <li><a href="client_report.php">গ্রাহক প্রতিবেদন</a></li>
             </ul>
         </li>
