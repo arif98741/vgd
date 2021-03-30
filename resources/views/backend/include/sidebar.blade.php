@@ -16,6 +16,7 @@
         <li class="parent"><a href=""><i class="fa fa-users"></i> <span>ভিজিডি উপকারভোগী</span></a>
             <ul class="children">
                 <li><a href="{{url('admin/add-vgd-beneficiary')}}">উপকারভোগী সংযোজন</a></li>
+                <li><a href="{{url('admin/upload-beneficiary-vgd')}}">উপকারভোগী আপলোড</a></li>
                 <li><a href="{{url('admin/pay-vgd-beneficiary')}}">উপকারভোগী চাউল প্রদান করুন</a></li>
                 <li><a href="{{url('admin/view-vgd-beneficiary')}}">উপকারভোগী তালিকা</a></li>
             </ul>
