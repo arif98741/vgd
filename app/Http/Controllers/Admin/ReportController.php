@@ -5,29 +5,27 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class reportController extends Controller
+class ReportController extends Controller
 {
-    public function allUnionMonthlyReport () {
+    public function allUnionMonthlyReport()
+    {
         return view('backend.admin.reports.monthly-report');
     }
 
-    public function allUnionReport () {
+    public function allUnionReport()
+    {
         return view('backend.admin.reports.all-union-report');
     }
 
-    public function allBeneficiaryVgdReport () {
+    public function allBeneficiaryVgdReport()
+    {
         return view('backend.admin.reports.all-beneficiary-vgd-report');
     }
 
-    public function allPayMonthlyVgdReport () {
+    public function allPayMonthlyVgdReport()
+    {
         return view('backend.admin.reports.all-pay-monthly-report');
     }
-
-
-
-
-
-
 
 
 }
