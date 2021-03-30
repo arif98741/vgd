@@ -19,6 +19,13 @@ class reportController extends Controller
         return view('backend.admin.reports.all-beneficiary-vgd-report');
     }
 
+    public function allPayMonthlyVgdReport () {
+        return view('backend.admin.reports.all-pay-monthly-report');
+    }
+
+
+
+
 
 
 

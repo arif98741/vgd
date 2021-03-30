@@ -21,9 +21,9 @@
             </ul>
         </li>
 
-        <li class="parent"><a href=""><i class="fa fa-users"></i> <span>ভিজিডি প্রতিবেদন</span></a>
+        <li class="parent"><a href=""><i class="fa fa-cog"></i> <span>ভিজিডি প্রতিবেদন</span></a>
             <ul class="children">
-                <li><a target="_blank" href="{{url('admin/all-beneficiary-vgd-report')}}">সকল উপকারভোগী প্রতিবেদন</a></li>
+                <li><a href="{{url('admin/all-pay-monthly-vgd-report')}}">সকল উপকারভোগী প্রতিবেদন</a></li>
                 <li><a href="{{url('admin/all-union-monthly-report')}}">সকল ইউনিয়নের প্রতিবেদন</a></li>
             </ul>
         </li>
