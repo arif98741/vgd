@@ -19,6 +19,8 @@ Route::namespace('Admin')
         Route::get('all-pay-monthly-vgd-report', 'reportController@allPayMonthlyVgdReport');
         Route::get('all-beneficiary-vgd-report', 'reportController@allBeneficiaryVgdReport');
         Route::get('upload-beneficiary-vgd', 'UploadController@uploadBeneficiary');
+        Route::get('stock-beneficiary-vgd', 'StockController@StockVgd');
+
     });
 
 /** admin routes end */

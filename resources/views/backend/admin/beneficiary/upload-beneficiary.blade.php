@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title','Admin Dashboard')
+@section('title','উপকারভোগী আপলোড করুন')
 @section('content')
     <div class="mainpanel">
         <div class="contentpanel">
