@@ -3,40 +3,16 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class DatabaseSeeder extends Seeder
+class UnionSeeder extends Seeder
 {
-
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
     public function run()
     {
-        //  $this->call(UnionSeeder::class);
-        $this->unionInsert();
-    }
 
-    private function unionInsert()
-    {
-
-        $unions = [ //git hub edit here
-            '1' => 'নাংলা',
-            '1' => 'নাংলা',
-            '1' => 'নাংলা',
-            '1' => 'নাংলা',
-            '1' => 'নাংলা',
-            '1' => 'নাংলা',
-            '1' => 'নাংলা',
-            '1' => 'নাংলা',
-            '1' => 'নাংলা',
-            '1' => 'নাংলা',
-        ];
-
-
-
-        foreach ($unions as $) {
-            DB::table('unions')
-                ->insert([
-                    'id' => 'নাংলা'
-                ])
-        }
-        /*
         DB::table('unions')
             ->insert(
                 [
@@ -73,6 +49,6 @@ class DatabaseSeeder extends Seeder
                     'union_name' => 'শ্যামপুর',
                 ]
 
-            );*/
+            );
     }
 }
