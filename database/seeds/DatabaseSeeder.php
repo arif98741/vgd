@@ -31,10 +31,10 @@ class DatabaseSeeder extends Seeder
 
 
         foreach ($unions as $) {
-            DB::table('unions')
+           /* DB::table('unions')
                 ->insert([
                     'id' => 'নাংলা'
-                ])
+                ])*/
         }
         /*
         DB::table('unions')
