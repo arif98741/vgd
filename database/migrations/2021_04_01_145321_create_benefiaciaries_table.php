@@ -19,7 +19,7 @@ class CreateBenefiaciariesTable extends Migration
             $table->string('fh_name', 150);
             $table->string('mother_name', 150);
             $table->unsignedInteger('union_id');
-            $table->unsignedInteger('ward_id');
+          //  $table->unsignedInteger('ward_id');
             $table->string('village');
             $table->string('card_no');
             $table->string('mobile', 15);
@@ -29,11 +29,11 @@ class CreateBenefiaciariesTable extends Migration
                 ->on('unions')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->foreign('union_id')
+            /*$table->foreign('ward_id')
                 ->references('id')
-                ->on('unions')
+                ->on('wards')
                 ->onDelete('cascade')
-                ->onUpdate('cascade');
+                ->onUpdate('cascade');*/
             $table->timestamps();
             //id, name, fh_name, mother_name, union_id, village, card_no, ward_id, mobile, photo¬¬¬
         });
