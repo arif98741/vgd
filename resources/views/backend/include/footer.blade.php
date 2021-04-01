@@ -15,4 +15,8 @@
 <script src="{{asset('asset/backend/js/select2.min.js')}}"></script>
 <script src="{{asset('asset/backend/js/custom.js')}}"></script>
 <script src="{{asset('asset/backend/js/holder.js')}}"></script>
+<script src="{{asset('asset/backend/js/jquery.dataTables.min.js')}}"></script>
+<script src="//cdn.datatables.net/plug-ins/725b2a2115b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+<script src="//cdn.datatables.net/responsive/1.0.1/js/dataTables.responsive.js"></script>
+@yield('script')
 

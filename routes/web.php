@@ -13,11 +13,21 @@ Route::namespace('Admin')
         Route::get('dashboard', 'AdminController@index');
         Route::get('add-vgd-beneficiary', 'BeneficiaryController@addBeneficiary');
         Route::get('view-vgd-beneficiary', 'ViewController@viewbeneficiary');
+<<<<<<< HEAD
+        Route::get('pay-vgd-beneficiary', 'payController@paybeneficiary');
+        Route::get('all-union-monthly-report', 'reportController@allUnionMonthlyReport');
+        Route::get('all-union-vgd-report', 'reportController@allUnionReport');
+        Route::get('all-pay-monthly-vgd-report', 'reportController@allPayMonthlyVgdReport');
+        Route::get('all-beneficiary-vgd-report', 'reportController@allBeneficiaryVgdReport');
+        Route::get('upload-beneficiary-vgd', 'UploadController@uploadBeneficiary');
+        Route::get('stock-beneficiary-vgd', 'StockController@StockVgd');
+=======
         Route::get('pay-vgd-beneficiary', 'PayController@paybeneficiary');
         Route::get('all-union-monthly-report', 'ReportController@allUnionMonthlyReport');
         Route::get('all-union-vgd-report', 'ReportController@allUnionReport');
         Route::get('all-pay-monthly-vgd-report', 'ReportController@allPayMonthlyVgdReport');
         Route::get('all-beneficiary-vgd-report', 'ReportController@allBeneficiaryVgdReport');
+>>>>>>> bd398e31e64bfe74f9735867db34f337e50f0c5b
 
     });
 
