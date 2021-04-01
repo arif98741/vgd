@@ -23,7 +23,7 @@ class CreateDistributionModelsTable extends Migration
             $table->foreign('beneficiary_id')
                 ->references('id')
                 ->on('beneficiaries')
-                ->onDelete('set null')
+                ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('union_id')
                 ->references('id')

@@ -27,7 +27,7 @@ class CreateBenefiaciariesTable extends Migration
             $table->foreign('union_id')
                 ->references('id')
                 ->on('unions')
-                ->onDelete('set null')
+                ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('union_id')
                 ->references('id')
