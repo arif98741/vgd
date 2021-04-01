@@ -13,7 +13,7 @@ class UnionSeeder extends Seeder
     public function run()
     {
 
-        DB::table('unions')
+       /* DB::table('unions')
             ->insert(
                 [
                     'union_name' => 'দুরমুঠ',
@@ -49,6 +49,6 @@ class UnionSeeder extends Seeder
                     'union_name' => 'শ্যামপুর',
                 ]
 
-            );
+            );*/
     }
 }
