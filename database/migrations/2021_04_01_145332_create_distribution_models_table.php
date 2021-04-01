@@ -15,8 +15,8 @@ class CreateDistributionModelsTable extends Migration
     {
         Schema::create('distributions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('beneficiary_id');
-            $table->integer('union_id');
+            $table->unsignedInteger('beneficiary_id');
+            $table->unsignedInteger('union_id');
             $table->integer('month');
             $table->tinyInteger('status')->default(0); // 0=not distributed, 1=distributed
             $table->date('distribution_date')->nullable();

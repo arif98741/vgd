@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->tinyInteger('role')->default(1); //admin = 1, user = 2
-            $table->integer('union_id'); //admin = 1, user = 2
+            $table->unsignedInteger('union_id'); //admin = 1, user = 2
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

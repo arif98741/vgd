@@ -18,8 +18,8 @@ class CreateBenefiaciariesTable extends Migration
             $table->string('name', 150);
             $table->string('fh_name', 150);
             $table->string('mother_name', 150);
-            $table->integer('union_id');
-            $table->integer('ward_id');
+            $table->unsignedInteger('union_id');
+            $table->unsignedInteger('ward_id');
             $table->string('village');
             $table->string('card_no');
             $table->string('mobile', 15);
