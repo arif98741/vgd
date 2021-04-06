@@ -3,6 +3,13 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Route::get('admin', function () {
+    echo \Illuminate\Support\Facades\Hash::make('123');
+
+    exit;
+    return redirect('login');
+});
+
 /** admin routes start */
 Route::namespace('Admin')
     ->middleware(['admin', 'web'])
@@ -12,7 +19,9 @@ Route::namespace('Admin')
 
         Route::get('dashboard', 'AdminController@index');
         Route::match(['get', 'post'], 'add-vgd-beneficiary', 'BeneficiaryController@addBeneficiary')->name('add-vgd-beneficiary');
-        Route::get('view-vgd-beneficiary', 'ViewController@viewbeneficiary');
+        Route::get('view-vgd-beneficiaries', 'BeneficiaryController@index');
+        Route::get('edit-beneficiary/{id}', 'BeneficiaryController@editBeneficiary');
+        Route::post('update-beneficiary/{id}', 'BeneficiaryController@updateBeneficiary')->name('update-vgd-beneficiary');
 
         Route::get('upload-beneficiary-vgd', 'UploadController@uploadBeneficiary');
         Route::get('stock-beneficiary-vgd', 'StockController@StockVgd');
