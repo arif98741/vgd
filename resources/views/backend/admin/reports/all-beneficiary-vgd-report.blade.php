@@ -36,7 +36,6 @@
             <th  align="left" valign="top" nowrap >পিতা/স্বামীর নাম</th>
             <th  align="left" valign="top" nowrap >মাতার নাম</th>
             <th  align="left" valign="top" >গ্রাম</th>
-            <th  align="left" valign="top" nowrap >ওয়ার্ড</th>
             <th  align="left" valign="top" nowrap >মোবাইল</th>
             <th  align="left" valign="top" nowrap >আদায়কারী</th>
         </tr>
@@ -48,7 +47,6 @@
             <td  align="left" valign="top" nowrap >হাসেম</td>
             <td  align="left" valign="top" >মমেনা</td>
             <td  align="left" valign="top" nowrap >চারাইলদার</td>
-            <td  align="left" valign="top" nowrap >৯</td>
             <td  align="left" valign="top" nowrap >০১৯৮৮৯৩৬৪৬৩</td>
             <td  align="left" valign="top" nowrap >মোঃ জহুরুল ইসলাম</td>
         </tr>
@@ -60,7 +58,6 @@
             <td  align="left" valign="top" nowrap >হাসেম</td>
             <td  align="left" valign="top" >মমেনা</td>
             <td  align="left" valign="top" nowrap >চারাইলদার</td>
-            <td  align="left" valign="top" nowrap >৯</td>
             <td  align="left" valign="top" nowrap >০১৯৮৮৯৩৬৪৬৩</td>
             <td  align="left" valign="top" nowrap >মোঃ জহুরুল ইসলাম</td>
         </tr>
@@ -72,7 +69,6 @@
             <td  align="left" valign="top" nowrap >হাসেম</td>
             <td  align="left" valign="top" >মমেনা</td>
             <td  align="left" valign="top" nowrap >চারাইলদার</td>
-            <td  align="left" valign="top" nowrap >৯</td>
             <td  align="left" valign="top" nowrap >০১৯৮৮৯৩৬৪৬৩</td>
             <td  align="left" valign="top" nowrap >মোঃ জহুরুল ইসলাম</td>
         </tr>
@@ -84,7 +80,6 @@
             <td  align="left" valign="top" nowrap >হাসেম</td>
             <td  align="left" valign="top" >মমেনা</td>
             <td  align="left" valign="top" nowrap >চারাইলদার</td>
-            <td  align="left" valign="top" nowrap >৯</td>
             <td  align="left" valign="top" nowrap >০১৯৮৮৯৩৬৪৬৩</td>
             <td  align="left" valign="top" nowrap >মোঃ জহুরুল ইসলাম</td>
         </tr>
@@ -96,7 +91,6 @@
             <td  align="left" valign="top" nowrap >হাসেম</td>
             <td  align="left" valign="top" >মমেনা</td>
             <td  align="left" valign="top" nowrap >চারাইলদার</td>
-            <td  align="left" valign="top" nowrap >৯</td>
             <td  align="left" valign="top" nowrap >০১৯৮৮৯৩৬৪৬৩</td>
             <td  align="left" valign="top" nowrap >মোঃ জহুরুল ইসলাম</td>
         </tr>
@@ -108,7 +102,6 @@
             <td  align="left" valign="top" nowrap >হাসেম</td>
             <td  align="left" valign="top" >মমেনা</td>
             <td  align="left" valign="top" nowrap >চারাইলদার</td>
-            <td  align="left" valign="top" nowrap >৯</td>
             <td  align="left" valign="top" nowrap >০১৯৮৮৯৩৬৪৬৩</td>
             <td  align="left" valign="top" nowrap >মোঃ জহুরুল ইসলাম</td>
         </tr>

@@ -11,7 +11,9 @@ Route::namespace('Admin')
     ->group(function () {
 
         Route::get('dashboard', 'AdminController@index');
-        Route::get('add-vgd-beneficiary', 'BeneficiaryController@addBeneficiary');
+
+        Route::get('add-vgd-beneficiary', 'BeneficiaryController@index');
+
         Route::get('view-vgd-beneficiary', 'ViewController@viewbeneficiary');
 
         Route::get('upload-beneficiary-vgd', 'UploadController@uploadBeneficiary');
