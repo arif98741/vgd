@@ -45,7 +45,7 @@ Route::namespace('Admin')
 
         Route::get('pay-vgd-beneficiary', 'PayController@payBeneficiary');
         //January distribution
-        Route::get('distribution/{month}', 'PayController@janBeneficiary');
+        Route::get('distribution/{month}', 'PayController@distribution');
         Route::get('confirm/disPage/{id}', 'PayController@confirmJanDis');
         Route::post('done/janDis', 'PayController@doneJanDis');
 

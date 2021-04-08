@@ -41,7 +41,8 @@
 
 
         <div class="contentpanel">
-            <h2 class="control-label text-center text-danger">{{ $months[$month] }} মাসের ভিজিডি উপকারভোগী</h2>
+            <h2 class="control-label text-center text-danger">@if($month =='all') সব @else {{ $months[$month] }} @endif
+                মাসের ভিজিডি উপকারভোগী</h2>
             <table id="basicTable" class="table table-striped  table-hover">
                 <thead>
                 <tr>

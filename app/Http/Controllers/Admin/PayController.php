@@ -7,6 +7,9 @@ use App\Models\Beneficiary;
 use App\Models\Distribution;
 use App\Models\FebruaryDistribution;
 use App\Models\JanuaryDistribution;
+use App\Providers\HelperProvider;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Config;
@@ -21,18 +24,32 @@ class PayController extends Controller
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    function janBeneficiary($month)
+    function distribution($month)
     {
         $currentUnionId = Auth::user()->union_id;
-        $data = [
-            'month' => $month,
-            'months' => Config::get('months.names'),
-            'distributions' => Distribution::with(['union', 'beneficiary'])
-                ->where('month', $month)
-                ->where('union_id', $currentUnionId)
-                ->get()
-        ];
-        //dd($data['months']);
+
+        if ($month == 'all') {
+
+            $data = [
+                'month' => $month,
+                'months' => HelperProvider::monthsUntilNow(),
+                'distributions' => Distribution::with(['union', 'beneficiary'])
+                    ->where('union_id', $currentUnionId)
+                    ->whereIn('month', HelperProvider::dataQueryMonths(HelperProvider::monthsUntilNow()))
+                    ->get()
+            ];
+        } else {
+
+            $data = [
+                'month' => $month,
+                'months' => HelperProvider::monthsUntilNow(),
+                'distributions' => Distribution::with(['union', 'beneficiary'])
+                    ->where('month', HelperProvider::getMonthByNumber($month))
+                    ->where('union_id', $currentUnionId)
+                    ->get()
+            ];
+        }
+
         return view('backend.admin.beneficiary.distribution')->with($data);
     }
 
