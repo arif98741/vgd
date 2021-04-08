@@ -18,5 +18,7 @@
 <script src="{{asset('asset/backend/js/jquery.dataTables.min.js')}}"></script>
 <script src="//cdn.datatables.net/plug-ins/725b2a2115b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 <script src="//cdn.datatables.net/responsive/1.0.1/js/dataTables.responsive.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"/>
 @yield('script')
 

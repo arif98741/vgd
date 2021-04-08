@@ -92,7 +92,6 @@
         </div><!-- panel -->
     </div><!-- mainwrapper -->
 
-
 @endsection
 
 @section('script')
@@ -188,9 +187,11 @@
 
         $('#search_table').change(function () {
             let searchValue = $(this).val();
-            let url = '{{ url("/") }}' + '/admin/distribution/' + searchValue;
-            window.location.href = url;
+            if (searchValue != '') {
 
+                let url = '{{ url("/") }}' + '/admin/distribution/' + searchValue;
+                window.location.href = url;
+            }
         });
     </script>
 @endsection
