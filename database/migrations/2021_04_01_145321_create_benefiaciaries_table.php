@@ -20,10 +20,9 @@ class CreateBenefiaciariesTable extends Migration
             $table->string('mother_name', 150);
             $table->string('nid', 20);
             $table->unsignedInteger('union_id');
-            $table->string('ward');
+            $table->string('ward')->nullable();
             $table->string('village');
             $table->string('card_no');
-            $table->string('nid_no');
             $table->string('mobile', 15);
             $table->string('photo')->nullable();
             $table->foreign('union_id')

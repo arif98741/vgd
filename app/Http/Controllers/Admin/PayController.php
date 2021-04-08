@@ -9,31 +9,31 @@ use App\Models\FebruaryDistribution;
 use App\Models\JanuaryDistribution;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Config;
 
 class PayController extends Controller
 {
     public function payBeneficiary()
     {
-
         return view('backend.admin.beneficiary.pay');
     }
 
-    function janBeneficiary()
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    function janBeneficiary($month)
     {
         $currentUnionId = Auth::user()->union_id;
-
-        dd($currentUnionId);
-        $janDis = JanuaryDistribution::all();
-
-
-        $Beneficiary = Beneficiary::join('unions', 'beneficiaries.union_id', 'unions.id')
-            ->select('unions.union_name', 'beneficiaries.*')
-            ->where('unions.id', $currentUnionId)
-            ->get();
-        dd($Beneficiary);
-
-
-        return view('backend.admin.beneficiary.january', compact('Beneficiary', 'janDis'));
+        $data = [
+            'month' => $month,
+            'months' => Config::get('months.names'),
+            'distributions' => Distribution::with(['union', 'beneficiary'])
+                ->where('month', $month)
+                ->where('union_id', $currentUnionId)
+                ->get()
+        ];
+        //dd($data['months']);
+        return view('backend.admin.beneficiary.distribution')->with($data);
     }
 
     function confirmJanDis($id)
@@ -123,7 +123,6 @@ class PayController extends Controller
                 'message' => 'Payment Complete successfully!',
                 'alert-type' => 'success'
             );
-
             return redirect()->back()->with($notification);
         } else {
             $notification = array(
@@ -132,7 +131,6 @@ class PayController extends Controller
             );
 
             return redirect()->back()->with($notification);
-
         }
     }
 

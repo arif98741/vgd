@@ -10,4 +10,9 @@ class Union extends Model
     {
         return $this->hasMany(Beneficiary::class);
     }
+
+    public function january_distribution()
+    {
+        return $this->hasMany(JanuaryDistribution::class);
+    }
 }

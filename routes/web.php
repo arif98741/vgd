@@ -35,13 +35,8 @@ Route::namespace('Admin')
         Route::get('edit/beneficiary/{id}', 'ViewController@EditBeneficiary');
         Route::post('update/beneficiary/{id}', 'ViewController@UpdateBeneficiary');
 
-
-
         Route::get('upload-beneficiary-vgd', 'UploadController@uploadBeneficiary');
         Route::post('upload/file', 'UploadController@import');
-
-
-
 
         Route::get('stock-beneficiary-vgd', 'StockController@StockVgd');
         Route::post('add/stock', 'StockController@addStock');
@@ -50,7 +45,7 @@ Route::namespace('Admin')
 
         Route::get('pay-vgd-beneficiary', 'PayController@payBeneficiary');
         //January distribution
-        Route::get('january/distribution', 'PayController@janBeneficiary');
+        Route::get('distribution/{month}', 'PayController@janBeneficiary');
         Route::get('confirm/disPage/{id}', 'PayController@confirmJanDis');
         Route::post('done/janDis', 'PayController@doneJanDis');
 

@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Beneficiary extends Model
 {
-    protected $table="beneficiaries";
+    protected $table = "beneficiaries";
 
     protected $fillable = [
-        'name', 'fh_name', 'mother_name','union_id', 'village','card_no', 'nid_no', 'mobile','photo'
+        'name', 'fh_name', 'mother_name', 'union_id', 'village', 'card_no', 'nid', 'mobile', 'photo'
     ];
 
 
@@ -18,12 +18,16 @@ class Beneficiary extends Model
         return $this->belongsTo(Union::class);
     }
 
-
-    public static function getBeneficiary(){
-        $records=DB::table('beneficiaries')
-            ->select('id','name','fh_name','mother_name','union_id','village','card_no','nid_no','mobile')
+    public static function getBeneficiary()
+    {
+        $records = DB::table('beneficiaries')
+            ->select('id', 'name', 'fh_name', 'mother_name', 'union_id', 'village', 'card_no', 'nid_no', 'mobile')
             ->get();
     }
 
+    public function january_distribution()
+    {
+        return $this->hasMany(JanuaryDistribution::class);
+    }
 
 }

@@ -23,7 +23,7 @@ class UsersImport implements ToModel, WithHeadingRow
             'union_id'    => $row['union_id'],
             'village'    => $row['village'],
             'card_no'    => $row['card_no'],
-            'nid_no'    => $row['nid_no'],
+            'nid'    => $row['nid'],
             'mobile'    => $row['mobile'],
         ]);
     }
