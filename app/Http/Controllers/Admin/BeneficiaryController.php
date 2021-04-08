@@ -21,6 +21,9 @@ class BeneficiaryController extends Controller
     }
 
 
+    /**
+     * @throws ValidationException
+     */
     public function addBeneficiary(Request $request)
     {
         if ($request->isMethod('post')) {
@@ -39,26 +42,16 @@ class BeneficiaryController extends Controller
             $status = Beneficiary::create($data);
             if ($status) { //if successfully inserted
                 $request->session()->flash('alert-success', 'User was successful added!');
-                return redirect()->route('admin.add-vgd-beneficiary');
             } else {
                 $request->session()->flash('alert-error', 'User error');
-                return redirect()->route('admin.add-vgd-beneficiary');
             }
+            return redirect()->route('admin.add-vgd-beneficiary');
         }
 
         $data['unions'] = Union::all();
         return view('backend.admin.beneficiary.add')->with($data);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -115,17 +108,11 @@ class BeneficiaryController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
-        >>>>>>>
-        ad11a9d... change file"
+
+
     }
 
 
@@ -163,7 +150,4 @@ class BeneficiaryController extends Controller
         }
 
     }
-
-
-
 }
