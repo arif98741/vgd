@@ -86,8 +86,7 @@ class BeneficiaryController extends Controller
 
 
         public
-        function updateBeneficiary(Request $request, $id)
-        {
+gi        {
 
             $data = $this->validate($request, [
                 'name' => 'required',
