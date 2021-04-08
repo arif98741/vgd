@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class JanuaryDistribution extends Model
 {
-    //
+    protected $fillable = [
+        'beneficiary_id','mobile', 'beneficiary_id', 'union_id','month','status','distribution_date'
+    ];
+
 }

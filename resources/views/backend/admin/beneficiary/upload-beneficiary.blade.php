@@ -6,7 +6,7 @@
             <div class="row row-stat">
                 <div class="col-md-6 mt-5">
                     <div class="upload-form">
-                        <form action="{{url('')}}" enctype="multipart/form-data" method="POST">
+                        <form action="{{url('admin/upload/file')}}" enctype="multipart/form-data" method="POST">
                             @csrf
                             <h4><i class="fa fa-file-excel-o" aria-hidden="true"></i> ভিজিডি উপকারভোগী আপলোড করুন </h4>
 
@@ -15,7 +15,7 @@
                             </div>
 
                             <div class="">
-                                <button id="addNewBtnId" class="btn btn-success btn-md" type="submit"><i class="fa fa-upload"></i> আপলোড</button>
+                                <button class="btn btn-success btn-md" type="submit"><i class="fa fa-upload"></i> আপলোড</button>
                             </div>
                         </form>
                     </div>

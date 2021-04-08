@@ -3,10 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Beneficiary;
+use App\Models\Union;
 use Illuminate\Http\Request;
+
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Validator;
+
+use Illuminate\Support\Str;
+
 
 class BeneficiaryController extends Controller
 {
@@ -50,120 +56,114 @@ class BeneficiaryController extends Controller
         return view('backend.admin.beneficiary.add')->with($data);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $union = Union::all();
+        return view('backend.admin.beneficiary.add', compact('union'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+    public function addBeneficiary(Request $request)
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-        >>>>>>>
-        ad11a9d... change file"
-    }
-
-
-    public function editBeneficiary(Request $request, $id)
-    {
-        $data = [
-            'unions' => Union::all(),
-            'beneficiary' => Beneficiary::findOrFail($id)
-        ];
-        return view('backend.admin.beneficiary.edit')->with($data);
-    }
-
-
-    public function updateBeneficiary(Request $request, $id)
     {
 
-        $data = $this->validate($request, [
-            'name' => 'required',
-            'card_no' => 'required|unique:beneficiaries,card_no,' . $id,
-            'nid' => 'required|unique:beneficiaries,nid,' . $id,
-            'fh_name' => 'required',
-            'mother_name' => 'required',
-            'union_id' => 'required',
-            'ward' => 'required',
-            'village' => 'required',
-            'mobile' => 'required|unique:beneficiaries,mobile,' . $id,
-        ]);
-        $beneficiary = Beneficiary::find($id);
-        if ($beneficiary->update($data)) { //if successfully updated
-            $request->session()->flash('alert-success', 'Updated Successfully');
-            return redirect('admin/view-vgd-beneficiaries');
-        } else {
-            $request->session()->flash('alert-error', 'User error');
-            return redirect()->route('admin.add-vgd-beneficiary');
+
+        public
+        function editBeneficiary(Request $request, $id)
+        {
+            $data = [
+                'unions' => Union::all(),
+                'beneficiary' => Beneficiary::findOrFail($id)
+            ];
+            return view('backend.admin.beneficiary.edit')->with($data);
         }
 
-    }
 
+        public
+        function updateBeneficiary(Request $request, $id)
+        {
+
+            $data = $this->validate($request, [
+                'name' => 'required',
+                'card_no' => 'required|unique:beneficiaries,card_no,' . $id,
+                'nid' => 'required|unique:beneficiaries,nid,' . $id,
+                'fh_name' => 'required',
+                'mother_name' => 'required',
+                'union_id' => 'required',
+                'ward' => 'required',
+                'village' => 'required',
+                'mobile' => 'required|unique:beneficiaries,mobile,' . $id,
+            ]);
+            $beneficiary = Beneficiary::find($id);
+            if ($beneficiary->update($data)) { //if successfully updated
+                $request->session()->flash('alert-success', 'Updated Successfully');
+                return redirect('admin/view-vgd-beneficiaries');
+            } else {
+                $request->session()->flash('alert-error', 'User error');
+                return redirect()->route('admin.add-vgd-beneficiary');
+            }
+
+        }
+
+
+        $data = array();
+        $data['name'] = $request->name;
+        $data['fh_name'] = $request->fh_name;
+        $data['mother_name'] = $request->mother_name;
+        $data['union_id'] = $request->union_id;
+        $data['village'] = $request->village;
+        $data['card_no'] = $request->card_no;
+        $data['nid_no'] = $request->nid_no;
+        $data['mobile'] = $request->mobile;
+
+        $image = $request->file('photo');
+
+        if ($image) {
+            $image_name = Str::random(10);
+            $ext = strtolower($image->getClientOriginalExtension());
+            $image_full_name = $image_name . '.' . $ext;
+            $upload_path = 'public/images/';
+            $image_url = $upload_path . $image_full_name;
+            $success = $image->move($upload_path, $image_full_name);
+
+            if ($success) {
+                $data['photo'] = $image_url;
+                $Beneficiary = Beneficiary::insert($data);
+                if ($Beneficiary) {
+                    $notification = array(
+                        'message' => 'Inserted successfully!',
+                        'alert-type' => 'success'
+                    );
+
+                    return redirect()->back()->with($notification);
+                } else {
+                    $notification = array(
+                        'message' => 'Something Went Wrong! Please try Again',
+                        'alert-type' => 'error'
+                    );
+
+                    return redirect()->back()->with($notification);
+                }
+            }
+
+        } else {
+            Beneficiary::insert($data);
+            $notification = array(
+                'message' => 'Data Inserted Successfully',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+
+    }
 
 
 }

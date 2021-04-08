@@ -23,8 +23,8 @@
                             <div class="form-group">
                                 <h2 class="control-label text-center">মাসের নাম নির্বাচন করুন</h2>
                                 <hr>
-                                <a class="btn btn-primary" href="{{url('admin/january/Beneficiary')}}">জানুয়ারি</a>
-                                <a class="btn btn-success" href="">ফেব্রুয়ারি</a>
+                                <a class="btn btn-primary" href="{{url('admin/january/distribution')}}">জানুয়ারি</a>
+                                <a class="btn btn-success" href="{{url('admin/february/distribution')}}">ফেব্রুয়ারি</a>
                                 <a class="btn btn-info" href="">মার্চ</a>
                                 <a class="btn btn-danger" href="">এপ্রিল</a>
                                 <a class="btn btn-primary" href="">মে</a>
@@ -72,7 +72,7 @@
                         <td>{{$row->village}}</td>
                         <td>{{$row->mobile}}</td>
 
-                        @if($row->id==$janDis[0]['beneficiary_id'] && $janDis[0]['status']==1)
+                        @if($row->id==$janDis[1]['beneficiary_id'] && $janDis[0]['status']==1)
 
                         <td>
                             <span class="badge badge-danger">প্রদান হয়েছে</span>

@@ -14,7 +14,12 @@ class CreateNovemberDistributionsTable extends Migration
     public function up()
     {
         Schema::create('november_distributions', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->integer('beneficiary_id');
+            $table->integer('union_id');
+            $table->string('month');
+            $table->tinyInteger('status')->default(0);
+            $table->date('distribution_date')->nullable();
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class CreateDistributionModelsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('beneficiary_id');
             $table->unsignedInteger('union_id');
-            $table->integer('month');
+            $table->string('month');
             $table->tinyInteger('status')->default(0); // 0=not distributed, 1=distributed
             $table->date('distribution_date')->nullable();
             $table->foreign('beneficiary_id')

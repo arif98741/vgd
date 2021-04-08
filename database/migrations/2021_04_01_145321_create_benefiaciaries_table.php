@@ -23,6 +23,7 @@ class CreateBenefiaciariesTable extends Migration
             $table->string('ward');
             $table->string('village');
             $table->string('card_no');
+            $table->string('nid_no');
             $table->string('mobile', 15);
             $table->string('photo')->nullable();
             $table->foreign('union_id')
