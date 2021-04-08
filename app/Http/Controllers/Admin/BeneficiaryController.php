@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Beneficiary;
 use App\Models\Union;
+use App\User;
 use Illuminate\Http\Request;
 
 use Illuminate\Validation\ValidationException;
@@ -56,60 +57,43 @@ class BeneficiaryController extends Controller
         return view('backend.admin.beneficiary.add')->with($data);
     }
 
-
-    public function index()
-    {
-        $union = Union::all();
-        return view('backend.admin.beneficiary.add', compact('union'));
-    }
-
     public function store(Request $request)
     {
         //
     }
 
 
-    public function addBeneficiary(Request $request)
-
+    public function editBeneficiary(Request $request, $id)
     {
+        $data = [
+            'unions' => Union::all(),
+            'beneficiary' => Beneficiary::findOrFail($id)
+        ];
+        return view('backend.admin.beneficiary.edit')->with($data);
+    }
 
 
-        public
-        function editBeneficiary(Request $request, $id)
-        {
-            $data = [
-                'unions' => Union::all(),
-                'beneficiary' => Beneficiary::findOrFail($id)
-            ];
-            return view('backend.admin.beneficiary.edit')->with($data);
+    public function updateBeneficiary(Request $request, $id)
+    {
+        $data = $this->validate($request, [
+            'name' => 'required',
+            'card_no' => 'required|unique:beneficiaries,card_no,' . $id,
+            'nid' => 'required|unique:beneficiaries,nid,' . $id,
+            'fh_name' => 'required',
+            'mother_name' => 'required',
+            'union_id' => 'required',
+            'ward' => 'required',
+            'village' => 'required',
+            'mobile' => 'required|unique:beneficiaries,mobile,' . $id,
+        ]);
+        $beneficiary = Beneficiary::find($id);
+        if ($beneficiary->update($data)) { //if successfully updated
+            $request->session()->flash('alert-success', 'Updated Successfully');
+            return redirect('admin/view-vgd-beneficiaries');
+        } else {
+            $request->session()->flash('alert-error', 'User error');
+            return redirect()->route('admin.add-vgd-beneficiary');
         }
-
-
-        public
-gi        {
-
-            $data = $this->validate($request, [
-                'name' => 'required',
-                'card_no' => 'required|unique:beneficiaries,card_no,' . $id,
-                'nid' => 'required|unique:beneficiaries,nid,' . $id,
-                'fh_name' => 'required',
-                'mother_name' => 'required',
-                'union_id' => 'required',
-                'ward' => 'required',
-                'village' => 'required',
-                'mobile' => 'required|unique:beneficiaries,mobile,' . $id,
-            ]);
-            $beneficiary = Beneficiary::find($id);
-            if ($beneficiary->update($data)) { //if successfully updated
-                $request->session()->flash('alert-success', 'Updated Successfully');
-                return redirect('admin/view-vgd-beneficiaries');
-            } else {
-                $request->session()->flash('alert-error', 'User error');
-                return redirect()->route('admin.add-vgd-beneficiary');
-            }
-
-        }
-
 
         $data = array();
         $data['name'] = $request->name;
@@ -160,7 +144,6 @@ gi        {
 
             return redirect()->back()->with($notification);
         }
-
 
     }
 

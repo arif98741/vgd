@@ -20,13 +20,8 @@
                 <li><a href="{{url('admin/upload-beneficiary-vgd')}}">উপকারভোগী আপলোড</a></li>
                 <li><a href="{{url('admin/stock-beneficiary-vgd')}}">গুদামে মাল মজুদ করুন</a></li>
                 <li><a href="{{url('admin/pay-vgd-beneficiary')}}">উপকারভোগী চাউল প্রদান করুন</a></li>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
                 <li><a href="{{url('admin/view-vgd-beneficiaries')}}">উপকারভোগী তালিকা</a></li>
->>>>>>> ead0803cd83e200684c415c667ef4b9ae94bc856
-=======
->>>>>>> 97c5b16... change file
+
             </ul>
         </li>
 

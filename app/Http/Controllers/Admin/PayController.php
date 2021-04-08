@@ -7,7 +7,6 @@ use App\Models\Beneficiary;
 use App\Models\Distribution;
 use App\Models\FebruaryDistribution;
 use App\Models\JanuaryDistribution;
-use App\Models\Stock;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -23,6 +22,7 @@ class PayController extends Controller
     {
         $currentUnionId = Auth::user()->union_id;
 
+        dd($currentUnionId);
         $janDis = JanuaryDistribution::all();
 
 
