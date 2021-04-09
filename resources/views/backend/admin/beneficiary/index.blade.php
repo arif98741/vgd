@@ -43,9 +43,7 @@
                         <td>{{ $beneficiary->mobile }}</td>
 
                         <td>
-                            <a href="{{ url('admin/edit-beneficiary/'.$beneficiary->id) }}"
-                               class="btn btn-primary btn-sm" role="button" aria-pressed="true"> <i
-                                    class="fa fa-eye"></i></a>
+                            
                             <a href="{{ url('admin/edit-beneficiary/'.$beneficiary->id) }}"
                                class="btn btn-primary btn-sm" role="button" aria-pressed="true"> <i
                                     class="fa fa-edit"></i></a>

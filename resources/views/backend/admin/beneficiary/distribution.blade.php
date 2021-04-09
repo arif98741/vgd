@@ -68,7 +68,7 @@
                         <td>{{$distribution->beneficiary->mother_name}}</td>
                         <td>{{$distribution->beneficiary->union_name}}</td>
                         <td>{{$distribution->beneficiary->village}}</td>
-                        <td>{{$distribution->mobile}}</td>
+                        <td>{{$distribution->beneficiary->mobile}}</td>
 
                         @if($distribution->status == 1)
                             <td>
