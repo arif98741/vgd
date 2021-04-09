@@ -39,7 +39,7 @@ class PayController extends Controller
                     ->get()
             ];
         } else {
-            
+
             if ($month > count(HelperProvider::monthsUntilNow())) {
                 abort(404);
             }

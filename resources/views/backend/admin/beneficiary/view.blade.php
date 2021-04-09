@@ -55,6 +55,7 @@
         jQuery(document).ready(function(){
             jQuery('#basicTable').DataTable({
                 responsive: true,
+                "pageLength": 25
 
             });
             var shTable = jQuery('#shTable').DataTable({
