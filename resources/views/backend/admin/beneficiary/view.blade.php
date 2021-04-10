@@ -17,37 +17,31 @@
 			<thead>
 				<tr>
 					<th>কার্ড নং</th>
-                    <th>কছবি</th>
+                    {{-- <th>ছবি</th> --}}
 					<th>এনআইডি নম্বর</th>
 					<th>নাম</th>
                     <th>পিতার/স্বামীর নাম</th>
                     <th>মাতার নাম</th>
-                    <th>ইউনিয়ন</th>
+                    {{-- <th>ইউনিয়ন</th> --}}
                     <th>গ্রাম</th>
 					<th>মোবাইল নম্বর</th>
-					<th>একশন</th>
 				</tr>
 			</thead>
 			<tbody>
             @foreach($Beneficiary as $row)
 				<tr>
 					<td>{{$row->card_no}}</td>
+                    {{--
 					<td>
                         <img src="{{asset($row->photo)}}" alt="N/A" width="80" height="50">
-                    </td>
-					<td>{{$row->nid_no}}</td>
+                    </td> --}}
+					<td>{{$row->nid}}</td>
 					<td>{{$row->name}}</td>
 					<td>{{$row->fh_name}}</td>
 					<td>{{$row->mother_name}}</td>
-					<td>{{$row->union_id }}</td>
+					{{-- <td>{{$row->union_id }}</td> --}}
 					<td>{{$row->village}}</td>
 					<td>{{$row->mobile}}</td>
-
-					<td>
-						<a href="profile.php" class="btn btn-success btn-sm" role="button" aria-pressed="true"> <i class="fa fa-eye"></i></a>
-                        <a href="{{url('admin/edit/beneficiary/'.$row->id)}}" class="btn btn-primary btn-sm" role="button" aria-pressed="true"> <i class="fa fa-edit"></i></a>
-                        <a href="{{url('admin/delete/beneficiary/'.$row->id)}}" class="btn btn-danger btn-sm" role="button" aria-pressed="true"> <i class="fa fa-trash-o"></i></a>
-					</td>
 				</tr>
             @endforeach
 
@@ -60,7 +54,9 @@
     <script>
         jQuery(document).ready(function(){
             jQuery('#basicTable').DataTable({
-                responsive: true
+                responsive: true,
+                "pageLength": 25
+
             });
             var shTable = jQuery('#shTable').DataTable({
                 "fnDrawCallback": function(oSettings) {

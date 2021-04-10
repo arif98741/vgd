@@ -51,7 +51,7 @@
                     <th>নাম</th>
                     <th>পিতার/স্বামীর নাম</th>
                     <th>মাতার নাম</th>
-                    <th>ইউনিয়ন</th>
+{{--                    <th>ইউনিয়ন</th>--}}
                     <th>গ্রাম</th>
                     <th>মোবাইল নম্বর</th>
                     <th>একশন</th>
@@ -66,18 +66,16 @@
                         <td>{{$distribution->beneficiary->name}}</td>
                         <td>{{$distribution->beneficiary->fh_name}}</td>
                         <td>{{$distribution->beneficiary->mother_name}}</td>
-                        <td>{{$distribution->beneficiary->union_name}}</td>
+{{--                        <td>{{$distribution->beneficiary->union_name}}</td>--}}
                         <td>{{$distribution->beneficiary->village}}</td>
-                        <td>{{$distribution->mobile}}</td>
-
+                        <td>{{$distribution->beneficiary->mobile}}</td>
                         @if($distribution->status == 1)
                             <td>
                                 <span class="badge badge-danger">প্রদান হয়েছে</span>
                             </td>
                         @else
                             <td>
-                                <a href="{{url('admin/confirm/disPage/'.$distribution->id)}}"
-                                   class="btn btn-primary btn-sm"> <i class="fa fa-hand-o-up"></i> প্রদান করুন</a>
+                                <a href="#" class="btn btn-primary btn-sm " data-toggle="modal" data-target="#staticBackdrop"> <i class="fa fa-hand-o-up"></i> প্রদান করুন</a>
                             </td>
                         @endif
 
@@ -92,7 +90,31 @@
         </div><!-- panel -->
     </div><!-- mainwrapper -->
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">ওটিপি প্রদান করুন</h5>
+
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Type Six Digit Code">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">বন্ধ করুন</button>
+                    <button type="button" class="btn btn-primary">কনফার্ম</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
+
+
 
 @section('script')
     <script>
