@@ -8,11 +8,10 @@ use App\Models\Distribution;
 use App\Models\FebruaryDistribution;
 use App\Models\JanuaryDistribution;
 use App\Providers\HelperProvider;
-use Carbon\Carbon;
-use DateTime;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory as FactoryAlias;
 use Illuminate\Http\Request;
 use Auth;
-use Illuminate\Support\Facades\Config;
 
 class PayController extends Controller
 {
@@ -22,7 +21,7 @@ class PayController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|FactoryAlias|\Illuminate\View\View
      */
     function distribution($month)
     {
@@ -116,6 +115,10 @@ class PayController extends Controller
         return view('backend.admin.distribution.february', compact('Beneficiary', 'febDis'));
     }
 
+    /**
+     * @param $id
+     * @return Application|FactoryAlias|\Illuminate\View\View
+     */
     function confirmFebDis($id)
     {
         return view('backend.admin.distribution.february_pay', compact('id'));

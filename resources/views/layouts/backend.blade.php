@@ -24,6 +24,7 @@
 </head>
 
 <body>
+<div id="loader" style="display: none"></div>
 
 @include('backend.include.header')
 
@@ -63,8 +64,6 @@
     }
     @endif
 </script>
-
-
 
 
 </body>

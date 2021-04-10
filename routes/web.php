@@ -4,9 +4,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('admin', function () {
-    echo \Illuminate\Support\Facades\Hash::make('123');
-
-    exit;
     return redirect('login');
 });
 
@@ -42,7 +39,6 @@ Route::namespace('Admin')
         Route::post('add/stock', 'StockController@addStock');
 
 
-
         Route::get('pay-vgd-beneficiary', 'PayController@payBeneficiary');
         //January distribution
         Route::get('distribution/{month}', 'PayController@distribution');
@@ -53,11 +49,6 @@ Route::namespace('Admin')
         Route::get('february/distribution', 'PayController@FebDistribution');
         Route::get('confirm/febDis/{id}', 'PayController@confirmFebDis');
         Route::post('done/febDis', 'PayController@doneFebDis');
-
-
-
-
-
 
 
         Route::get('all-union-monthly-report', 'ReportController@allUnionMonthlyReport');

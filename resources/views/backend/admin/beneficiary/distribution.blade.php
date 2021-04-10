@@ -51,7 +51,7 @@
                     <th>নাম</th>
                     <th>পিতার/স্বামীর নাম</th>
                     <th>মাতার নাম</th>
-{{--                    <th>ইউনিয়ন</th>--}}
+                    {{--                    <th>ইউনিয়ন</th>--}}
                     <th>গ্রাম</th>
                     <th>মোবাইল নম্বর</th>
                     <th>একশন</th>
@@ -66,7 +66,7 @@
                         <td>{{$distribution->beneficiary->name}}</td>
                         <td>{{$distribution->beneficiary->fh_name}}</td>
                         <td>{{$distribution->beneficiary->mother_name}}</td>
-{{--                        <td>{{$distribution->beneficiary->union_name}}</td>--}}
+                        {{--                        <td>{{$distribution->beneficiary->union_name}}</td>--}}
                         <td>{{$distribution->beneficiary->village}}</td>
                         <td>{{$distribution->beneficiary->mobile}}</td>
                         @if($distribution->status == 1)
@@ -75,7 +75,9 @@
                             </td>
                         @else
                             <td>
-                                <a href="#" class="btn btn-primary btn-sm " data-toggle="modal" data-target="#staticBackdrop"> <i class="fa fa-hand-o-up"></i> প্রদান করুন</a>
+                                <a href="#" class="btn btn-primary btn-sm modalOTP" rowid="{{ $distribution->id }}"
+                                   data-toggle="modal"> <i
+                                        class="fa fa-hand-o-up"></i> প্রদান করুন</a>
                             </td>
                         @endif
 
@@ -92,29 +94,45 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
+
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">ওটিপি প্রদান করুন</h5>
+                    <h5 class="modal-title text-center" id="staticBackdropLabel">ওটিপি সাবমিট করুন</h5>
+                    <p class="message alert alert-success"></p>
 
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Type Six Digit Code">
+                        <input type="text" minlength="4" maxlength="4" class="form-control text-center" id="otp"
+                               placeholder="XXXX">
                     </div>
                 </div>
                 <div class="modal-footer">
+
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">বন্ধ করুন</button>
-                    <button type="button" class="btn btn-primary">কনফার্ম</button>
+                    <button type="button" class="btn btn-primary otp-verify-btn"> কনফার্ম</button>
+                    <input type="hidden" id="rowid">
                 </div>
             </div>
         </div>
     </div>
 
+    <style>
+        #loader {
+            z-index: 999999;
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url({{ asset('images/loader.gif') }}) 50% 50% no-repeat #cccccc;
+        }
+    </style>
 @endsection
-
-
 
 @section('script')
     <script>
@@ -210,10 +228,82 @@
         $('#search_table').change(function () {
             let searchValue = $(this).val();
             if (searchValue != '') {
-
                 let url = '{{ url("/") }}' + '/admin/distribution/' + searchValue;
                 window.location.href = url;
             }
+        });
+
+        $('.modalOTP').click(function () {
+            $('input').val('');
+            $('#staticBackdrop').modal('show');
+            //get row id
+            let rowid = $(this).attr('rowid');
+            $('#loader').css('display', 'block');
+            $("#loader").fadeOut(1500);
+            $.ajax({
+                url: '{{ url("api/sendOtp") }}',
+                method: 'post',
+                data: {
+                    'distribution_id': rowid,
+                    'purpose': 'distribution_verification',
+                },
+                dataType: 'json',
+                success: function (response) {
+                    if (response.code === 200) {
+                        $('.message').html(response.message);
+                        $('#rowid').val(rowid);
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+
+        $('.otp-verify-btn').click(function () {
+            let otp = $('#otp').val();
+            let rowid = $('#rowid').val();
+            if (otp == '') {
+                $('.message').html('ওটিপি পুরণ করে কনফার্ম করুন')
+                    .removeClass('alert-success')
+                    .addClass('alert-danger');
+            } else {
+
+                $('#loader').css('display', 'block');
+                $("#loader").fadeOut(2000);
+                $.ajax({
+                    url: '{{ url("api/verifyOtp") }}',
+                    method: 'post',
+                    data: {
+                        'distribution_id': rowid,
+                        'purpose': 'distribution_verification',
+                        'code': otp
+                    },
+                    dataType: 'json',
+                    success: function (response) {
+
+                        if (response.code === 200) {
+
+                            $('.message').html(response.message).removeClass('alert-danger')
+                                .addClass('alert-success');
+                            setTimeout(function () {
+
+                                $('#staticBackdrop').modal('hide');
+                                location.reload();
+                            }, 1000);
+
+                        } else if (response.code == 204 || response.code == 205) {
+                            $('.message').html(response.message).removeClass('alert-success')
+                                .addClass('alert-danger');
+                        }
+                        $('#loader').css('display', 'none');
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+
         });
     </script>
 @endsection
