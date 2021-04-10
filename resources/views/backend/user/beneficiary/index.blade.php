@@ -8,7 +8,7 @@
                     <i class="fa fa-users"></i>
                 </div>
                 <div class="media-body">
-                    <h4>সকল ইউনিয়ন ভিজিডি উপকারভোগী তালিকা</h4>
+                    <h4>{{ \App\Models\Union::find(\App\User::getUnion())->union_name }} ইউনিয়ন ভিজিডি উপকারভোগী তালিকা</h4>
                 </div>
             </div><!-- media -->
         </div><!-- pageheader -->
@@ -22,11 +22,10 @@
                     <th>নাম</th>
                     <th>পিতার/স্বামীর নাম</th>
                     <th>মাতার নাম</th>
-                    <th>ইউনিয়ন</th>
                     <th>গ্রাম</th>
                     <th>ওয়ার্ড নং</th>
                     <th>মোবাইল নম্বর</th>
-                    <th>একশন</th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -37,20 +36,10 @@
                         <td>{{ $beneficiary->name }}</td>
                         <td>{{ $beneficiary->fh_name }}</td>
                         <td>{{ $beneficiary->mother_name }}</td>
-                        <td>{{ $beneficiary->union->union_name }}</td>
                         <td>{{ $beneficiary->village }}</td>
                         <td>{{ $beneficiary->ward }}</td>
                         <td>{{ $beneficiary->mobile }}</td>
 
-                        <td>
-
-                            <a href="{{ url('admin/edit-beneficiary/'.$beneficiary->id) }}"
-                               class="btn btn-primary btn-sm" role="button" aria-pressed="true"> <i
-                                    class="fa fa-edit"></i></a>
-                            <a href="{{ url('admin/edit-beneficiary/'.$beneficiary->id) }}"
-                               class="btn btn-primary btn-sm" role="button" aria-pressed="true"> <i
-                                    class="fa fa-trash-o"></i></a>
-                        </td>
                     </tr>
 
                 @endforeach
@@ -63,7 +52,8 @@
     <script>
         jQuery(document).ready(function () {
             jQuery('#basicTable').DataTable({
-                responsive: true
+                responsive: true,
+                pageLength: 50
             });
             var shTable = jQuery('#shTable').DataTable({
                 "fnDrawCallback": function (oSettings) {

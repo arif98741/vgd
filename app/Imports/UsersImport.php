@@ -16,6 +16,7 @@ class UsersImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
+
         return new Beneficiary([
             'name'     => $row['name'],
             'fh_name'    => $row['fh_name'],

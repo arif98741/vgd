@@ -13,7 +13,6 @@
     <ul class="custom-menu">
         <li><a href="{{url('/admin/dashboard')}}"><i class="fa fa-home"></i> <span>ড্যাশবোর্ড</span></a></li>
         <li><a href="{{url('admin/add-vgd-beneficiary')}}"> <i class="fa fa-plus"></i> উপকারভোগী সংযোজন</a></li>
-        <li><a href="{{url('admin/view-vgd-beneficiary')}}"> <i class="fa fa-list"></i> উপকারভোগী তালিকা</a></li>
         <li><a href="{{url('admin/upload-beneficiary-vgd')}}"> <i class="fa fa-upload"></i> উপকারভোগী আপলোড</a></li>
         <li><a href="{{url('admin/stock-beneficiary-vgd')}}"><i class="fa fa-pencil"></i> গুদামে মাল মজুদ করুন</a></li>
         <li><a href="{{url('admin/distribution/all')}}"> <i class="fa fa-share-square-o"></i> উপকারভোগী চাউল প্রদান করুন</a></li>

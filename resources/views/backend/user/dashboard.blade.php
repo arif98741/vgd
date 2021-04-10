@@ -1,8 +1,8 @@
 @extends('layouts.backend')
-@section('title','Admin Dashboard')
+@section('title','Union Dashboard')
 @section('content')
     <div class="mainpanel">
-        @include('backend.include.pageheader')
+        @include('backend.include.pageheader_union')
 
         <div class="contentpanel">
 

@@ -32,7 +32,9 @@
                                 </div>
                             </div>
                         </form>
+
                     </div>
+                    <a href="">গ্রাহক তালিকায় যুক্তু করুন</a>
                 </div><!-- panel-body -->
             </div><!-- panel -->
         </div><!-- panel -->

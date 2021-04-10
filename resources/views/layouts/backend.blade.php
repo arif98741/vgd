@@ -26,16 +26,26 @@
 <body>
 <div id="loader" style="display: none"></div>
 
-@include('backend.include.header')
+@if(isAdmin())
+    @include('backend.include.header_admin')
+@endif
+@if(isUser())
+    @include('backend.include.header_union')
+@endif
 
 <section>
     <div class="mainwrapper">
-        @include('backend.include.sidebar')
+        @if(isAdmin())
+            @include('backend.include.sidebar_admin')
+        @endif
+        @if(isUser())
+            @include('backend.include.sidebar_union')
+        @endif
+
         @yield('content')
     </div><!-- mainwrapper -->
 </section>
 @include('backend.include.footer')
-
 
 {{--Toastr Notification script cdn--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"

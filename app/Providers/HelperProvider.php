@@ -44,6 +44,7 @@ class HelperProvider extends ServiceProvider
     public static function getMonthByNumber($number)
     {
         $dateObj = DateTime::createFromFormat('!m', $number);
+
         return strtolower($dateObj->format('F'));
     }
 

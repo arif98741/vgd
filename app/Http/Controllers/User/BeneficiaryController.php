@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Beneficiary;
@@ -18,12 +18,12 @@ use Illuminate\Support\Str;
 class BeneficiaryController extends Controller
 {
 
-
     public function index()
     {
         $data['beneficiaries'] = Beneficiary::with('union')
             ->where('union_id', User::getUnion())->get();
-        return view('backend.admin.beneficiary.index')->with($data);
+
+        return view('backend.user.beneficiary.index')->with($data);
     }
 
 
@@ -53,7 +53,7 @@ class BeneficiaryController extends Controller
         }
 
         $data['unions'] = Union::all();
-        return view('backend.admin.beneficiary.add')->with($data);
+        return view('backend.user.beneficiary.add')->with($data);
     }
 
     public function store(Request $request)
@@ -68,7 +68,7 @@ class BeneficiaryController extends Controller
             'unions' => Union::all(),
             'beneficiary' => Beneficiary::findOrFail($id)
         ];
-        return view('backend.admin.beneficiary.edit')->with($data);
+        return view('backend.user.beneficiary.edit')->with($data);
     }
 
 

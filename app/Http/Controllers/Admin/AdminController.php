@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Distribution;
 use App\Models\Stock;
+use App\Models\Union;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -15,6 +16,7 @@ class AdminController extends Controller
 
         $currentUserId = Auth::user()->id;
         $currentUnionId = Auth::user()->union_id;
+        $unionName = Union::find($currentUnionId);
 
         //January Month Report
         $janTotal = Stock::where('user_id', $currentUserId)->where('year', '2021')->where('month', 'jan')->sum('amount');
@@ -79,7 +81,7 @@ class AdminController extends Controller
 
         return view('backend.admin.dashboard', compact('janTotal', 'janPay', 'janDue', 'febTotal', 'febPay', 'febDue', 'marTotal', 'marDue', 'marPay',
             'aprTotal', 'aprPay', 'aprDue', 'mayTotal', 'mayDue', 'mayPay', 'junTotal', 'junPay', 'junDue', 'julTotal', 'julPay', 'julDue', 'augTotal', 'augPay', 'augDue',
-            'sepDue', 'sepPay', 'sepTotal', 'octDue', 'octPay', 'octTotal', 'novDue', 'novPay', 'novTotal', 'decDue', 'decPay', 'decTotal'));
+            'sepDue', 'sepPay', 'sepTotal', 'octDue', 'octPay', 'octTotal', 'novDue', 'novPay', 'novTotal', 'decDue', 'decPay', 'decTotal','unionName'));
 
 
     }

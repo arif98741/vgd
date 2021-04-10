@@ -5,7 +5,7 @@
         </div>
         <div class="media-body">
 
-            <h4>সকল ইউনিয়ন ভিজিডি ড্যাশবোর্ড</h4>
+            <h4>{{ $unionName->union_name }} ইউনিয়ন ভিজিডি ড্যাশবোর্ড</h4>
         </div>
     </div><!-- media -->
 </div><!-- pageheader -->
