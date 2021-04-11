@@ -8,6 +8,8 @@ use App\Providers\HelperProvider;
 use Auth;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory as FactoryAlias;
+use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class PayController extends Controller
 {
@@ -22,35 +24,47 @@ class PayController extends Controller
     /**
      * @return Application|FactoryAlias|\Illuminate\View\View
      */
-    function distribution($month)
+    function distribution(Request $request, $month)
     {
-        if ($month == 'all') {
+        if ($request->ajax()) {
+            if ($month == 'all') {
 
-            $data = [
-                'month' => $month,
-                'months' => HelperProvider::monthsUntilNow(),
-                'distributions' => Distribution::with(['union', 'beneficiary'])
+                $distributions = Distribution::with(['beneficiary'])
                     ->whereIn('month', HelperProvider::dataQueryMonths(HelperProvider::monthsUntilNow()))
                     ->whereYear('created_at', date('Y'))
-                    ->get()
-            ];
-        } else {
+                    ->latest()
+                    ->get();
+            } else {
 
-            if ($month > count(HelperProvider::monthsUntilNow())) {
-                abort(404);
-            }
+                if ($month > count(HelperProvider::monthsUntilNow())) {
+                    abort(404);
+                }
 
-            $data = [
-                'month' => $month,
-                'months' => HelperProvider::monthsUntilNow(),
-                'distributions' => Distribution::with(['union', 'beneficiary'])
+                $distributions = Distribution::with(['beneficiary'])
+                    ->select('card_no', 'nid', 'name', 'fh_name', 'mother_name', 'village', 'mobile')
                     ->where('month', HelperProvider::getMonthByNumber($month))
                     ->whereYear('created_at', date('Y'))
-                    ->get()
-            ];
-        }
+                    ->latest()
+                    ->get();
 
-        return view('backend.admin.beneficiary.distribution')->with($data);
+            }
+            return Datatables::of($distributions)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+
+                    $btn = '<a rowid="' . $row->id . '" data-toggle="modal" class="btn btn-primary btn-sm modalOTP">
+<i  class="fa fa-hand-o-up"></i>
+প্রদান করুন</a>';
+
+                    return $btn;
+                })->rawColumns(['action'])
+                ->make(true);
+        }
+        $data = [
+            'month' => $month,
+            'months' => HelperProvider::monthsUntilNow(),
+        ];
+        return view('backend.admin.beneficiary.distribution1')->with($data);
     }
 
 

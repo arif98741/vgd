@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Imports\UsersImport;
+use App\Models\Beneficiary;
+use App\Models\Distribution;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -18,7 +20,7 @@ class UploadController extends Controller
     {
         Excel::import(new UsersImport, $request->file);
 
-        /* $months = \Illuminate\Support\Facades\Config::get('months.names');
+         $months = \Illuminate\Support\Facades\Config::get('months.names');
          $beneficiaries = Beneficiary::all();
          foreach ($months as $key => $month) {
 
@@ -30,7 +32,7 @@ class UploadController extends Controller
 
                  Distribution::create($data);
              }
-         }*/
+         }
 
         $notification = array(
             'message' => 'successfully Uploaded',

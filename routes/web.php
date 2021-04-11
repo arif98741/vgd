@@ -1,10 +1,21 @@
 <?php
 
+use App\Models\Distribution;
+use App\Providers\HelperProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('admin', function () {
     return redirect('login');
+});
+
+Route::get('hello',function (){
+    $abc = Distribution::with(['beneficiary_ajax'])
+        ->whereIn('month', HelperProvider::dataQueryMonths(HelperProvider::monthsUntilNow()))
+        ->whereYear('created_at', date('Y'))
+        ->limit(4)
+        ->get();
+    return $abc;
 });
 
 /** admin routes start */

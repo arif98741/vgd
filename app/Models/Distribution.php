@@ -15,6 +15,12 @@ class Distribution extends Model
         return $this->belongsTo(Beneficiary::class);
     }
 
+    public function beneficiary_ajax()
+    {
+        return $this->belongsTo(Beneficiary::class)
+            ->select(['name','fh_name','nid','mother_name','card_no','village','mobile']);
+    }
+
     public function union()
     {
         return $this->belongsTo(Union::class);

@@ -25,9 +25,5 @@ class Beneficiary extends Model
             ->get();
     }
 
-    public function january_distribution()
-    {
-        return $this->hasMany(JanuaryDistribution::class);
-    }
 
 }
