@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Stock;
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\Request;
 
 class StockController extends Controller
 {

@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use alidator;
 use App\Http\Controllers\Controller;
 use App\Models\Beneficiary;
 use App\Models\Union;
-use App\User;
+use App\Providers\HelperProvider;
 use Illuminate\Http\Request;
-
-use Illuminate\Validation\ValidationException;
-use Illuminate\View\View;
-use Validator;
-
 use Illuminate\Support\Str;
+use Illuminate\View\View;
+use Image;
+use Session;
+use Storage;
 use Yajra\DataTables\DataTables;
 
 
@@ -59,7 +59,21 @@ class BeneficiaryController extends Controller
                 'village' => 'required',
                 'mobile' => 'required|unique:beneficiaries|min:11|max:11',
             ]);
-            $status = Beneficiary::create($data);
+
+            if ($request->hasFile('photo')) {
+
+                $data['photo'] = HelperProvider::uploadImage($request, 'beneficiary', 'photo');
+            }
+
+            try {
+                $status = Beneficiary::create($data);
+                if (!$status)
+                    throw  new \Exception('Error');
+            } catch (\Exception $e) {
+                $request->session()->flash('alert-error', 'Something wrong');
+                return redirect()->route('admin.add-vgd-beneficiary');
+            }
+
             if ($status) { //if successfully inserted
                 $request->session()->flash('alert-success', 'উপকারভোগী সফলভাবে যুক্ত হয়েছে');
                 return redirect()->route('admin.add-vgd-beneficiary');
@@ -71,12 +85,6 @@ class BeneficiaryController extends Controller
         $data['unions'] = Union::all();
         return view('backend.admin.beneficiary.add')->with($data);
     }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
 
     public function editBeneficiary(Request $request, $id)
     {
@@ -102,62 +110,18 @@ class BeneficiaryController extends Controller
             'mobile' => 'required|unique:beneficiaries,mobile,' . $id,
         ]);
         $beneficiary = Beneficiary::find($id);
-        if ($beneficiary->update($data)) { //if successfully updated
-            $request->session()->flash('alert-success', 'Updated Successfully');
-            return redirect('admin/view-vgd-beneficiaries');
-        } else {
-            $request->session()->flash('alert-error', 'User error');
-            return redirect()->route('admin.add-vgd-beneficiary');
+        if ($request->hasFile('photo')) {
+
+            $data['photo'] = HelperProvider::uploadImage($request, 'beneficiary', 'photo');
         }
 
-        $data = array();
-        $data['name'] = $request->name;
-        $data['fh_name'] = $request->fh_name;
-        $data['mother_name'] = $request->mother_name;
-        $data['union_id'] = $request->union_id;
-        $data['village'] = $request->village;
-        $data['card_no'] = $request->card_no;
-        $data['nid_no'] = $request->nid_no;
-        $data['mobile'] = $request->mobile;
-
-        $image = $request->file('photo');
-
-        if ($image) {
-            $image_name = Str::random(10);
-            $ext = strtolower($image->getClientOriginalExtension());
-            $image_full_name = $image_name . '.' . $ext;
-            $upload_path = 'public/images/';
-            $image_url = $upload_path . $image_full_name;
-            $success = $image->move($upload_path, $image_full_name);
-
-            if ($success) {
-                $data['photo'] = $image_url;
-                $Beneficiary = Beneficiary::insert($data);
-                if ($Beneficiary) {
-                    $notification = array(
-                        'message' => 'Inserted successfully!',
-                        'alert-type' => 'success'
-                    );
-
-                    return redirect()->back()->with($notification);
-                } else {
-                    $notification = array(
-                        'message' => 'Something Went Wrong! Please try Again',
-                        'alert-type' => 'error'
-                    );
-
-                    return redirect()->back()->with($notification);
-                }
-            }
-
+        if ($beneficiary->update($data)) {
+            //if successfully updated
+            $request->session()->flash('alert-success', 'উপকারভোগী সফলভাবে আপডেট হয়েছে');
+            return redirect('admin/view-vgd-beneficiaries');
         } else {
-            Beneficiary::insert($data);
-            $notification = array(
-                'message' => 'Data Inserted Successfully',
-                'alert-type' => 'success'
-            );
-
-            return redirect()->back()->with($notification);
+            $request->session()->flash('alert-error', 'অনাকাঙ্খিত সমস্যা। পুনরায় চেষ্টা করুন।');
+            return redirect()->route('admin.add-vgd-beneficiary');
         }
 
     }

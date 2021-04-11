@@ -49,6 +49,22 @@ class HelperProvider extends ServiceProvider
     }
 
     /**
+     * @param $request
+     * @param $path
+     * @param $name
+     * @return mixed
+     */
+    public static function uploadImage($request, $path, $name)
+    {
+        $filenameWithExt = $request->file($name)->getClientOriginalName();
+        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        $extension = $request->file($name)->getClientOriginalExtension();
+        $fileNameToStore = "$filename" . '_' . time() . '.' . $extension;
+        $path = $request->file($name)->storeAs("public/uploads/$path", $fileNameToStore);
+        return str_replace('public/', '', $path);
+    }
+
+    /**
      * SSL SMS
      * @param $mobile
      * @param $message

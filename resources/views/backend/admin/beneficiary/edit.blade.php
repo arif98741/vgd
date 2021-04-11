@@ -91,7 +91,9 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label class="control-label">গ্রাম</label>
-                            <input type="text" name="village"  value="@if(!empty(old('village'))) {{ old('village') }} @else {{ $beneficiary->village }} @endif" class="form-control"/>
+                            <input type="text" name="village"
+                                   value="@if(!empty(old('village'))) {{ old('village') }} @else {{ $beneficiary->village }} @endif"
+                                   class="form-control"/>
                             @if($errors->has('village'))
                                 <div class="error">{{ $errors->first('village') }}</div>
                             @endif
@@ -103,24 +105,18 @@
                         <div class="form-group">
                             <label class="control-label">ওয়ার্ড নং</label>
                             <select name="ward" class="form-control">
+
+
                                 <option value="">---নির্বাচন করুন---</option>
-                                <option
-                                    @if(!empty(old('ward')) && old('ward') == 1) selected
-                                    @elseif($beneficiary->union_id == 1)
-                                    selected
-                                    @endif  value="1">1
-                                </option>
-                                <option
-                                    @if(!empty(old('ward')) && old('ward') == 2) selected
-                                    @elseif($beneficiary->union_id == 2)
-                                    selected
-                                    @endif  value="2">2
-                                </option>
-                                <option @if(!empty(old('ward')) && old('ward') == 3) selected
-                                        @elseif($beneficiary->union_id == 3)
-                                        selected
-                                        @endif  value="3">3
-                                </option>
+                                @for($i=1; $i<=9; $i++)
+                                    <option  @if(!empty(old('ward')) && old('ward') == $i) selected @elseif($beneficiary->union_id == $i)
+                                        selected @endif  value="{{ $i }}">{{ $i }}
+                                    </option>
+                                @endfor
+
+                                @if($errors->has('ward'))
+                                    <div class="error">{{ $errors->first('ward') }}</div>
+                                @endif
                             </select>
                             @if($errors->has('ward'))
                                 <div class="error">{{ $errors->first('ward') }}</div>
@@ -143,6 +139,9 @@
                         <div class="form-group">
                             <label class="control-label">ছবি (সর্বচ্চ ৫০ কে.বি)</label>
                             <input type="file" name="photo" class="form-control"/>
+                            <img class="img-fluid mt-3" style="width: 50px; height: 50px;"
+                                 src="{{ asset('storage/'.$beneficiary->photo) }}"
+                                 alt="">
                             @if($errors->has('photo'))
                                 <div class="error">{{ $errors->first('photo') }}</div>
                             @endif

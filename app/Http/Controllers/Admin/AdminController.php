@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Distribution;
 use App\Models\Stock;
 use App\Models\Union;
-use Illuminate\Http\Request;
 use Auth;
 
 class AdminController extends Controller
@@ -81,7 +80,7 @@ class AdminController extends Controller
 
         return view('backend.admin.dashboard', compact('janTotal', 'janPay', 'janDue', 'febTotal', 'febPay', 'febDue', 'marTotal', 'marDue', 'marPay',
             'aprTotal', 'aprPay', 'aprDue', 'mayTotal', 'mayDue', 'mayPay', 'junTotal', 'junPay', 'junDue', 'julTotal', 'julPay', 'julDue', 'augTotal', 'augPay', 'augDue',
-            'sepDue', 'sepPay', 'sepTotal', 'octDue', 'octPay', 'octTotal', 'novDue', 'novPay', 'novTotal', 'decDue', 'decPay', 'decTotal','unionName'));
+            'sepDue', 'sepPay', 'sepTotal', 'octDue', 'octPay', 'octTotal', 'novDue', 'novPay', 'novTotal', 'decDue', 'decPay', 'decTotal', 'unionName'));
 
 
     }

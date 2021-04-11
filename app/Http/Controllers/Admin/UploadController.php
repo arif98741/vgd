@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Beneficiary;
-use App\Models\Distribution;
-use Illuminate\Http\Request;
 use App\Imports\UsersImport;
-use League\Flysystem\Config;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UploadController extends Controller
@@ -21,19 +18,19 @@ class UploadController extends Controller
     {
         Excel::import(new UsersImport, $request->file);
 
-       /* $months = \Illuminate\Support\Facades\Config::get('months.names');
-        $beneficiaries = Beneficiary::all();
-        foreach ($months as $key => $month) {
+        /* $months = \Illuminate\Support\Facades\Config::get('months.names');
+         $beneficiaries = Beneficiary::all();
+         foreach ($months as $key => $month) {
 
-            foreach ($beneficiaries as $item) { //240
-                $data['beneficiary_id'] = $item->id;
-                $data['union_id'] = $item->union_id;
-                $data['month'] = $key;
-                $data['status'] = 0;
+             foreach ($beneficiaries as $item) { //240
+                 $data['beneficiary_id'] = $item->id;
+                 $data['union_id'] = $item->union_id;
+                 $data['month'] = $key;
+                 $data['status'] = 0;
 
-                Distribution::create($data);
-            }
-        }*/
+                 Distribution::create($data);
+             }
+         }*/
 
         $notification = array(
             'message' => 'successfully Uploaded',
