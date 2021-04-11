@@ -13,23 +13,40 @@ use Illuminate\View\View;
 use Validator;
 
 use Illuminate\Support\Str;
+use Yajra\DataTables\DataTables;
 
 
 class BeneficiaryController extends Controller
 {
-
-
-    public function index()
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|View
+     * @throws \Exception
+     */
+    public function index(Request $request)
     {
-        $data['beneficiaries'] = Beneficiary::with('union')
-            ->where('union_id', User::getUnion())->get();
-        return view('backend.admin.beneficiary.index')->with($data);
+        if ($request->ajax()) {
+            $beneficiaries = Beneficiary::with('union')
+                ->latest()
+                ->get();
+            return Datatables::of($beneficiaries)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+
+                    $btn = '<a href="' . url("admin/edit-beneficiary/" . $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a>';
+
+                    return $btn;
+                })->rawColumns(['action'])
+                ->make(true);
+        }
+        return view('backend.admin.beneficiary.index');
     }
 
 
     public function addBeneficiary(Request $request)
     {
         if ($request->isMethod('post')) {
+
 
             $data = $this->validate($request, [
                 'name' => 'required',
@@ -44,14 +61,13 @@ class BeneficiaryController extends Controller
             ]);
             $status = Beneficiary::create($data);
             if ($status) { //if successfully inserted
-                $request->session()->flash('alert-success', 'User was successful added!');
+                $request->session()->flash('alert-success', 'উপকারভোগী সফলভাবে যুক্ত হয়েছে');
                 return redirect()->route('admin.add-vgd-beneficiary');
             } else {
                 $request->session()->flash('alert-error', 'User error');
                 return redirect()->route('admin.add-vgd-beneficiary');
             }
         }
-
         $data['unions'] = Union::all();
         return view('backend.admin.beneficiary.add')->with($data);
     }

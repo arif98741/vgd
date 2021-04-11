@@ -21,7 +21,7 @@ Route::namespace('Admin')
         Route::get('edit-beneficiary/{id}', 'BeneficiaryController@editBeneficiary');
         Route::post('update-beneficiary/{id}', 'BeneficiaryController@updateBeneficiary')->name('update-vgd-beneficiary');
 
-        Route::get('add-vgd-beneficiary', 'BeneficiaryController@index');
+     //   Route::get('add-vgd-beneficiary', 'BeneficiaryController@index');
 
 
         Route::post('beneficiary', 'BeneficiaryController@addBeneficiary');
