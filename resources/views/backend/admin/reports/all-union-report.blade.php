@@ -5,7 +5,6 @@
     <title>মেলান্দহ সকল ভিজিডি হিসাব</title>
     <link href="{{ asset('asset/backend/css/print.css')}}" rel="stylesheet">
 </head>
-
 <body>
 <div class="wraper">
     <table width="100%" border="0">

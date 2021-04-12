@@ -58,7 +58,8 @@ Route::namespace('Admin')
         Route::get('all-union-vgd-report', 'ReportController@allUnionReport');
         Route::get('all-pay-monthly-vgd-report', 'ReportController@allPayMonthlyVgdReport');
         Route::get('all-beneficiary-vgd-report', 'ReportController@allBeneficiaryVgdReport');
-
+        Route::get('all-envelope-report', 'EnvelopeController@EnvelopeView');
+        Route::get('envelope-print/{id}', 'EnvelopeController@EnvelopePrint');
 
     });
 

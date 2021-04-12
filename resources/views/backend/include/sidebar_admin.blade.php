@@ -19,6 +19,7 @@
         <li><a href="{{url('admin/view-vgd-beneficiaries')}}"> <i class="fa fa-list"></i> উপকারভোগী তালিকা</a></li>
         <li><a href="{{url('admin/all-pay-monthly-vgd-report')}}"> <i class="fa fa-eye"></i> সকল উপকারভোগী প্রতিবেদন</a></li>
         <li><a href="{{url('admin/all-union-monthly-report')}}"> <i class="fa fa-list-alt"></i> সকল ইউনিয়নের প্রতিবেদন</a></li>
+        <li><a href="{{url('admin/all-envelope-report')}}"> <i class="fa fa-envelope"></i> খাম তৈরী করুন</a></li>
     </ul>
 
 

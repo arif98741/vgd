@@ -8,7 +8,6 @@
                     <i class="fa fa-users"></i>
                 </div>
                 <div class="media-body">
-
                     <h4>ভিজিডি উপকারভোগী ভাতা প্রদান করুন</h4>
                 </div>
             </div><!-- media -->
@@ -49,7 +48,7 @@
                     <th>নাম</th>
                     <th>পিতার/স্বামীর নাম</th>
                     <th>মাতার নাম</th>
-                    {{--                    <th>ইউনিয়ন</th>--}}
+                    <th>ইউনিয়ন</th>
                     <th>গ্রাম</th>
                     <th>মোবাইল নম্বর</th>
                     <th>একশন</th>
@@ -64,7 +63,7 @@
                         <td>{{$distribution->beneficiary->name}}</td>
                         <td>{{$distribution->beneficiary->fh_name}}</td>
                         <td>{{$distribution->beneficiary->mother_name}}</td>
-                        {{--                        <td>{{$distribution->beneficiary->union_name}}</td>--}}
+                        <td>{{$distribution->beneficiary->union_name}}</td>
                         <td>{{$distribution->beneficiary->village}}</td>
                         <td>{{$distribution->beneficiary->mobile}}</td>
                         @if($distribution->status == 1)

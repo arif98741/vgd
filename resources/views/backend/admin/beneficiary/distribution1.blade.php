@@ -50,6 +50,7 @@
                     <th>পিতার/স্বামীর নাম</th>
                     <th>মাতার নাম</th>
                     <th>গ্রাম</th>
+                    <th>ওয়ার্ড</th>
                     <th>মোবাইল নম্বর</th>
                     <th>একশন</th>
                 </tr>
@@ -120,6 +121,7 @@
                     {data: 'beneficiary.fh_name', name: 'beneficiary.fh_name'},
                     {data: 'beneficiary.mother_name', name: 'beneficiary.mother_name'},
                     {data: 'beneficiary.village', name: 'beneficiary.village'},
+                    {data: 'beneficiary.ward', name: 'beneficiary.ward'},
                     {data: 'beneficiary.mobile', name: 'beneficiary.mobile'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
