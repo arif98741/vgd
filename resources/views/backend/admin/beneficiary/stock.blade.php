@@ -24,6 +24,26 @@
 
                         <div class="col-sm-2">
                             <div class="form-group">
+                                <label class="control-label">ইউনিয়ন</label>
+                                <select   data-placeholder="Choose One" name="month" class="form-control" required >
+                                    <option value="">---নির্বাচন করুন---</option>
+                                    <option value="jan">দুরমুঠ</option>
+                                    <option value="feb">কুলিয়া</option>
+                                    <option value="mar">মাহমুদপুর</option>
+                                    <option value="apr">নাংলা</option>
+                                    <option value="may">নয়ানগর</option>
+                                    <option value="jun">আদ্রা</option>
+                                    <option value="jul">চরবানীপাকুরিয়া</option>
+                                    <option value="aug">ফুলকোচা</option>
+                                    <option value="sep">ঘোষেরপাড়া</option>
+                                    <option value="oct">ঝাউগড়া </option>
+                                    <option value="nov">শ্যামপুর</option>
+                                </select>
+                            </div><!-- form-group -->
+                        </div><!-- col-sm-6 -->
+
+                        <div class="col-sm-2">
+                            <div class="form-group">
                                 <label class="control-label">মাস</label>
                                 <select   data-placeholder="Choose One" name="month" class="form-control" required >
                                     <option value="">---নির্বাচন করুন---</option>
@@ -45,19 +65,10 @@
 
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <label class="control-label">বছর</label>
+                                <label class="control-label">অর্থ বছর</label>
                                 <select   data-placeholder="Choose One" name="year" class="form-control" required>
                                     <option value="">---নির্বাচন করুন---</option>
-                                    <option value="2021">২০২১</option>
-                                    <option value="2022">২০২২</option>
-                                    <option value="2023">২০২৩ </option>
-                                    <option value="2024">২০২৪  </option>
-                                    <option value="2025">২০২৫  </option>
-                                    <option value="2026">২০২৬</option>
-                                    <option value="2027">২০২৭</option>
-                                    <option value="2028">২০২৮</option>
-                                    <option value="2029">২০২৯</option>
-                                    <option value="2030">২০৩০</option>
+                                    <option value="2021">২০২১-২০২২</option>
                                 </select>
                             </div><!-- form-group -->
                         </div><!-- col-sm-6 -->

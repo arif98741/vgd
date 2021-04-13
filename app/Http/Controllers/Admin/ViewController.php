@@ -58,6 +58,7 @@ class ViewController extends Controller
         $data['union_id'] = $request->union_id;
         $data['village'] = $request->village;
         $data['card_no'] = $request->card_no;
+        $data['ward'] = $request->ward;
         $data['nid_no'] = $request->nid_no;
         $data['mobile'] = $request->mobile;
 

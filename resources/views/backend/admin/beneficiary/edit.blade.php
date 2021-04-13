@@ -105,8 +105,6 @@
                         <div class="form-group">
                             <label class="control-label">ওয়ার্ড নং</label>
                             <select name="ward" class="form-control">
-
-
                                 <option value="">---নির্বাচন করুন---</option>
                                 @for($i=1; $i<=9; $i++)
                                     <option  @if(!empty(old('ward')) && old('ward') == $i) selected @elseif($beneficiary->union_id == $i)

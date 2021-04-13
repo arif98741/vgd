@@ -16,7 +16,7 @@
                                         class="fa fa-times"></i></a>
                             </div><!-- panel-btns -->
                             <div class="media-body">
-                                <h5 class="md-title nomargin">জানুয়ারী/২০২১ মাসের চাউল</h5>
+                                <h5 class="md-title nomargin">জানুয়ারী/২০২১-২০২২ মাসের চাউল</h5>
                                 <h2 style="font-family:SutonnyMJ;" class="mt5">{{$janTotal}} বস্তা</h2>
                             </div><!-- media-body -->
                             <hr>
@@ -43,7 +43,7 @@
                                         class="fa fa-times"></i></a>
                             </div><!-- panel-btns -->
                             <div class="media-body">
-                                <h5 class="md-title nomargin">ফেব্রুয়ারি/২০২১ মাসের চাউল</h5>
+                                <h5 class="md-title nomargin">ফেব্রুয়ারি/২০২১-২০২২ মাসের চাউল</h5>
                                 <h2 style="font-family:SutonnyMJ;" class="mt5">{{$febTotal}} বস্তা</h2>
                             </div><!-- media-body -->
                             <hr>
@@ -73,7 +73,7 @@
                                         class="fa fa-times"></i></a>
                             </div><!-- panel-btns -->
                             <div class="media-body">
-                                <h5 class="md-title nomargin">মার্চ /২০২১ মাসের চাউল</h5>
+                                <h5 class="md-title nomargin">মার্চ /২০২১-২০২২ মাসের চাউল</h5>
                                 <h2 style="font-family:SutonnyMJ;" class="mt5">{{$marTotal}} বস্তা</h2>
                             </div><!-- media-body -->
                             <hr>
@@ -104,7 +104,7 @@
                                         class="fa fa-times"></i></a>
                             </div><!-- panel-btns -->
                             <div class="media-body">
-                                <h5 class="md-title nomargin">এপ্রিল/২০২১ মাসের চাউল</h5>
+                                <h5 class="md-title nomargin">এপ্রিল/২০২১-২০২২ মাসের চাউল</h5>
                                 <h2 style="font-family:SutonnyMJ;" class="mt5">{{$aprTotal}} বস্তা</h2>
                             </div><!-- media-body -->
                             <hr>
@@ -135,7 +135,7 @@
                                         class="fa fa-times"></i></a>
                             </div><!-- panel-btns -->
                             <div class="media-body">
-                                <h5 class="md-title nomargin">মে/২০২১ মাসের চাউল</h5>
+                                <h5 class="md-title nomargin">মে/২০২১-২০২২ মাসের চাউল</h5>
                                 <h2 style="font-family:SutonnyMJ;" class="mt5">{{$mayTotal}} বস্তা</h2>
                             </div><!-- media-body -->
                             <hr>
@@ -165,7 +165,7 @@
                                         class="fa fa-times"></i></a>
                             </div><!-- panel-btns -->
                             <div class="media-body">
-                                <h5 class="md-title nomargin">জুন /২০২১ মাসের চাউল</h5>
+                                <h5 class="md-title nomargin">জুন /২০২১-২০২২ মাসের চাউল</h5>
                                 <h2 style="font-family:SutonnyMJ;" class="mt5">{{$junTotal}} বস্তা</h2>
                             </div><!-- media-body -->
                             <hr>
@@ -195,7 +195,7 @@
                                         class="fa fa-times"></i></a>
                             </div><!-- panel-btns -->
                             <div class="media-body">
-                                <h5 class="md-title nomargin">জুলাই /২০২১ মাসের চাউল</h5>
+                                <h5 class="md-title nomargin">জুলাই /২০২১-২০২২ মাসের চাউল</h5>
                                 <h2 style="font-family:SutonnyMJ;" class="mt5">{{$julTotal}} বস্তা</h2>
                             </div><!-- media-body -->
                             <hr>
@@ -225,7 +225,7 @@
                                         class="fa fa-times"></i></a>
                             </div><!-- panel-btns -->
                             <div class="media-body">
-                                <h5 class="md-title nomargin">আগস্ট /২০২১ মাসের চাউল</h5>
+                                <h5 class="md-title nomargin">আগস্ট/২০২১-২০২২ মাসের চাউল</h5>
                                 <h2 style="font-family:SutonnyMJ;" class="mt5">{{$augTotal}} বস্তা</h2>
                             </div><!-- media-body -->
                             <hr>
@@ -252,7 +252,7 @@
                                         class="fa fa-times"></i></a>
                             </div><!-- panel-btns -->
                             <div class="media-body">
-                                <h5 class="md-title nomargin">সেপ্টেম্বর  /২০২১ মাসের চাউল</h5>
+                                <h5 class="md-title nomargin">সেপ্টেম্বর/২০২১-২০২২ মাসের চাউল</h5>
                                 <h2 style="font-family:SutonnyMJ;" class="mt5">{{$sepTotal}} বস্তা</h2>
                             </div><!-- media-body -->
                             <hr>
@@ -279,7 +279,7 @@
                                         class="fa fa-times"></i></a>
                             </div><!-- panel-btns -->
                             <div class="media-body">
-                                <h5 class="md-title nomargin">অক্টোবর  /২০২১ মাসের চাউল</h5>
+                                <h5 class="md-title nomargin">অক্টোবর/২০২১-২০২২ মাসের চাউল</h5>
                                 <h2 style="font-family:SutonnyMJ;" class="mt5">{{$octTotal}} বস্তা</h2>
                             </div><!-- media-body -->
                             <hr>
@@ -306,7 +306,7 @@
                                         class="fa fa-times"></i></a>
                             </div><!-- panel-btns -->
                             <div class="media-body">
-                                <h5 class="md-title nomargin">নভেম্বর  /২০২১ মাসের চাউল</h5>
+                                <h5 class="md-title nomargin">নভেম্বর/২০২১-২০২২ মাসের চাউল</h5>
                                 <h2 style="font-family:SutonnyMJ;" class="mt5">{{$novTotal}} বস্তা</h2>
                             </div><!-- media-body -->
                             <hr>
@@ -333,7 +333,7 @@
                                         class="fa fa-times"></i></a>
                             </div><!-- panel-btns -->
                             <div class="media-body">
-                                <h5 class="md-title nomargin">ডিসেম্বর  /২০২১ মাসের চাউল</h5>
+                                <h5 class="md-title nomargin">ডিসেম্বর/২০২১-২০২২ মাসের চাউল</h5>
                                 <h2 style="font-family:SutonnyMJ;" class="mt5">{{$decTotal}} বস্তা</h2>
                             </div><!-- media-body -->
                             <hr>

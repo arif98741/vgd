@@ -17,9 +17,10 @@ class EnvelopeController extends Controller
         $Union = Union::all();
         return view('backend.admin.reports.envelope', compact('Union'));
     }
-    public function EnvelopePrint () {
+    public function EnvelopePrint ($id) {
         $Beneficiary = Beneficiary::join('unions', 'beneficiaries.union_id', 'unions.id')
         ->select('beneficiaries.*', 'unions.union_name')
+            ->where('union_id', $id)
         ->get();
         return view('backend.admin.reports.envelope-print', compact('Beneficiary'));
     }
