@@ -23,7 +23,8 @@ class OtpController extends Controller
             'purpose' => 'required',
             'distribution_id' => 'required|numeric',
         ];
-
+        
+       
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
 
@@ -35,6 +36,8 @@ class OtpController extends Controller
             ]);
         }
         $data = $request->all();
+       
+        
         $smsConfig = Config::get('api-config.sms');
 
         $distribution = Distribution::with('beneficiary')
@@ -42,7 +45,10 @@ class OtpController extends Controller
         $mobile = $distribution->beneficiary->mobile;
         $otp = rand(1111, 9999);
         $message = "VGD%20OTP%20" . $otp; //todo:: need to change message
+      
         $status = HelperProvider::sendSMS($mobile, $message);
+       
+     
         if ($status) {
             $data['sent'] = Carbon::now();
             $data['code'] = $otp;
@@ -58,6 +64,7 @@ class OtpController extends Controller
                 'code' => 200
             ]);
         } else {
+           
             return response()->json([
                 'status' => 'error',
                 'message' => 'unexpected error',

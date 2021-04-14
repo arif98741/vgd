@@ -10,12 +10,11 @@ Route::get('admin', function () {
 });
 
 Route::get('hello', function () {
-    $abc = Distribution::with(['beneficiary_ajax'])
+    return Distribution::with(['beneficiary_ajax'])
         ->whereIn('month', HelperProvider::dataQueryMonths(HelperProvider::monthsUntilNow()))
         ->whereYear('created_at', date('Y'))
         ->limit(4)
         ->get();
-    return $abc;
 });
 
 /** admin routes start */

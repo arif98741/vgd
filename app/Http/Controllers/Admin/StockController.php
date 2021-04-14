@@ -15,7 +15,7 @@ class StockController extends Controller
     {
         $data = [
             'unions' => Union::all(),
-            'months' => HelperProvider::monthsUntilNow('months.names'),
+            'months' => HelperProvider::monthsUntilNow('months.list'),
         ];
 
         return view('backend.admin.beneficiary.stock')->with($data);
@@ -29,7 +29,7 @@ class StockController extends Controller
     {
         $currentUserId = Auth::user()->id;
         $count = Stock::where([
-            'month' => $request->month,
+            'month' => HelperProvider::getMonthByNumber($request->month),
             'year' => $request->year,
             'union_id' => $request->union_id,
         ])->count();
@@ -42,9 +42,8 @@ class StockController extends Controller
             return redirect()->back()->with($notification);
         }
 
-
         $data = array();
-        $data['month'] = $request->month;
+        $data['month'] = HelperProvider::getMonthByNumber($request->month);
         $data['year'] = $request->year;
         $data['amount'] = $request->amount;
         $data['union_id'] = $request->union_id;

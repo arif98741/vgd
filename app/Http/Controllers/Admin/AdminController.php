@@ -34,7 +34,6 @@ class AdminController extends Controller
                 ->get();
         }
 
-        $currentUserId = Auth::user()->id;
         $currentUnionId = Auth::user()->union_id;
         $unionName = Union::find($currentUnionId);
         $data = [

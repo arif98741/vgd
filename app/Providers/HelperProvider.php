@@ -66,6 +66,15 @@ class HelperProvider extends ServiceProvider
     }
 
     /**
+     * Get bengali name by english month name
+     */
+    public static function getBengaliName($month)
+    {
+        $months = Config::get('months.names');
+        return $months[$month];
+    }
+
+    /**
      * SSL SMS
      * @param $mobile
      * @param $message
@@ -73,22 +82,26 @@ class HelperProvider extends ServiceProvider
      */
     public static function sendSMS($mobile, $message): bool
     {
+      
         $ssl = Config::get('api-config.ssl');
-
+        $message = 'test';
+       
         $apiToken = $ssl['apiToken'];
         $sid = $ssl['sid'];
         $csms_id = $ssl['csms_id'];
 
         $url = "https://smsplus.sslwireless.com/api/v3/send-sms?api_token=$apiToken&sid=$sid&sms=$message&msisdn=$mobile&csms_id=$csms_id";
+        
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         $smsResult = curl_exec($ch);
+        dd($smsResult);
         curl_close($ch);
         $decode = json_decode($smsResult);
-
+        
 
         if ($decode->status_code == 4003) { //Todo:: will have to change in server.
             return true;

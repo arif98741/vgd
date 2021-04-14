@@ -43,7 +43,8 @@
                                             class="fa fa-times"></i></a>
                                 </div><!-- panel-btns -->
                                 <div class="media-body">
-                                    <h5 class="md-title nomargin">{{ $stock->month }}/<span
+                                    <h5 class="md-title nomargin">{{ \App\Providers\HelperProvider::getBengaliName($stock->month) }}
+                                        /<span
                                             style="font-family:SutonnyMJ; font-size: 18px;">{{ $stock->year }}</span>-২০২২
                                         অর্থবছরের
                                         চাউল</h5>
