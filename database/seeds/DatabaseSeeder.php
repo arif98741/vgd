@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
                 ->insert([
                     'id' => $key,
                     'union_name' => $union,
+                    'amount' => rand(50, 60),
                     'created_at' => \Carbon\Carbon::now(),
                     'updated_at' => \Carbon\Carbon::now(),
                 ]);

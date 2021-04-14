@@ -90,10 +90,6 @@ Route::namespace('User')
         Route::get('upload-beneficiary-vgd', 'UploadController@uploadBeneficiary');
         Route::post('upload/file', 'UploadController@import');
 
-        Route::get('stock-beneficiary-vgd', 'StockController@StockVgd');
-        Route::post('add/stock', 'StockController@addStock');
-
-
         Route::get('pay-vgd-beneficiary', 'PayController@payBeneficiary');
         //January distribution
         Route::get('distribution/{month}', 'PayController@distribution');

@@ -9,10 +9,11 @@ use Illuminate\Support\ServiceProvider;
 
 class HelperProvider extends ServiceProvider
 {
-    public static function monthsUntilNow()
+    public static function monthsUntilNow($key = 'months.list'): array
     {
         $month = Carbon::now()->month;
-        $months = Config::get('months.list');
+        $months = Config::get($key);
+
         foreach ($months as $key => $value) {
             if ($key > $month) {
                 continue;

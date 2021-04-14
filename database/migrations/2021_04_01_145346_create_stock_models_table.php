@@ -18,16 +18,14 @@ class CreateStockModelsTable extends Migration
             $table->string('month');
             $table->string('year');
             $table->integer('amount');
-            $table->unsignedInteger('user_id');
-            $table->integer('status');
-            $table->foreign('user_id')
+            $table->unsignedInteger('union_id');
+            $table->foreign('union_id')
                 ->references('id')
-                ->on('users')
+                ->on('unions')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();
         });
-        //id, amount, month, user_id, create_at, update_at
     }
 
     /**

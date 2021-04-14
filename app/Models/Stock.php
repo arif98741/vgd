@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stock extends Model
 {
-    protected $table="stocks";
+    protected $table = "stocks";
 
     protected $fillable = [
-        'month', 'year', 'amount','user_id','status',
+        'month', 'year', 'amount', 'union_id', 'status',
     ];
 }
