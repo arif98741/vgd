@@ -49,7 +49,6 @@ class StockController extends Controller
         $data['amount'] = $request->amount;
         $data['union_id'] = $request->union_id;
 
-
         $result = Stock::insert($data);
         if ($result) {
             $notification = array(

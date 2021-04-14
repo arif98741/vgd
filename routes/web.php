@@ -9,7 +9,7 @@ Route::get('admin', function () {
     return redirect('login');
 });
 
-Route::get('hello',function (){
+Route::get('hello', function () {
     $abc = Distribution::with(['beneficiary_ajax'])
         ->whereIn('month', HelperProvider::dataQueryMonths(HelperProvider::monthsUntilNow()))
         ->whereYear('created_at', date('Y'))
@@ -32,7 +32,7 @@ Route::namespace('Admin')
         Route::get('edit-beneficiary/{id}', 'BeneficiaryController@editBeneficiary');
         Route::post('update-beneficiary/{id}', 'BeneficiaryController@updateBeneficiary')->name('update-vgd-beneficiary');
 
-     //   Route::get('add-vgd-beneficiary', 'BeneficiaryController@index');
+        //   Route::get('add-vgd-beneficiary', 'BeneficiaryController@index');
 
 
         Route::post('beneficiary', 'BeneficiaryController@addBeneficiary');
