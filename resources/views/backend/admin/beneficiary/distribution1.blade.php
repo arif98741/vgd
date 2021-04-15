@@ -37,10 +37,8 @@
             </div><!-- panel -->
         </div><!-- panel -->
 
-
         <div class="contentpanel">
-            <h2 class="control-label text-center text-danger">@if($month =='all') সব @else {{ $months[$month] }} @endif
-                মাসের ভিজিডি উপকারভোগী</h2>
+            <h2 class="control-label text-center text-danger">@if($month =='all') বিতরণকৃত মাস বাছাই করুন @else {{ $months[$month] }} মাস বিতরণ করুন@endif</h2>
             <table id="basicTable" class="table table-striped  table-hover">
                 <thead>
                 <tr>
@@ -106,30 +104,35 @@
 @endsection
 
 @section('script')
-    <script type="text/javascript">
+    @if($month !='all')
 
-        $(document).ready(function () {
-            var table = $('#basicTable').DataTable({
-                processing: true,
-                pageLength: 25, //hello bos
-                serverSide: true,
-                ajax: "{{ url('admin/distribution/'.$month) }}",
-                columns: [
-                    {data: 'beneficiary.card_no', name: 'beneficiary.card_no'},
-                    {data: 'beneficiary.nid', name: 'beneficiary.nid'},
-                    {data: 'beneficiary.name', name: 'beneficiary.name'},
-                    {data: 'beneficiary.fh_name', name: 'beneficiary.fh_name'},
-                    {data: 'beneficiary.mother_name', name: 'beneficiary.mother_name'},
-                    {data: 'beneficiary.village', name: 'beneficiary.village'},
-                    {data: 'beneficiary.ward', name: 'beneficiary.ward'},
-                    {data: 'beneficiary.mobile', name: 'beneficiary.mobile'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false},
-                ]
+
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                var table = $('#basicTable').DataTable({
+                    processing: true,
+                    pageLength: 25, //hello bos
+                    serverSide: true,
+                    ajax: "{{ url('admin/distribution/'.$month) }}",
+                    columns: [
+                        {data: 'beneficiary.card_no', name: 'beneficiary.card_no'},
+                        {data: 'beneficiary.nid', name: 'beneficiary.nid'},
+                        {data: 'beneficiary.name', name: 'beneficiary.name'},
+                        {data: 'beneficiary.fh_name', name: 'beneficiary.fh_name'},
+                        {data: 'beneficiary.mother_name', name: 'beneficiary.mother_name'},
+                        {data: 'beneficiary.village', name: 'beneficiary.village'},
+                        {data: 'beneficiary.ward', name: 'beneficiary.ward'},
+                        {data: 'beneficiary.mobile', name: 'beneficiary.mobile'},
+                        {data: 'action', name: 'action', orderable: false, searchable: false},
+                    ]
+                });
             });
-        });
 
+        </script>
 
-    </script>
+    @endif
 
     <script>
 

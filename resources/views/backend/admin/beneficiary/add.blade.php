@@ -5,6 +5,14 @@
     <div class="mainpanel">
         <div class="contentpanel">
 
+            @if(session()->has('alert-error'))
+                <p class="alert alert-error">{{ session()->get('alert-error') }}</p>
+            @endif
+            @if(session()->has('alert-success'))
+                <p class="alert alert-success">{{ session()->get('alert-success') }}</p>
+            @endif
+
+
             {{--            {{ dd($errors) }}--}}
             @include('backend.include.flash')
             <form method="post" action="{{ route('admin.add-vgd-beneficiary') }}" enctype="multipart/form-data">

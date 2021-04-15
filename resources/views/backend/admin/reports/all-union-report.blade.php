@@ -6,117 +6,86 @@
     <link href="{{ asset('asset/backend/css/print.css')}}" rel="stylesheet">
 </head>
 <body>
+<div class="bt-div" id="bt-div">
+    <input type="button" class="button blue" title="Print" onclick="printFunc()"
+           printfunc()" value="Print">
+    <button class="button blue" onclick="goBack()">Back</button>
+</div>
 <div class="wraper">
     <table width="100%" border="0">
         <tr>
-            <td colspan="3" align="center"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <td colspan="3" align="center">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
                     <tr>
-                        <td width="41%" valign="top"><div style="font-size:20px;" class="title-1">মেলান্দহ উপজেলার সকল ইউনিয়নের ভিজিডি চাউল প্রদানের হিসাব</div>
+                        <td width="41%" valign="top">
+                            <div style="font-size:20px; text-align: center" class="title-1 ">
+                                গণপ্রজাতন্ত্রী বাংলাদেশ সরকার <br>
+                                মহিলা বিষয়ক অধিদপ্তর <br>
+
+                            </div>
+                            <div style="font-size:18px; text-align: center" class="title-1 ">
+                                উপজেলাঃ মেলান্দহ, জেলাঃ জামালপুর
+                            </div>
+                            <div style="font-size:17px; text-align: center" class="title-1 ">
+                                সকল
+                                ইউনিয়নের {{ \App\Providers\HelperProvider::getBengaliName(\App\Providers\HelperProvider::getMonthByNumber(request()->get('month'))) }}
+                                মাসের ভিজিডি চাউল প্রদানের প্রতিবেদন
+                            </div>
+
                     </tr>
                 </table>
             </td>
         </tr>
         <tr>
-            <th height="86" colspan="3" align="left" valign="middle" >
+            <th height="86" colspan="3" align="left" valign="middle">
                 <table width="100%" class="table" border="0">
                     <tr>
-                        <th align="left" valign="top" >ইউনিয়ন</th>
-                        <th align="left" valign="top" >মাস</th>
-                        <th align="left" valign="top" >সাল</th>
-                        <th align="left" valign="top" >প্রদান</th>
-                        <th align="left" valign="top" >বকেয়া</th>
-                        <th align="left" valign="top" >সর্বমোট</th>
+                        <th align="left" style="text-align: center" valign="top">ইউনিয়ন</th>
+                        <th align="left" style="text-align: center" valign="top">মাস</th>
+                        <th align="left" style="text-align: center" valign="top">বিতরণকৃত</th>
+                        <th align="left" style="text-align: center" valign="top">বিতরণ হয়নি</th>
+                        <th align="left" style="text-align: center" valign="top">মোট</th>
                     </tr>
+                    @php
+                        $distributed = $stock = $total = 0;
+                    @endphp
+                    @foreach( $reports as $report)
+                        <tr style="text-align: center">
+                            <td style="text-align: center" align="left">{{ $report->union_name }}</td>
+                            <td style="text-align: center"
+                                align="left">{{ \App\Providers\HelperProvider::getBengaliName($report->month) }}</td>
+                            <td style="text-align: center" align="left">{{ $report->total_distributed }} বস্তা</td>
+                            <td style="text-align: center" align="left">{{ $report->total_stock }} বস্তা</td>
+                            <td style="text-align: center"
+                                align="left">{{ $report->total_stock - $report->total_distributed }} বস্তা
+                            </td>
+                        </tr>
+
+                    @endforeach
+
                     <tr>
-                        <td align="left">দুরমুঠ</td>
-                        <td align="left">জানুয়ারী</td>
-                        <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
-                    </tr>
-                    <tr>
-                        <td align="left">কুলিয়া</td>
-                        <td align="left">জানুয়ারী</td>
-                        <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
-                    </tr>
-                    <tr>
-                        <td align="left">মাহমুদপুর</td>
-                        <td align="left">জানুয়ারী</td>
-                        <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
-                    </tr>
-                    <tr>
-                        <td align="left">নাংলা</td>
-                        <td align="left">জানুয়ারী</td>
-                        <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
-                    </tr>
-                    <tr>
-                        <td align="left">নয়ানগর</td>
-                        <td align="left">জানুয়ারী</td>
-                        <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
-                    </tr>
-                    <tr>
-                        <td align="left">আদ্রা</td>
-                        <td align="left">জানুয়ারী</td>
-                        <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
-                    </tr>
-                    <tr>
-                        <td align="left">চরবানিপাকুরিয়া</td>
-                        <td align="left">জানুয়ারী</td>
-                        <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
-                    </tr>
-                    <tr>
-                        <td align="left">ফুলকোচা</td>
-                        <td align="left">জানুয়ারী</td>
-                        <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
-                    </tr>
-                    <tr>
-                        <td align="left">ঘোষেরপাড়া</td>
-                        <td align="left">জানুয়ারী</td>
-                        <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
-                    </tr>
-                    <tr>
-                        <td align="left">ঝাউগড়া</td>
-                        <td align="left">জানুয়ারী</td>
-                        <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
-                    </tr>
-                    <tr>
-                        <td align="left">শ্যামপুর</td>
-                        <td align="left">জানুয়ারী</td>
-                        <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
+                        <td style="text-align: center"></td>
+                        <td style="text-align: center">সর্বমোটঃ</td>
+                        <td style="text-align: center">{{ $distributed }} বস্তা</td>
+                        <td style="text-align: center">{{ $stock }} বস্তা</td>
+                        <td style="text-align: center">{{ $total }} বস্তা</td>
                     </tr>
                 </table>
             </th>
         </tr>
     </table>
 </div>
+
+<script>
+    function printFunc() {
+        let print = document.getElementById('bt-div');
+        print.style.display = 'none';
+        window.print();
+        print.style.display = 'block';
+    }
+
+    function goBack() {
+        window.history.back();
+    }
+
+</script>

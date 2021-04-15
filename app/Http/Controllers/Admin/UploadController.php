@@ -7,6 +7,7 @@ use App\Imports\UsersImport;
 use App\Models\Beneficiary;
 use App\Models\Distribution;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UploadController extends Controller
@@ -20,7 +21,7 @@ class UploadController extends Controller
     {
         Excel::import(new UsersImport, $request->file);
 
-        $months = \Illuminate\Support\Facades\Config::get('months.names');
+        $months = Config::get('months.names');
         $beneficiaries = Beneficiary::all();
         foreach ($months as $key => $month) {
 

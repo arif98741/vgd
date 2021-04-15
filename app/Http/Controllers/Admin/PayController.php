@@ -27,34 +27,31 @@ class PayController extends Controller
     function distribution(Request $request, $month)
     {
         if ($request->ajax()) {
-            if ($month == 'all') {
-
-                $distributions = Distribution::with(['beneficiary'])
-                    ->whereIn('month', HelperProvider::dataQueryMonths(HelperProvider::monthsUntilNow()))
-                    ->whereYear('created_at', date('Y'))
-                    ->latest()
-                    ->get();
-            } else {
-
-                if ($month > count(HelperProvider::monthsUntilNow())) {
-                    abort(404);
-                }
-
-                $distributions = Distribution::with(['beneficiary'])
-                    ->select('card_no', 'nid', 'name', 'fh_name', 'mother_name', 'village', 'mobile')
-                    ->where('month', HelperProvider::getMonthByNumber($month))
-                    ->whereYear('created_at', date('Y'))
-                    ->latest()
-                    ->get();
-
+            if ($month > count(HelperProvider::monthsUntilNow())) {
+                abort(404);
             }
+
+            $distributions = Distribution::with(['beneficiary'])
+                ->where('month', HelperProvider::getMonthByNumber($month))
+                ->whereYear('created_at', date('Y'))
+                ->latest()
+                ->get();
+
             return Datatables::of($distributions)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
 
-                    $btn = '<a rowid="' . $row->id . '" data-toggle="modal" class="btn btn-primary btn-sm modalOTP">
+                    if ($row->status == 0) {
+                        $message = 'প্রদান করুন';
+                        $btn = '<a rowid="' . $row->id . '" data-toggle="modal" class="btn btn-primary btn-sm modalOTP">
 <i  class="fa fa-hand-o-up"></i>
-প্রদান করুন</a>';
+' . $message . '</a>';
+                    } else {
+                        $message = 'প্রদান হয়েছে';
+                        $btn = '<a rowid="' . $row->id . '" class="btn btn-success btn-sm">
+<i  class="fa fa-money"></i>
+' . $message . '</a>';
+                    }
 
                     return $btn;
                 })->rawColumns(['action'])

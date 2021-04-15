@@ -9,7 +9,7 @@ class Beneficiary extends Model
     protected $table = "beneficiaries";
 
     protected $fillable = [
-        'name', 'fh_name', 'mother_name', 'union_id', 'village', 'card_no', 'nid', 'mobile', 'photo'
+        'name', 'fh_name', 'mother_name', 'union_id', 'ward', 'village', 'card_no', 'nid', 'mobile', 'photo'
     ];
 
 

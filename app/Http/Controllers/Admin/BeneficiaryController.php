@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use alidator;
 use App\Http\Controllers\Controller;
 use App\Models\Beneficiary;
+use App\Models\Distribution;
 use App\Models\Union;
 use App\Providers\HelperProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Illuminate\View\View;
 use Image;
 use Session;
@@ -42,14 +44,18 @@ class BeneficiaryController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|View
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function addBeneficiary(Request $request)
     {
         if ($request->isMethod('post')) {
 
-
             $data = $this->validate($request, [
                 'name' => 'required',
-                'card_no' => 'required|unique:beneficiaries',
+                'card_no' => 'required',
                 'nid' => 'required|unique:beneficiaries',
                 'fh_name' => 'required',
                 'mother_name' => 'required',
@@ -65,22 +71,40 @@ class BeneficiaryController extends Controller
             }
 
             try {
+                $count = Beneficiary::where([
+                    'union_id' => $request->union_id,
+                    'card_no' => $request->card_no,
+                ])->count();
+                if ($count > 0) {
+                    $request->session()->flash('alert-error', 'উপকারভোগি ইতোমধ্যে যুক্ত করা হয়েছে');
+                    return redirect()->route('admin.add-vgd-beneficiary');
+                }
+
                 $status = Beneficiary::create($data);
-                if (!$status)
+                if ($status) {
+                    $months = Config::get('months.names');
+                    foreach ($months as $key => $month) {
+
+                        $distributionArray = [
+                            'union_id' => $status->union_id,
+                            'beneficiary_id' => $status->id,
+                            'month' => $key,
+                        ];
+                        Distribution::create($distributionArray);
+                    }
+                    $request->session()->flash('alert-success', 'উপকারভোগী সফলভাবে যুক্ত হয়েছে');
+                    return redirect()->route('admin.add-vgd-beneficiary');
+
+                } else {
+
                     throw  new \Exception('Error');
+                }
             } catch (\Exception $e) {
                 $request->session()->flash('alert-error', 'Something wrong');
                 return redirect()->route('admin.add-vgd-beneficiary');
             }
-
-            if ($status) { //if successfully inserted
-                $request->session()->flash('alert-success', 'উপকারভোগী সফলভাবে যুক্ত হয়েছে');
-                return redirect()->route('admin.add-vgd-beneficiary');
-            } else {
-                $request->session()->flash('alert-error', 'User error');
-                return redirect()->route('admin.add-vgd-beneficiary');
-            }
         }
+
         $data['unions'] = Union::all();
         return view('backend.admin.beneficiary.add')->with($data);
     }

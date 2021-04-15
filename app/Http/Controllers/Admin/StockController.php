@@ -7,6 +7,7 @@ use App\Models\Stock;
 use App\Models\Union;
 use App\Providers\HelperProvider;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class StockController extends Controller
@@ -47,6 +48,8 @@ class StockController extends Controller
         $data['year'] = $request->year;
         $data['amount'] = $request->amount;
         $data['union_id'] = $request->union_id;
+        $data['created_at'] = Carbon::now();
+        $data['updated_at'] = Carbon::now();
 
         $result = Stock::insert($data);
         if ($result) {
