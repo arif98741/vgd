@@ -21,11 +21,17 @@
                             <div style="font-size:19px; text-align: center" class="title-1 ">
                                 গণপ্রজাতন্ত্রী বাংলাদেশ সরকার <br>
                                 {{ $union->union_name }} ইউনিয়ন পরিষদ <br>
-                                মেলান্দহ,জামালপুর
                             </div>
                             <div style="font-size:17px; text-align: center" class="title-1 ">
 
-                                {{ \App\Providers\HelperProvider::getBengaliName(\App\Providers\HelperProvider::getMonthByNumber(request()->get('month'))) }} মাসের বিতরণকৃত মাষ্টাররোল
+                                {{ \App\Providers\HelperProvider::getBengaliName(\App\Providers\HelperProvider::getMonthByNumber(request()->get('month'))) }}
+                                মাসের বিতরণকৃত মাষ্টাররোল
+                            </div>
+                            <div style="font-size:17px; text-align: center" class="title-1 ">
+
+                                মোট বস্তা {{ $count->total_bosta }} টি, প্রদান করা
+                                হয়েছে {{ $count->total_distribution }} টি, গুদামে
+                                মজুদ {{ $count->total_bosta - $count->total_distribution }} টি
                             </div>
 
                     </tr>

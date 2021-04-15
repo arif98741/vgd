@@ -83,7 +83,17 @@ class ReportController extends Controller
             $data = [
                 'union' => Union::find($request->union_id),
                 'months' => HelperProvider::monthsUntilNow('months.list'),
-                'reports' => $reports
+                'reports' => $reports,
+                'count' => DB::table('distributions')
+                    ->join('unions', 'unions.id', '=', 'distributions.union_id')
+                    ->join('stocks', 'stocks.union_id', '=', 'unions.id')
+                    ->select(DB::raw('sum(stocks.amount) as total_bosta'), DB::raw('COUNT(distributions.id) as total_distribution'))
+                    ->where(
+                        [
+                            'distributions.month' => $monthName,
+                            'distributions.status' => 1
+                        ]
+                    )->first()
             ];
 
             return view('backend.admin.reports.all-beneficiaries-report')->with($data);
