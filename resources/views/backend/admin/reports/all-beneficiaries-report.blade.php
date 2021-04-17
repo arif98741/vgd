@@ -29,9 +29,9 @@
                             </div>
                             <div style="font-size:17px; text-align: center" class="title-1 ">
 
-                                মোট বস্তা {{ $count->total_bosta }} টি, প্রদান করা
-                                হয়েছে {{ $count->total_distribution }} টি, গুদামে
-                                মজুদ {{ $count->total_bosta - $count->total_distribution }} টি
+                                মোট বস্তা {{ $total_bosta->total_bosta }} টি, প্রদান করা
+                                হয়েছে {{ $total_distribution->total_distributed }} টি, গুদামে
+                                মজুদ {{ $total_bosta->total_bosta  - $total_distribution->total_distributed  }} টি
                             </div>
 
                     </tr>

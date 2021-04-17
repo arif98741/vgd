@@ -62,9 +62,10 @@ class ReportController extends Controller
         return view('backend.admin.reports.allmonths-report-dropdown')->with($data);
     }
 
-    /*
-     * All Beneficiaries By Union
-     * */
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function reportsBeneficiariesByUnion(Request $request)
     {
         if ($request->has('month')) {
@@ -84,18 +85,26 @@ class ReportController extends Controller
                 'union' => Union::find($request->union_id),
                 'months' => HelperProvider::monthsUntilNow('months.list'),
                 'reports' => $reports,
-                'count' => DB::table('distributions')
-                    ->join('unions', 'unions.id', '=', 'distributions.union_id')
-                    ->join('stocks', 'stocks.union_id', '=', 'unions.id')
-                    ->select(DB::raw('sum(stocks.amount) as total_bosta'), DB::raw('COUNT(distributions.id) as total_distribution'))
+                'total_bosta' => DB::table('stocks')
+                    ->select(DB::raw('sum(stocks.amount) as total_bosta'))
+                    ->where(
+                        [
+                            'stocks.month' => $monthName,
+                            'stocks.union_id' => $request->union_id
+                        ]
+                    )->first(),
+                'total_distribution' => DB::table('distributions')
+                    ->select(DB::raw('count(distributions.id) as total_distributed'))
                     ->where(
                         [
                             'distributions.month' => $monthName,
-                            'distributions.status' => 1
+                            'distributions.union_id' => $request->union_id,
+                            'distributions.status' => 1 //1 refers to distributed to beneficiaries
                         ]
-                    )->first()
+                    )->first(),
             ];
 
+          //  dd($data);
             return view('backend.admin.reports.all-beneficiaries-report')->with($data);
         }
 
