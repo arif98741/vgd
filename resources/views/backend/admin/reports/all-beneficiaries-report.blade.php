@@ -35,6 +35,7 @@
                             </div>
 
                     </tr>
+
                 </table>
             </td>
         </tr>
@@ -68,6 +69,15 @@
 
                     @endforeach
 
+                    <tr class="custom-design">
+                        <td colspan="3">ট্যাগ অফিসারের স্বাক্ষর</td>
+
+                        <td colspan="4"></td>
+
+
+
+                        <td colspan="2">চেয়ারম্যান/সচিবের স্বাক্ষর</td>
+                    </tr>
                 </table>
             </th>
         </tr>
