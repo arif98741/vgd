@@ -23,6 +23,8 @@ class PayController extends Controller
 
     /**
      * @return Application|FactoryAlias|\Illuminate\View\View
+     * @throws \Exception
+     * @throws \Exception
      */
     function distribution(Request $request, $month)
     {

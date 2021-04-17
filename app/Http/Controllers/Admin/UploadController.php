@@ -3,23 +3,36 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\User;
 use App\Imports\UsersImport;
 use App\Models\Beneficiary;
 use App\Models\Distribution;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
-use Maatwebsite\Excel\Facades\Excel;
+use Excel;
 
 class UploadController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function uploadBeneficiary()
     {
         return view('backend.admin.beneficiary.upload-beneficiary');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function import(Request $request)
     {
-        Excel::import(new UsersImport, $request->file);
+
+        $data = Excel::import(new UsersImport(),$request->file);
+
+
+        Excel::import(new User, $request->file);
+
 
         $months = Config::get('months.names');
         $beneficiaries = Beneficiary::all();
@@ -34,6 +47,7 @@ class UploadController extends Controller
                 Distribution::create($data);
             }
         }
+
 
         $notification = array(
             'message' => 'successfully Uploaded',

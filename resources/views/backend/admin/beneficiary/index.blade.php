@@ -17,9 +17,10 @@
             <table id="basicTable" class="table table-striped  table-hover">
                 <thead>
                 <tr>
-                    <th>কার্ড নং</th>
-                    <th>এনআইডি নম্বর</th>
+                    <th>ক্রমিক নং</th>
                     <th>নাম</th>
+                    <th>এনআইডি নম্বর</th>
+                    <th>কার্ড নং</th>
                     <th>পিতার/স্বামীর নাম</th>
                     <th>মাতার নাম</th>
                     <th>ইউনিয়ন</th>
@@ -47,9 +48,10 @@
                 serverSide: true,
                 ajax: "{{ url('admin/view-vgd-beneficiaries') }}",
                 columns: [
-                    {data: 'card_no', name: 'card_no'},
-                    {data: 'nid', name: 'nid'},
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'name', name: 'name'},
+                    {data: 'nid', name: 'nid'},
+                    {data: 'card_no', name: 'card_no'},
                     {data: 'fh_name', name: 'fh_name'},
                     {data: 'mother_name', name: 'mother_name'},
                     {data: 'union.union_name', name: 'union.union_name'},
