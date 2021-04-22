@@ -5,6 +5,7 @@ namespace App\Providers;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
 class HelperProvider extends ServiceProvider
@@ -75,38 +76,53 @@ class HelperProvider extends ServiceProvider
     }
 
     /**
+     * Get Distributions
+     * @param $union_id
+     * @param $month
+     * @param int $status
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Query\Builder|object|null
+     */
+    public static function getDistributionData($union_id, $month, $status = 1)
+    {
+
+        $status = DB::table('distributions')
+            ->select(DB::raw('count(distributions.id) as total_distribution'))
+            ->where([
+                'month' => $month,
+                'union_id' => $union_id,
+                'status' => $status
+            ])->first();
+        if ($status == null) {
+            return 0;
+        } else {
+            return $status;
+        }
+    }
+
+    /**
      * SSL SMS
      * @param $mobile
      * @param $message
      * @return bool
      */
-    public static function sendSMS($mobile, $message): bool
+    public static function sendSMS($mobile, $message)
     {
-      
+
         $ssl = Config::get('api-config.ssl');
-        $message = 'test';
-       
+
         $apiToken = $ssl['apiToken'];
         $sid = $ssl['sid'];
         $csms_id = $ssl['csms_id'];
 
-        $url = "https://smsplus.sslwireless.com/api/v3/send-sms?api_token=$apiToken&sid=$sid&sms=$message&msisdn=$mobile&csms_id=$csms_id";
-        
+        $url = "https://smsplus.sslwireless.com/api/v3/send-sms?api_token={$apiToken}&sid={$sid}&sms={$message}&msisdn={$mobile}&csms_id={$csms_id}";
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         $smsResult = curl_exec($ch);
-        dd($smsResult);
         curl_close($ch);
-        $decode = json_decode($smsResult);
-        
-
-        if ($decode->status_code == 4003) { //Todo:: will have to change in server.
-            return true;
-        } else {
-            return false;
-        }
+        return json_decode($smsResult);
     }
 }

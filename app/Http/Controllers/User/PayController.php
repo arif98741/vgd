@@ -9,10 +9,10 @@ use App\Models\FebruaryDistribution;
 use App\Models\JanuaryDistribution;
 use App\Providers\HelperProvider;
 use App\User;
+use Auth;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory as FactoryAlias;
 use Illuminate\Http\Request;
-use Auth;
 
 class PayController extends Controller
 {

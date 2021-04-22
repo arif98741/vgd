@@ -7,12 +7,8 @@ use App\Models\Beneficiary;
 use App\Models\Union;
 use App\User;
 use Illuminate\Http\Request;
-
-use Illuminate\Validation\ValidationException;
-use Illuminate\View\View;
-use Validator;
-
 use Illuminate\Support\Str;
+use Validator;
 
 
 class BeneficiaryController extends Controller
@@ -56,12 +52,6 @@ class BeneficiaryController extends Controller
         return view('backend.user.beneficiary.add')->with($data);
     }
 
-    public function store(Request $request)
-    {
-        //
-    }
-
-
     public function editBeneficiary(Request $request, $id)
     {
         $data = [
@@ -76,14 +66,14 @@ class BeneficiaryController extends Controller
     {
         $data = $this->validate($request, [
             'name' => 'required',
-            'card_no' => 'required|unique:beneficiaries,card_no,' . $id,
-            'nid' => 'required|unique:beneficiaries,nid,' . $id,
+            'card_no' => 'required',
+            'nid' => 'required',
             'fh_name' => 'required',
             'mother_name' => 'required',
             'union_id' => 'required',
             'ward' => 'required',
             'village' => 'required',
-            'mobile' => 'required|unique:beneficiaries,mobile,' . $id,
+            'mobile' => 'required',
         ]);
         $beneficiary = Beneficiary::find($id);
         if ($beneficiary->update($data)) { //if successfully updated

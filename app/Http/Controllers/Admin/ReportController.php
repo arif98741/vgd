@@ -35,17 +35,15 @@ class ReportController extends Controller
     {
         if ($request->has('month')) {
             $monthName = HelperProvider::getMonthByNumber($request->get('month'));
-            $reports = DB::table('distributions')
-                ->join('stocks', 'stocks.union_id', '=', 'distributions.union_id')
-                ->join('unions', 'unions.id', '=', 'distributions.union_id')
-                ->select('distributions.union_id', 'unions.union_name', 'distributions.month', DB::raw('COUNT(distributions.id) as total_distributed'), DB::raw('sum(stocks.amount) as total_stock'))
+
+            $reports = DB::table('stocks')
+                ->join('unions', 'stocks.union_id', '=', 'unions.id')
+                ->select('unions.id', 'unions.union_name', DB::raw('sum(stocks.amount) as total_stock'))
                 ->where(
                     [
-                        'distributions.month' => $monthName,
-                        'distributions.status' => 1,
-                        'distributions.month' => $monthName,
+                        'stocks.month' => $monthName,
                     ]
-                )->groupBy('distributions.union_id')
+                )->groupBy('stocks.union_id')
                 ->get();
             $data = [
                 'months' => HelperProvider::monthsUntilNow('months.list'),
@@ -78,6 +76,7 @@ class ReportController extends Controller
                 ->where(
                     [
                         'distributions.month' => $monthName,
+                        'distributions.union_id' => $request->union_id,
                         'distributions.status' => 1
                     ]
                 )->get();
@@ -104,7 +103,7 @@ class ReportController extends Controller
                     )->first(),
             ];
 
-          //  dd($data);
+            //  dd($data);
             return view('backend.admin.reports.all-beneficiaries-report')->with($data);
         }
 

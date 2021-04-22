@@ -23,8 +23,8 @@ class OtpController extends Controller
             'purpose' => 'required',
             'distribution_id' => 'required|numeric',
         ];
-        
-       
+
+
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
 
@@ -36,35 +36,46 @@ class OtpController extends Controller
             ]);
         }
         $data = $request->all();
-       
-        
+
+
         $smsConfig = Config::get('api-config.sms');
 
         $distribution = Distribution::with('beneficiary')
             ->find($request->distribution_id);
         $mobile = $distribution->beneficiary->mobile;
         $otp = rand(1111, 9999);
-        $message = "VGD%20OTP%20" . $otp; //todo:: need to change message
-      
+        $message = "ভিজিডি%20{$otp}%20বাস্তবায়নেঃ-%20উপজেলা%20পরিষদ";
+
+        //$message = "VGD%20Rice%20Withdraw%20Confirmation%20" . $otp . "%20Sincerely%20End%20M%20Kamruzzaman"; //todo:: need to change message
         $status = HelperProvider::sendSMS($mobile, $message);
-       
-     
-        if ($status) {
-            $data['sent'] = Carbon::now();
-            $data['code'] = $otp;
-            $data['expiration'] = Carbon::now()
-                ->addMinute($smsConfig['expiration_time'])
-                ->format('Y-m-d H:i:s');
-            Otp::create($data);
-            $mobile = substr($mobile, 7);
-            $mobile = 'XXXXXXXX' . $mobile;
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Otp sent successfully to ' . $mobile,
-                'code' => 200
-            ]);
-        } else {
-           
+        if (property_exists($status, 'status_code')) {
+            if ($status->status_code == '200') {
+                $data['sent'] = Carbon::now();
+                $data['code'] = $otp;
+                $data['expiration'] = Carbon::now()
+                    ->addMinute($smsConfig['expiration_time'])
+                    ->format('Y-m-d H:i:s');
+                try {
+                    Otp::create($data);
+                } catch (Exception $e) {
+                    echo $e->getMessage();
+                }
+
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'ওটিপি সফলভাবে ' . $mobile . ' নাম্বারে প্রেরণ করা হয়েছে',
+                    'code' => 200
+                ]);
+            }
+
+            if ($status->status_code == '4025') {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'উপকারভোগী মোবাইল নাম্বার সঠিক নয়',
+                    'code' => 4025
+                ]);
+            }
+
             return response()->json([
                 'status' => 'error',
                 'message' => 'unexpected error',

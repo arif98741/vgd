@@ -38,13 +38,15 @@
         </div><!-- panel -->
 
         <div class="contentpanel">
-            <h2 class="control-label text-center text-danger">@if($month =='all') বিতরণকৃত মাস বাছাই করুন @else {{ $months[$month] }} মাস বিতরণ করুন@endif</h2>
+            <h2 class="control-label text-center text-danger">@if($month =='all') বিতরণকৃত মাস বাছাই
+                করুন @else {{ $months[$month] }} মাস বিতরণ করুন@endif</h2>
             <table id="basicTable" class="table table-striped  table-hover">
                 <thead>
                 <tr>
+                    <th>ক্রমিক নং</th>
+                    <th>নাম</th>
                     <th>কার্ড নং</th>
                     <th>এনআইডি নম্বর</th>
-                    <th>নাম</th>
                     <th>পিতার/স্বামীর নাম</th>
                     <th>মাতার নাম</th>
                     <th>গ্রাম</th>
@@ -70,7 +72,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title text-center" id="staticBackdropLabel">ওটিপি সাবমিট করুন</h5>
-                    <p class="message alert alert-success"></p>
+                    <p class="message alert"></p>
 
                 </div>
                 <div class="modal-body">
@@ -117,9 +119,10 @@
                     serverSide: true,
                     ajax: "{{ url('admin/distribution/'.$month) }}",
                     columns: [
+                        {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                        {data: 'beneficiary.name', name: 'beneficiary.name'},
                         {data: 'beneficiary.card_no', name: 'beneficiary.card_no'},
                         {data: 'beneficiary.nid', name: 'beneficiary.nid'},
-                        {data: 'beneficiary.name', name: 'beneficiary.name'},
                         {data: 'beneficiary.fh_name', name: 'beneficiary.fh_name'},
                         {data: 'beneficiary.mother_name', name: 'beneficiary.mother_name'},
                         {data: 'beneficiary.village', name: 'beneficiary.village'},
@@ -161,8 +164,18 @@
                 },
                 dataType: 'json',
                 success: function (response) {
+                    console.log(response);
                     if (response.code === 200) {
-                        $('.message').html(response.message);
+                        $('.message').html(response.message)
+                            .removeClass('alert-warning')
+                            .addClass('alert-success');
+                        ;
+                        $('#rowid').val(rowid);
+
+                    } else if (response.code == 4025) {
+                        $('.message').html(response.message)
+                            .removeClass('alert-success')
+                            .addClass('alert-warning');
                         $('#rowid').val(rowid);
                     }
                 },

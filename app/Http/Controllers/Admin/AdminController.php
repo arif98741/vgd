@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Union;
 use App\Providers\HelperProvider;
 use Auth;
 use Illuminate\Http\Request;
@@ -22,20 +21,23 @@ class AdminController extends Controller
             $month = HelperProvider::getMonthByNumber($monthKey['month']);
             $stocks = DB::table('stocks')
                 ->join('unions', 'unions.id', '=', 'stocks.union_id')
-                ->select('stocks.month', 'stocks.year', 'stocks.amount', 'unions.union_name')
+                ->leftjoin('distributions', 'distributions.id', '=', 'stocks.union_id')
+                ->select('stocks.month', 'stocks.year', 'stocks.amount', 'unions.union_name', DB::raw('sum(stocks.amount) as total_stock'))
+                ->groupBy('stocks.union_id')
                 ->where('stocks.month', $month)
                 ->orderBy('stocks.month', 'desc')
                 ->get();
         } else {
             $stocks = DB::table('stocks')
                 ->join('unions', 'unions.id', '=', 'stocks.union_id')
-                ->select('stocks.month', 'stocks.year', 'stocks.amount', 'unions.union_name')
+                ->select('stocks.month', 'stocks.year', 'union_id', 'unions.union_name', DB::raw('sum(stocks.amount) as total_stock'))
+                ->groupBy('stocks.union_id')
                 ->orderBy('stocks.month', 'desc')
                 ->get();
         }
 
         $currentUnionId = Auth::user()->union_id;
-        $unionName = Union::find($currentUnionId);
+        // $unionName = Union::find($currentUnionId);
         $data = [
             'stocks' => $stocks,
             'months' => Config::get('months.list')

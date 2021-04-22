@@ -38,10 +38,10 @@
         </tr>
         <tr>
             <th height="86" colspan="3" align="left" valign="middle">
+
                 <table width="100%" class="table" border="0">
                     <tr>
                         <th align="left" style="text-align: center" valign="top">ইউনিয়ন</th>
-                        <th align="left" style="text-align: center" valign="top">মাস</th>
                         <th align="left" style="text-align: center" valign="top">বিতরণকৃত</th>
                         <th align="left" style="text-align: center" valign="top">বিতরণ হয়নি</th>
                         <th align="left" style="text-align: center" valign="top">মোট</th>
@@ -52,12 +52,10 @@
                     @foreach( $reports as $report)
                         <tr style="text-align: center">
                             <td style="text-align: center" align="left">{{ $report->union_name }}</td>
-                            <td style="text-align: center"
-                                align="left">{{ \App\Providers\HelperProvider::getBengaliName($report->month) }}</td>
-                            <td style="text-align: center" align="left">{{ $report->total_distributed }} বস্তা</td>
+                            <td style="text-align: center" align="left">0 বস্তা</td>
                             <td style="text-align: center" align="left">{{ $report->total_stock }} বস্তা</td>
                             <td style="text-align: center"
-                                align="left">{{ $report->total_stock - $report->total_distributed }} বস্তা
+                                align="left">{{ $report->total_stock  }} বস্তা
                             </td>
                         </tr>
 
