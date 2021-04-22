@@ -58,12 +58,11 @@
                                     <div class="pull-left">
                                         <h5 class="md-title nomargin">চাউল গ্রহন করেছে</h5>
 
-                                        <h4 style="font-family:SutonnyMJ;"
-                                            class="nomargin">0 বস্তা</h4>
+                                        <h4 style="font-family:SutonnyMJ;" class="nomargin">{{ \App\Providers\DistributionHelper::distributed($monthName, $stock->union_id,$stock->total_bosta)['distribution'] }} বস্তা</h4>
                                     </div>
                                     <div class="pull-right">
                                         <h5 class="md-title nomargin">চাউল বকেয়া আছে</h5>
-                                        <h4 style="font-family:SutonnyMJ;" class="nomargin">15 বস্তা</h4>
+                                        <h4 style="font-family:SutonnyMJ;" class="nomargin">{{ \App\Providers\DistributionHelper::distributed($monthName, $stock->union_id,$stock->total_bosta)['due_distribution'] }} বস্তা</h4>
                                     </div>
                                 </div>
 

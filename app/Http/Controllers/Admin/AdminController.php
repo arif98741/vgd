@@ -17,24 +17,6 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         $monthKey = $request->all();
-        /* if (array_key_exists('month', $monthKey) && $monthKey['month'] != 'all') {
-             $month = HelperProvider::getMonthByNumber($monthKey['month']);
-             $stocks = DB::table('stocks')
-                 ->join('unions', 'unions.id', '=', 'stocks.union_id')
-                 ->leftjoin('distributions', 'distributions.id', '=', 'stocks.union_id')
-                 ->select('stocks.month', 'stocks.year', 'stocks.amount', 'unions.union_name', DB::raw('sum(stocks.amount) as total_stock'))
-                 ->groupBy('stocks.union_id')
-                 ->where('stocks.month', $month)
-                 ->orderBy('stocks.month', 'desc')
-                 ->get();
-         } else {
-             $stocks = DB::table('stocks')
-                 ->join('unions', 'unions.id', '=', 'stocks.union_id')
-                 ->select('stocks.month', 'stocks.year', 'union_id', 'unions.union_name', DB::raw('sum(stocks.amount) as total_stock'))
-                 ->groupBy('stocks.union_id')
-                 ->orderBy('stocks.month', 'desc')
-                 ->get();
-         }*/
         $currentUnionId = Auth::user()->union_id;
 
         if ($request->has('month') && $request->month != 'all') {
@@ -53,11 +35,11 @@ class AdminController extends Controller
                         ]
                     )->get(),
                 'months' => Config::get('months.list'),
+                'monthName' => $monthName,
                 'monthBengali' => $monthBengali
             ];
 
         } else {
-
             $monthBengali = '';
             $data = [
                 'stocks' => DB::table('stocks')
@@ -66,7 +48,8 @@ class AdminController extends Controller
                     ->groupBy('stocks.union_id')
                     ->get(),
                 'months' => Config::get('months.list'),
-                'monthBengali' => $monthBengali
+                'monthBengali' => $monthBengali,
+                'monthName' => '',
             ];
         }
 
