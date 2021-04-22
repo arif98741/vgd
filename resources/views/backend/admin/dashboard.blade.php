@@ -44,12 +44,13 @@
                                             class="fa fa-times"></i></a>
                                 </div><!-- panel-btns -->
                                 <div class="media-body">
-                                    <h5 class="md-title nomargin">{{ \App\Providers\HelperProvider::getBengaliName($stock->month) }}
-                                        /<span
-                                            style="font-family:SutonnyMJ; font-size: 18px;">{{ $stock->year }}</span>-২০২২
+
+                                    <h5 class="md-title nomargin">
+                                        {{ $monthBengali  }} <span
+                                            style="font-family:SutonnyMJ; font-size: 18px;"> {{ $stock->year }}</span>-২০২২
                                         অর্থবছরের
                                         চাউল</h5>
-                                    <h2 style="font-family:SutonnyMJ;" class="mt5">{{ $stock->total_stock }} বস্তা</h2>
+                                    <h2 style="font-family:SutonnyMJ;" class="mt5">{{ $stock->total_bosta }} বস্তা</h2>
                                     <p style="18px;">{{ $stock->union_name }} ইউনিয়ন</p>
                                 </div><!-- media-body -->
                                 <hr>
@@ -58,10 +59,7 @@
                                         <h5 class="md-title nomargin">চাউল গ্রহন করেছে</h5>
 
                                         <h4 style="font-family:SutonnyMJ;"
-                                            class="nomargin">0
-
-
-                                            বস্তা</h4>
+                                            class="nomargin">0 বস্তা</h4>
                                     </div>
                                     <div class="pull-right">
                                         <h5 class="md-title nomargin">চাউল বকেয়া আছে</h5>

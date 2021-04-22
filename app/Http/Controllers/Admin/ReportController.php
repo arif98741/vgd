@@ -98,12 +98,10 @@ class ReportController extends Controller
                         [
                             'distributions.month' => $monthName,
                             'distributions.union_id' => $request->union_id,
-                            'distributions.status' => 1 //1 refers to distributed to beneficiaries
+                            'distributions.status' => 1
                         ]
                     )->first(),
             ];
-
-            //  dd($data);
             return view('backend.admin.reports.all-beneficiaries-report')->with($data);
         }
 
