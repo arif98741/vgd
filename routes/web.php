@@ -43,7 +43,7 @@ Route::namespace('Admin')
 
 
         Route::get('/all-envelope-report', 'EnvelopeController@EnvelopeView');
-        Route::get('/admin/envelope-print/{id}', 'EnvelopeController@EnvelopePrint');
+        Route::get('/envelope-print/{id}', 'EnvelopeController@EnvelopePrint');
     });
 
 /** admin routes end */
@@ -58,31 +58,15 @@ Route::namespace('User')
         Route::get('dashboard', 'UserController@index');
         Route::match(['get', 'post'], 'add-vgd-beneficiary', 'BeneficiaryController@addBeneficiary')->name('add-vgd-beneficiary');
         Route::get('view-vgd-beneficiaries', 'BeneficiaryController@index');
-        Route::get('edit-beneficiary/{id}', 'BeneficiaryController@editBeneficiary');
-        Route::post('update-beneficiary/{id}', 'BeneficiaryController@updateBeneficiary')->name('update-vgd-beneficiary');
 
-        Route::get('add-vgd-beneficiary', 'BeneficiaryController@index');
-
-
-        Route::post('beneficiary', 'BeneficiaryController@addBeneficiary');
-
-        Route::get('delete/beneficiary/{id}', 'ViewController@DeleteBeneficiary');
-        Route::get('edit/beneficiary/{id}', 'ViewController@EditBeneficiary');
-        Route::post('update/beneficiary/{id}', 'ViewController@UpdateBeneficiary');
-
-        Route::get('upload-beneficiary-vgd', 'UploadController@uploadBeneficiary');
-        Route::post('upload/file', 'UploadController@import');
-
-        Route::get('pay-vgd-beneficiary', 'PayController@payBeneficiary');
-        //January distribution
+        Route::get('stock', 'StockController@stock');
         Route::get('distribution/{month}', 'PayController@distribution');
-        Route::get('confirm/disPage/{id}', 'PayController@confirmJanDis');
-        Route::post('done/janDis', 'PayController@doneJanDis');
 
-        Route::get('all-union-monthly-report', 'ReportController@allUnionMonthlyReport');
-        Route::get('all-union-vgd-report', 'ReportController@allUnionReport');
-        Route::get('all-pay-monthly-vgd-report', 'ReportController@allPayMonthlyVgdReport');
-        Route::get('all-beneficiary-vgd-report', 'ReportController@allBeneficiaryVgdReport');
+        //reports
+        Route::get('reports', 'ReportController@reports');
+        Route::get('reports/all-months-dropdown', 'ReportController@reportsAllMonthsDropdown');
+        Route::get('reports/all-union-wise-beneficiaries-dropdown', 'ReportController@reportsBeneficiariesByUnion');
+
     });
 /** user routes end */
 

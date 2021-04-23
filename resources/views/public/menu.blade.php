@@ -7,10 +7,8 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto custom">
-                <li class="nav-item"><a class="nav-link" href="{{url('/login')}}">ইউনিয়ন পরিষদ লগইন</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{url('/login')}}">উপজেলা চেয়ারম্যান লগইন</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{url('/login')}}">উপজেলা নির্বাহী অফিসার লগইন</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{url('/login')}}">মহিলা বিষয়ক লগইন</a></li>
+
+                <li class="nav-item"><a class="nav-link" href="{{url('/login')}}">লগইন</a></li>
             </ul>
         </div>
     </nav>

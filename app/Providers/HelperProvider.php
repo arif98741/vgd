@@ -43,7 +43,7 @@ class HelperProvider extends ServiceProvider
      * @param $number
      * @return string
      */
-    public static function getMonthByNumber($number)
+    public static function getMonthByNumber($number): string
     {
         $dateObj = DateTime::createFromFormat('!m', $number);
 

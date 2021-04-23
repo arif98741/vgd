@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Union;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
@@ -42,8 +42,21 @@ class User extends Authenticatable
      * Get Customer Union Id
      * @return mixed
      */
-    public static function getUnion()
+    public static function getUnionId()
     {
         return Auth::user()->union_id;
     }
+
+
+    /**
+     * Get Customer Union Id
+     * @return mixed
+     */
+    public static function getUnionName()
+    {
+        return Union::where('id', self::getUnionId())
+            ->first()->union_name;
+    }
+
+
 }

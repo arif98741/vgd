@@ -14,10 +14,13 @@ use Validator;
 class BeneficiaryController extends Controller
 {
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $data['beneficiaries'] = Beneficiary::with('union')
-            ->where('union_id', User::getUnion())->get();
+            ->where('union_id', User::getUnionId())->get();
 
         return view('backend.user.beneficiary.index')->with($data);
     }

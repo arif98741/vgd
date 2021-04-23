@@ -8,7 +8,7 @@
                     <i class="fa fa-users"></i>
                 </div>
                 <div class="media-body">
-                    <h4>{{ \App\Models\Union::find(\App\User::getUnion())->union_name }} ইউনিয়ন ভিজিডি উপকারভোগী তালিকা</h4>
+                    <h4>{{ \App\Models\Union::find(\App\User::getUnionId())->union_name }} ইউনিয়ন ভিজিডি উপকারভোগী তালিকা</h4>
                 </div>
             </div><!-- media -->
         </div><!-- pageheader -->

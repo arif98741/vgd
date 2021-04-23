@@ -8,7 +8,7 @@
 <div class="container bg-white text-center p-3 footer-area">
     <div class="row">
         <div class="col-md-12">
-            <footer>&copy; ২০২১, সত্ত্বাধিকার সংরক্ষিত www.melandahbhata.gov.bd</footer>
+            <footer>&copy; ২০২১, সত্ত্বাধিকার সংরক্ষিত www.vgd.melandahbhata.gov.bd</footer>
         </div>
     </div>
 </div>

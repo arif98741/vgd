@@ -15,4 +15,5 @@ class Union extends Model
     {
         return $this->hasMany(JanuaryDistribution::class);
     }
+
 }

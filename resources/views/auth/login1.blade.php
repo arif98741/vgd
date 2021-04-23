@@ -32,7 +32,7 @@
 
                 <div class="input-group mb15">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input id="email" name="email" type="email" class="form-control" placeholder="Username">
+                    <input id="email" name="email" class="form-control" placeholder="Username">
                     @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -49,12 +49,6 @@
                     @enderror
                 </div><!-- input-group -->
 
-                <div class="clearfix">
-                    <div class="pull-left">
-                        <a href="#"> পাসওয়ার্ড ভুলে গেছেন?</a>
-                    </div>
-
-                </div>
 
 
         </div><!-- panel-body -->
