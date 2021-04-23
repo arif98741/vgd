@@ -14,7 +14,13 @@ class StockController extends Controller
 {
     public function StockVgd()
     {
+        $stocks = Stock::with('union')
+            ->orderBy('union_id', 'asc')
+            ->get();
+
+
         $data = [
+            'stocks' => $stocks,
             'unions' => Union::all(),
             'months' => HelperProvider::monthsUntilNow('months.list'),
         ];

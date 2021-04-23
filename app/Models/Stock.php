@@ -11,4 +11,9 @@ class Stock extends Model
     protected $fillable = [
         'month', 'year', 'amount', 'union_id', 'status',
     ];
+
+    public function union()
+    {
+        return $this->belongsTo(Union::class);
+    }
 }

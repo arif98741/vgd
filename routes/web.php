@@ -40,6 +40,10 @@ Route::namespace('Admin')
         Route::get('reports', 'ReportController@reports');
         Route::get('reports/all-months-dropdown', 'ReportController@reportsAllMonthsDropdown');
         Route::get('reports/all-union-wise-beneficiaries-dropdown', 'ReportController@reportsBeneficiariesByUnion');
+
+
+        Route::get('/all-envelope-report', 'EnvelopeController@EnvelopeView');
+        Route::get('/admin/envelope-print/{id}', 'EnvelopeController@EnvelopePrint');
     });
 
 /** admin routes end */

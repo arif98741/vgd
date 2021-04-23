@@ -5609,7 +5609,7 @@ window.CodeMirror = (function() {
       node.selectionStart = 0;
       node.selectionEnd = node.value.length;
     } else {
-      // Suppress mysterious IE10 errors
+      // Suppress mysterious IE10 errors1
       try { node.select(); }
       catch(_e) {}
     }

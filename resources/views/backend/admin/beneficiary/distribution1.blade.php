@@ -39,7 +39,14 @@
 
         <div class="contentpanel">
             <h2 class="control-label text-center text-danger">@if($month =='all') বিতরণকৃত মাস বাছাই
-                করুন @else {{ $months[$month] }} মাস বিতরণ করুন@endif</h2>
+                করুন @else {{ $months[$month] }} @endif</h2>
+            {{--            মাস বিতরণ করুন--}}
+            <h4 class="text-center">বিতরণকৃত চাউলঃ <span
+                    style="font-family:SutonnyMJ;"> {{ $distribution['distribution'] }}</span> বস্তা, বিতরণ
+                হয়নিঃ <span style="font-family:SutonnyMJ;">{{ $distribution['due_distribution'] }}</span> বস্তা, মোট
+                মজুদঃ <span style="font-family:SutonnyMJ;">{{ $distribution['stock'] }}</span>
+                বস্তা</h4>
+            <h3></h3>
             <table id="basicTable" class="table table-striped  table-hover">
                 <thead>
                 <tr>
@@ -49,6 +56,7 @@
                     <th>এনআইডি নম্বর</th>
                     <th>পিতার/স্বামীর নাম</th>
                     <th>মাতার নাম</th>
+                    <th>ইউনিয়ন</th>
                     <th>গ্রাম</th>
                     <th>ওয়ার্ড</th>
                     <th>মোবাইল নম্বর</th>
@@ -125,6 +133,7 @@
                         {data: 'beneficiary.nid', name: 'beneficiary.nid'},
                         {data: 'beneficiary.fh_name', name: 'beneficiary.fh_name'},
                         {data: 'beneficiary.mother_name', name: 'beneficiary.mother_name'},
+                        {data: 'union.union_name', name: 'union.union_name'},
                         {data: 'beneficiary.village', name: 'beneficiary.village'},
                         {data: 'beneficiary.ward', name: 'beneficiary.ward'},
                         {data: 'beneficiary.mobile', name: 'beneficiary.mobile'},

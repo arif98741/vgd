@@ -34,22 +34,31 @@ class ReportController extends Controller
     public function reportsAllMonthsDropdown(Request $request)
     {
         if ($request->has('month')) {
-            $monthName = HelperProvider::getMonthByNumber($request->get('month'));
 
+            $monthName = HelperProvider::getMonthByNumber($request->month);
+            $monthBengali = HelperProvider::getBengaliName($monthName);
             $reports = DB::table('stocks')
-                ->join('unions', 'stocks.union_id', '=', 'unions.id')
-                ->select('unions.id', 'unions.union_name', DB::raw('sum(stocks.amount) as total_stock'))
+                ->select('unions.union_name', 'stocks.year', 'stocks.union_id', DB::raw('sum(stocks.amount) as total_bosta'))
+                ->join('unions', 'unions.id', '=', 'stocks.union_id')
+                ->groupBy('stocks.union_id')
                 ->where(
                     [
                         'stocks.month' => $monthName,
                     ]
-                )->groupBy('stocks.union_id')
-                ->get();
-            $data = [
-                'months' => HelperProvider::monthsUntilNow('months.list'),
-                'reports' => $reports
-            ];
+                );
+            if ($reports->count() == 0) {
+                $notification = array(
+                    'message' => 'আপনার প্রদানকৃত ' . $monthBengali . ' মাসের জন্য কোন প্রতিবেদন পাওয়া যায়নি',
+                    'alert-type' => 'error'
+                );
+                return redirect('admin/reports/all-months-dropdown')->with($notification);
+            }
 
+            $data = [
+                'monthName' => $monthName,
+                'months' => HelperProvider::monthsUntilNow('months.list'),
+                'reports' => $reports->get()
+            ];
             return view('backend.admin.reports.all-union-report')->with($data);
         }
 
@@ -80,6 +89,8 @@ class ReportController extends Controller
                         'distributions.status' => 1
                     ]
                 )->get();
+
+
             $data = [
                 'union' => Union::find($request->union_id),
                 'months' => HelperProvider::monthsUntilNow('months.list'),

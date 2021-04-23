@@ -9,12 +9,19 @@ use App\Models\Union;
 
 class EnvelopeController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function EnvelopeView()
     {
         $Union = Union::all();
         return view('backend.admin.reports.envelope', compact('Union'));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function EnvelopePrint($id)
     {
         $Beneficiary = Beneficiary::join('unions', 'beneficiaries.union_id', 'unions.id')

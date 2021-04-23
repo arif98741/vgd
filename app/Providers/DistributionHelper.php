@@ -16,8 +16,6 @@ class DistributionHelper extends ServiceProvider
      */
     public static function distributed($month, $union_id, $stock)
     {
-        $db = new DB();
-
         if ($month != '') {
 
             $total_distributed = DB::table('distributions')
@@ -48,6 +46,49 @@ class DistributionHelper extends ServiceProvider
         return [
             'distribution' => $distribution,
             'due_distribution' => $stock - $distribution
+        ];
+
+    }
+
+
+    /**
+     * @param $month
+     * @return array
+     */
+    public static function distributionAll($month)
+    {
+        $stockObject = DB::table('stocks')
+            ->select(DB::raw('sum(stocks.amount) as stock'))
+            ->where(
+                [
+                    'stocks.month' => $month,
+                ]
+            )->first();
+
+        if ($stockObject == null) {
+            $total_stock = 0;
+        } else {
+            $total_stock = $stockObject->stock;
+        }
+        $distributionObject = DB::table('distributions')
+            ->select(DB::raw('count(distributions.id) as total_distributed'))
+            ->where(
+                [
+                    'distributions.month' => $month,
+                    'distributions.status' => 1
+                ]
+            )->first();
+
+        if ($distributionObject == null) {
+            $total_distribution = 0;
+        } else {
+            $total_distribution = $distributionObject->total_distributed;
+        }
+
+        return [
+            'distribution' => $total_distribution,
+            'stock' => $total_stock,
+            'due_distribution' => $total_stock - $total_distribution
         ];
 
     }

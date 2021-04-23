@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Distribution;
+use App\Providers\DistributionHelper;
 use App\Providers\HelperProvider;
 use Auth;
 use Illuminate\Contracts\Foundation\Application;
@@ -28,17 +29,20 @@ class PayController extends Controller
      */
     function distribution(Request $request, $month)
     {
+        if ($month > count(HelperProvider::monthsUntilNow())) {
+            abort(404);
+        }
+
         if ($request->ajax()) {
             if ($month > count(HelperProvider::monthsUntilNow())) {
                 abort(404);
             }
 
-            $distributions = Distribution::with(['beneficiary'])
+            $distributions = Distribution::with(['beneficiary', 'union'])
                 ->where('month', HelperProvider::getMonthByNumber($month))
                 ->whereYear('created_at', date('Y'))
                 ->latest()
                 ->get();
-
             return Datatables::of($distributions)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
@@ -59,8 +63,13 @@ class PayController extends Controller
                 })->rawColumns(['action'])
                 ->make(true);
         }
+
+        $monthName = HelperProvider::getMonthByNumber($month);
+
         $data = [
             'month' => $month,
+            'monthName' => $monthName,
+            'distribution' => DistributionHelper::distributionAll($monthName),
             'months' => HelperProvider::monthsUntilNow(),
         ];
         return view('backend.admin.beneficiary.distribution1')->with($data);

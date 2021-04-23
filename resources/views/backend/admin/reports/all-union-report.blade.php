@@ -9,7 +9,7 @@
 <div class="bt-div" id="bt-div">
     <input type="button" class="button blue" title="Print" onclick="printFunc()"
            printfunc()" value="Print">
-    <button class="button blue" onclick="goBack()">Back</button>
+    <a class="button blue" href="{{ url('admin/reports/all-months-dropdown') }}">Back</a>
 </div>
 <div class="wraper">
     <table width="100%" border="0">
@@ -50,23 +50,34 @@
                         $distributed = $stock = $total = 0;
                     @endphp
                     @foreach( $reports as $report)
+
+                        @php
+                            $distributed  += \App\Providers\DistributionHelper::distributed($monthName, $report->union_id,$report->total_bosta)['distribution'];
+                        $total += \App\Providers\DistributionHelper::distributed($monthName, $report->union_id,$report->total_bosta)['due_distribution'];
+                        $stock += $report->total_bosta;
+                        @endphp
                         <tr style="text-align: center">
                             <td style="text-align: center" align="left">{{ $report->union_name }}</td>
-                            <td style="text-align: center" align="left">0 বস্তা</td>
-                            <td style="text-align: center" align="left">{{ $report->total_stock }} বস্তা</td>
                             <td style="text-align: center"
-                                align="left">{{ $report->total_stock  }} বস্তা
+                                align="left"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 500;">{{ \App\Providers\DistributionHelper::distributed($monthName, $report->union_id,$report->total_bosta)['distribution'] }}
+                                </span>  বস্তা
+                            </td>
+                            <td style="text-align: center"
+                                align="left"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ \App\Providers\DistributionHelper::distributed($monthName, $report->union_id,$report->total_bosta)['due_distribution'] }}
+                                </span>  বস্তা
+                            </td>
+                            <td style="text-align: center"
+                                align="left"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $report->total_bosta  }}</span> বস্তা
                             </td>
                         </tr>
 
                     @endforeach
 
                     <tr>
-                        <td style="text-align: center"></td>
                         <td style="text-align: center">সর্বমোটঃ</td>
-                        <td style="text-align: center">{{ $distributed }} বস্তা</td>
-                        <td style="text-align: center">{{ $stock }} বস্তা</td>
-                        <td style="text-align: center">{{ $total }} বস্তা</td>
+                        <td style="text-align: center"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $distributed }}</span> বস্তা</td>
+                        <td style="text-align: center"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $stock }} </span>বস্তা</td>
+                        <td style="text-align: center"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $total }} </span>বস্তা</td>
                     </tr>
                 </table>
             </th>

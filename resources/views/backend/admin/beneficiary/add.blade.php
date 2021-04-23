@@ -13,7 +13,7 @@
             @endif
 
 
-            {{--            {{ dd($errors) }}--}}
+            {{--            {{ dd($errors1) }}--}}
             @include('backend.include.flash')
             <form method="post" action="{{ route('admin.add-vgd-beneficiary') }}" enctype="multipart/form-data">
                 @csrf

@@ -52,7 +52,7 @@ class UploadController extends Controller
                 $fileName = 'duplicate ' . '.xlsx';
 
                 return Excel::download(new DuplicateExport($excelArray), $fileName);
-                
+
             } else {
                 $months = Config::get('months.names');
                 if (array_key_exists(0, $rows)) {

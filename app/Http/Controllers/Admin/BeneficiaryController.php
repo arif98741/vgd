@@ -124,13 +124,15 @@ class BeneficiaryController extends Controller
         $data = $this->validate($request, [
             'name' => 'required',
             'card_no' => 'required',
-            'nid' => 'required',
+            //'nid' => 'required',
+            'nid' => 'required|unique:beneficiaries,nid,' . $id,
             'fh_name' => 'required',
             'mother_name' => 'required',
             'union_id' => 'required',
             'ward' => 'required',
             'village' => 'required',
-            'mobile' => 'required',
+            //'mobile' => 'required',
+            'mobile' => 'required|unique:beneficiaries,mobile,' . $id,
         ]);
         $beneficiary = Beneficiary::find($id);
         if ($request->hasFile('photo')) {

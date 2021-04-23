@@ -8,7 +8,7 @@
         <div class="contentpanel">
             <div class="row">
 
-                <div class="col-md-4 pull-right">
+                <div class="col-md-3 pull-right">
                     <form action="{{ url('admin/dashboard') }}" method="get">
                         <select name="month" required class="form-control">
                             <option value="">মাস বাছাই করুন</option>
@@ -35,7 +35,7 @@
 
                 @foreach($stocks as $stock)
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
 
                         <div class="panel panel-info-alt noborder">
                             <div class="panel-heading noborder">

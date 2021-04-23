@@ -15,7 +15,7 @@
         <li><a href="{{url('admin/add-vgd-beneficiary')}}"> <i class="fa fa-plus"></i> উপকারভোগী সংযোজন</a></li>
         <li><a href="{{url('admin/upload-beneficiary-vgd')}}"> <i class="fa fa-upload"></i> উপকারভোগী আপলোড</a></li>
         <li><a href="{{url('admin/stock-beneficiary-vgd')}}"><i class="fa fa-pencil"></i> গুদামে মাল মজুদ করুন</a></li>
-        <li><a href="{{url('admin/distribution/all')}}"> <i class="fa fa-share-square-o"></i> উপকারভোগী চাউল প্রদান করুন</a></li>
+        <li><a href="{{url('admin/distribution/'.date('n'))}}"> <i class="fa fa-share-square-o"></i> উপকারভোগী চাউল প্রদান করুন</a></li>
         <li><a href="{{url('admin/view-vgd-beneficiaries')}}"> <i class="fa fa-list"></i> উপকারভোগী তালিকা</a></li>
         <li><a href="{{url('admin/reports')}}"> <i class="fa fa-folder-open"></i> প্রতিবেদন দেখুন</a></li>
         <li><a href="{{url('admin/all-envelope-report')}}"> <i class="fa fa-envelope"></i> খাম তৈরী করুন</a></li>
