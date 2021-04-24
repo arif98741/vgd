@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title','গুদামে মাল মজুদ করুন')
+@section('title','বরাদ্দকৃত অর্থ')
 @section('content')
     <div class="mainpanel">
         <div class="pageheader">
@@ -8,8 +8,7 @@
                     <i class="fa fa-th-list"></i>
                 </div>
                 <div class="media-body">
-
-                    <h4>ভিজিএফ বরাদ্দ</h4>
+                    <h4>বরাদ্দকৃত অর্থ</h4>
                 </div>
             </div><!-- media -->
         </div><!-- pageheader -->

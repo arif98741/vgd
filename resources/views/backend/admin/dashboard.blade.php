@@ -37,13 +37,13 @@
                                 <hr>
                                 <div class="clearfix mt20">
                                     <div class="pull-left">
-                                        <h5 class="md-title nomargin">বিতরণ হয়েছে</h5>
+                                        <h5 class="md-title nomargin">টাকা দেওয়া হয়েছে</h5>
 
                                         <h4  class="nomargin"><span style="font-family:SutonnyMJ;">{{ \App\Providers\DistributionHelper::distributed( $stock->union_id,$stock->total_amount)['distribution'] }}</span>
                                             টাকা</h4>
                                     </div>
                                     <div class="pull-right">
-                                        <h5 class="md-title nomargin">বিতরণ হয়নি</h5>
+                                        <h5 class="md-title nomargin">টাকা দেওয়া হয়নি</h5>
                                         <h4 class="nomargin"><span style="font-family:SutonnyMJ;">{{ \App\Providers\DistributionHelper::distributed( $stock->union_id,$stock->total_amount)['due_distribution'] }}</span>
                                             টাকা</h4>
                                     </div>
