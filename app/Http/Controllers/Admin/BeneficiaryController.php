@@ -99,7 +99,7 @@ class BeneficiaryController extends Controller
                     throw  new \Exception('Error');
                 }
             } catch (\Exception $e) {
-               
+
                 $request->session()->flash('alert-error', 'Something wrong');
                 return redirect()->route('admin.add-vgd-beneficiary');
             }
