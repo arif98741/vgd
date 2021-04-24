@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title','ভিজিডি উপকারভোগী')
+@section('title','ভিজিএফ উপকারভোগী')
 @section('content')
     <div class="mainpanel">
         <div class="pageheader">
@@ -9,43 +9,19 @@
                 </div>
                 <div class="media-body">
 
-                    <h4>ভিজিডি উপকারভোগী ভাতা প্রদান করুন</h4>
+                    <h4>ভিজিএফ উপকারভোগী ভাতা প্রদান করুন</h4>
                 </div>
             </div><!-- media -->
         </div><!-- pageheader -->
 
-        <div class="contentpanel">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="row">
-
-                        <form action="{{ url('admin/january/distribution/february') }}">
-                            <div class="col-sm-8">
-                                <div class="form-group">
-                                    <select id="search_table" class="form-control">
-                                        <option value="">মাস বাছাই করুন</option>
-                                        @foreach($months as $key => $value)
-                                            <option @if($month == $key) selected @endif value="{{ $key }}">{{ $value }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div><!-- panel-body -->
-            </div><!-- panel -->
-        </div><!-- panel -->
 
         <div class="contentpanel">
-            <h2 class="control-label text-center text-danger">@if($month =='all') বিতরণকৃত মাস বাছাই
-                করুন @else {{ $months[$month] }} @endif</h2>
-            {{--            মাস বিতরণ করুন--}}
-            <h4 class="text-center">বিতরণকৃত চাউলঃ <span
-                    style="font-family:SutonnyMJ;"> {{ $distribution['distribution'] }}</span> বস্তা, বিতরণ
-                হয়নিঃ <span style="font-family:SutonnyMJ;">{{ $distribution['due_distribution'] }}</span> বস্তা, মোট
+
+            <h4 class="text-center">বিতরণকৃত টাকাঃ <span
+                    style="font-family:SutonnyMJ;"> {{ $distribution['distribution'] }}</span> টাকা, বিতরণ
+                হয়নিঃ <span style="font-family:SutonnyMJ;">{{ $distribution['due_distribution'] }}</span> টাকা, মোট
                 মজুদঃ <span style="font-family:SutonnyMJ;">{{ $distribution['stock'] }}</span>
-                বস্তা</h4>
+                টাকা</h4>
             <h3></h3>
             <table id="basicTable" class="table table-striped  table-hover">
                 <thead>
@@ -114,37 +90,36 @@
 @endsection
 
 @section('script')
-    @if($month !='all')
 
 
 
-        <script type="text/javascript">
+    <script type="text/javascript">
 
-            $(document).ready(function () {
-                var table = $('#basicTable').DataTable({
-                    processing: true,
-                    pageLength: 25, //hello bos
-                    serverSide: true,
-                    ajax: "{{ url('admin/distribution/'.$month) }}",
-                    columns: [
-                        {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                        {data: 'beneficiary.name', name: 'beneficiary.name'},
-                        {data: 'beneficiary.card_no', name: 'beneficiary.card_no'},
-                        {data: 'beneficiary.nid', name: 'beneficiary.nid'},
-                        {data: 'beneficiary.fh_name', name: 'beneficiary.fh_name'},
-                        {data: 'beneficiary.mother_name', name: 'beneficiary.mother_name'},
-                        {data: 'union.union_name', name: 'union.union_name'},
-                        {data: 'beneficiary.village', name: 'beneficiary.village'},
-                        {data: 'beneficiary.ward', name: 'beneficiary.ward'},
-                        {data: 'beneficiary.mobile', name: 'beneficiary.mobile'},
-                        {data: 'action', name: 'action', orderable: false, searchable: false},
-                    ]
-                });
+        $(document).ready(function () {
+            var table = $('#basicTable').DataTable({
+                processing: true,
+                pageLength: 25, //hello bos
+                serverSide: true,
+                ajax: "{{ url('admin/distribution') }}",
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'beneficiary.name', name: 'beneficiary.name'},
+                    {data: 'beneficiary.card_no', name: 'beneficiary.card_no'},
+                    {data: 'beneficiary.nid', name: 'beneficiary.nid'},
+                    {data: 'beneficiary.fh_name', name: 'beneficiary.fh_name'},
+                    {data: 'beneficiary.mother_name', name: 'beneficiary.mother_name'},
+                    {data: 'union.union_name', name: 'union.union_name'},
+                    {data: 'beneficiary.village', name: 'beneficiary.village'},
+                    {data: 'beneficiary.ward', name: 'beneficiary.ward'},
+                    {data: 'beneficiary.mobile', name: 'beneficiary.mobile'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
             });
+        });
 
-        </script>
+    </script>
 
-    @endif
+
 
     <script>
 

@@ -35,7 +35,7 @@ Route::namespace('Admin')
         Route::get('stock-beneficiary-vgd', 'StockController@StockVgd');
         Route::post('add/stock', 'StockController@addStock');
         Route::get('pay-vgd-beneficiary', 'PayController@payBeneficiary');
-        Route::get('distribution/{month}', 'PayController@distribution');
+        Route::get('distribution', 'PayController@distribution');
 
         Route::get('reports', 'ReportController@reports');
         Route::get('reports/all-months-dropdown', 'ReportController@reportsAllMonthsDropdown');

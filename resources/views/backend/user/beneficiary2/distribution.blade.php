@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title','ভিজিডি উপকারভোগী')
+@section('title','ভিজিএফ উপকারভোগী')
 @section('content')
     <div class="mainpanel">
         <div class="pageheader">
@@ -9,7 +9,7 @@
                 </div>
                 <div class="media-body">
 
-                    <h4>ভিজিডি উপকারভোগী ভাতা প্রদান করুন</h4>
+                    <h4>ভিজিএফ উপকারভোগী ভাতা প্রদান করুন</h4>
                 </div>
             </div><!-- media -->
         </div><!-- pageheader -->
@@ -41,11 +41,11 @@
             <h2 class="control-label text-center text-danger">@if($month =='all') বিতরণকৃত মাস বাছাই
                 করুন @else {{ $months[$month] }} @endif</h2>
             {{--            মাস বিতরণ করুন--}}
-            <h4 class="text-center">বিতরণকৃত চাউলঃ <span
-                    style="font-family:SutonnyMJ;"> {{ $distribution['distribution'] }}</span> বস্তা, বিতরণ
-                হয়নিঃ <span style="font-family:SutonnyMJ;">{{ $distribution['due_distribution'] }}</span> বস্তা, মোট
+            <h4 class="text-center">বিতরণকৃত টাকাঃ <span
+                    style="font-family:SutonnyMJ;"> {{ $distribution['distribution'] }}</span> টাকা, বিতরণ
+                হয়নিঃ <span style="font-family:SutonnyMJ;">{{ $distribution['due_distribution'] }}</span> টাকা, মোট
                 মজুদঃ <span style="font-family:SutonnyMJ;">{{ $distribution['stock'] }}</span>
-                বস্তা</h4>
+                টাকা</h4>
             <h3></h3>
             <table id="basicTable" class="table table-striped  table-hover">
                 <thead>

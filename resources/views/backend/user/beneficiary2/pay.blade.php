@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title','ভিজিডি উপকারভোগী')
+@section('title','ভিজিএফ উপকারভোগী')
 @section('content')
     <div class="mainpanel">
         <div class="pageheader">
@@ -9,7 +9,7 @@
                 </div>
                 <div class="media-body">
 
-                    <h4>ভিজিডি উপকারভোগী ভাতা প্রদান করুন</h4>
+                    <h4>ভিজিএফ উপকারভোগী ভাতা প্রদান করুন</h4>
                 </div>
             </div><!-- media -->
         </div><!-- pageheader -->

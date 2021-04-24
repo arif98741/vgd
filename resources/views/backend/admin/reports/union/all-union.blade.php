@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>মেলান্দহ সকল ভিজিডি হিসাব</title>
+    <title>মেলান্দহ সকল ভিজিএফ হিসাব</title>
     <link href="{{ asset('asset/backend/css/print.css')}}" rel="stylesheet">
 </head>
 <body>
@@ -11,7 +11,7 @@
         <tr>
             <td colspan="3" align="center"><table width="100%" border="0" cellpadding="0" cellspacing="0">
                     <tr>
-                        <td width="41%" valign="top"><div style="font-size:20px;" class="title-1">মেলান্দহ উপজেলার সকল ইউনিয়নের ভিজিডি চাউল প্রদানের হিসাব</div>
+                        <td width="41%" valign="top"><div style="font-size:20px;" class="title-1">মেলান্দহ উপজেলার সকল ইউনিয়নের ভিজিএফ টাকা প্রদানের হিসাব</div>
                     </tr>
                 </table>
             </td>
@@ -31,89 +31,89 @@
                         <td align="left">দুরমুঠ</td>
                         <td align="left">জানুয়ারী</td>
                         <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
+                        <td align="left">২৩০ টাকা</td>
+                        <td align="left">১০ টাকা</td>
+                        <td align="left">২৪০ টাকা</td>
                     </tr>
                     <tr>
                         <td align="left">কুলিয়া</td>
                         <td align="left">জানুয়ারী</td>
                         <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
+                        <td align="left">২৩০ টাকা</td>
+                        <td align="left">১০ টাকা</td>
+                        <td align="left">২৪০ টাকা</td>
                     </tr>
                     <tr>
                         <td align="left">মাহমুদপুর</td>
                         <td align="left">জানুয়ারী</td>
                         <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
+                        <td align="left">২৩০ টাকা</td>
+                        <td align="left">১০ টাকা</td>
+                        <td align="left">২৪০ টাকা</td>
                     </tr>
                     <tr>
                         <td align="left">নাংলা</td>
                         <td align="left">জানুয়ারী</td>
                         <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
+                        <td align="left">২৩০ টাকা</td>
+                        <td align="left">১০ টাকা</td>
+                        <td align="left">২৪০ টাকা</td>
                     </tr>
                     <tr>
                         <td align="left">নয়ানগর</td>
                         <td align="left">জানুয়ারী</td>
                         <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
+                        <td align="left">২৩০ টাকা</td>
+                        <td align="left">১০ টাকা</td>
+                        <td align="left">২৪০ টাকা</td>
                     </tr>
                     <tr>
                         <td align="left">আদ্রা</td>
                         <td align="left">জানুয়ারী</td>
                         <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
+                        <td align="left">২৩০ টাকা</td>
+                        <td align="left">১০ টাকা</td>
+                        <td align="left">২৪০ টাকা</td>
                     </tr>
                     <tr>
                         <td align="left">চরবানিপাকুরিয়া</td>
                         <td align="left">জানুয়ারী</td>
                         <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
+                        <td align="left">২৩০ টাকা</td>
+                        <td align="left">১০ টাকা</td>
+                        <td align="left">২৪০ টাকা</td>
                     </tr>
                     <tr>
                         <td align="left">ফুলকোচা</td>
                         <td align="left">জানুয়ারী</td>
                         <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
+                        <td align="left">২৩০ টাকা</td>
+                        <td align="left">১০ টাকা</td>
+                        <td align="left">২৪০ টাকা</td>
                     </tr>
                     <tr>
                         <td align="left">ঘোষেরপাড়া</td>
                         <td align="left">জানুয়ারী</td>
                         <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
+                        <td align="left">২৩০ টাকা</td>
+                        <td align="left">১০ টাকা</td>
+                        <td align="left">২৪০ টাকা</td>
                     </tr>
                     <tr>
                         <td align="left">ঝাউগড়া</td>
                         <td align="left">জানুয়ারী</td>
                         <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
+                        <td align="left">২৩০ টাকা</td>
+                        <td align="left">১০ টাকা</td>
+                        <td align="left">২৪০ টাকা</td>
                     </tr>
                     <tr>
                         <td align="left">শ্যামপুর</td>
                         <td align="left">জানুয়ারী</td>
                         <td align="left">২০২১</td>
-                        <td align="left">২৩০ বস্তা</td>
-                        <td align="left">১০ বস্তা</td>
-                        <td align="left">২৪০ বস্তা</td>
+                        <td align="left">২৩০ টাকা</td>
+                        <td align="left">১০ টাকা</td>
+                        <td align="left">২৪০ টাকা</td>
                     </tr>
                 </table>
             </th>

@@ -48,20 +48,20 @@
                                         {{ $monthBengali  }} <span
                                             style="font-family:SutonnyMJ; font-size: 18px;"> {{ $stock->year }}</span>-২০২২
                                         অর্থবছরের
-                                        চাউল</h5>
-                                    <h2 style="font-family:SutonnyMJ;" class="mt5">{{ $stock->total_bosta }} বস্তা</h2>
+                                        টাকা</h5>
+                                    <h2 style="font-family:SutonnyMJ;" class="mt5">{{ $stock->total_bosta }} টাকা</h2>
                                     <p style="18px;">{{ $stock->union_name }} ইউনিয়ন</p>
                                 </div><!-- media-body -->
                                 <hr>
                                 <div class="clearfix mt20">
                                     <div class="pull-left">
-                                        <h5 class="md-title nomargin">চাউল গ্রহন করেছে</h5>
+                                        <h5 class="md-title nomargin">টাকা গ্রহন করেছে</h5>
 
-                                        <h4 style="font-family:SutonnyMJ;" class="nomargin">{{ \App\Providers\DistributionHelper::distributed($monthName, $stock->union_id,$stock->total_bosta)['distribution'] }} বস্তা</h4>
+                                        <h4 style="font-family:SutonnyMJ;" class="nomargin">{{ \App\Providers\DistributionHelper::distributed($monthName, $stock->union_id,$stock->total_bosta)['distribution'] }} টাকা</h4>
                                     </div>
                                     <div class="pull-right">
-                                        <h5 class="md-title nomargin">চাউল বকেয়া আছে</h5>
-                                        <h4 style="font-family:SutonnyMJ;" class="nomargin">{{ \App\Providers\DistributionHelper::distributed($monthName, $stock->union_id,$stock->total_bosta)['due_distribution'] }} বস্তা</h4>
+                                        <h5 class="md-title nomargin">টাকা বকেয়া আছে</h5>
+                                        <h4 style="font-family:SutonnyMJ;" class="nomargin">{{ \App\Providers\DistributionHelper::distributed($monthName, $stock->union_id,$stock->total_bosta)['due_distribution'] }} টাকা</h4>
                                     </div>
                                 </div>
 

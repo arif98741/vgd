@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>মেলান্দহ সকল ভিজিডি হিসাব</title>
+    <title>মেলান্দহ সকল ভিজিএফ হিসাব</title>
     <link href="{{ asset('asset/backend/css/print.css')}}" rel="stylesheet">
 </head>
 <body>
@@ -29,7 +29,7 @@
                             <div style="font-size:17px; text-align: center" class="title-1 ">
                                 সকল
                                 ইউনিয়নের {{ \App\Providers\HelperProvider::getBengaliName(\App\Providers\HelperProvider::getMonthByNumber(request()->get('month'))) }}
-                                মাসের ভিজিডি চাউল প্রদানের প্রতিবেদন
+                                মাসের ভিজিএফ টাকা প্রদানের প্রতিবেদন
                             </div>
 
                     </tr>
@@ -60,14 +60,14 @@
                             <td style="text-align: center" align="left">{{ $report->union_name }}</td>
                             <td style="text-align: center"
                                 align="left"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 500;">{{ \App\Providers\DistributionHelper::distributed($monthName, $report->union_id,$report->total_bosta)['distribution'] }}
-                                </span>  বস্তা
+                                </span>  টাকা
                             </td>
                             <td style="text-align: center"
                                 align="left"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ \App\Providers\DistributionHelper::distributed($monthName, $report->union_id,$report->total_bosta)['due_distribution'] }}
-                                </span>  বস্তা
+                                </span>  টাকা
                             </td>
                             <td style="text-align: center"
-                                align="left"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $report->total_bosta  }}</span> বস্তা
+                                align="left"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $report->total_bosta  }}</span> টাকা
                             </td>
                         </tr>
 
@@ -75,9 +75,9 @@
 
                     <tr>
                         <td style="text-align: center">সর্বমোটঃ</td>
-                        <td style="text-align: center"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $distributed }}</span> বস্তা</td>
-                        <td style="text-align: center"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $stock }} </span>বস্তা</td>
-                        <td style="text-align: center"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $total }} </span>বস্তা</td>
+                        <td style="text-align: center"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $distributed }}</span> টাকা</td>
+                        <td style="text-align: center"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $stock }} </span>টাকা</td>
+                        <td style="text-align: center"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $total }} </span>টাকা</td>
                     </tr>
                 </table>
             </th>

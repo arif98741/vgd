@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>মেলান্দহ সকল ভিজিডি হিসাব</title>
+    <title>মেলান্দহ সকল ভিজিএফ হিসাব</title>
     <link href="{{ asset('asset/backend/css/print.css')}}" rel="stylesheet">
 </head>
 <body>
@@ -29,7 +29,7 @@
                             </div>
                             <div style="font-size:17px; text-align: center" class="title-1 ">
 
-                                মোট বস্তা {{ $total_bosta->total_bosta }} টি, প্রদান করা
+                                মোট টাকা {{ $total_bosta->total_bosta }} টি, প্রদান করা
                                 হয়েছে {{ $total_distribution->total_distributed }} টি, গুদামে
                                 মজুদ {{ $total_bosta->total_bosta  - $total_distribution->total_distributed  }} টি
                             </div>

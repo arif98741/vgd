@@ -50,3 +50,16 @@ if (!function_exists('isUser')) {
     }
 }
 
+
+/**
+ * @return bool
+ */
+if (!function_exists('numberFormat')) {
+
+    function numberFormat($number)
+    {
+        return number_format($number, 0, '.', ',');
+
+    }
+
+}

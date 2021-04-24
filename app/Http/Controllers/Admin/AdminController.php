@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Providers\HelperProvider;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -18,41 +17,17 @@ class AdminController extends Controller
     {
         $monthKey = $request->all();
         $currentUnionId = Auth::user()->union_id;
-
-        if ($request->has('month') && $request->month != 'all') {
-
-            $monthName = HelperProvider::getMonthByNumber($request->month);
-            $monthBengali = HelperProvider::getBengaliName($monthName);
-
-            $data = [
-                'stocks' => DB::table('stocks')
-                    ->select('unions.union_name', 'stocks.year', 'stocks.union_id', DB::raw('sum(stocks.amount) as total_bosta'))
-                    ->join('unions', 'unions.id', '=', 'stocks.union_id')
-                    ->groupBy('stocks.union_id')
-                    ->where(
-                        [
-                            'stocks.month' => $monthName,
-                        ]
-                    )->get(),
-                'months' => Config::get('months.list'),
-                'monthName' => $monthName,
-                'monthBengali' => $monthBengali
-            ];
-
-        } else {
-            $monthBengali = '';
-            $data = [
-                'stocks' => DB::table('stocks')
-                    ->select('unions.union_name', 'stocks.year', 'stocks.union_id', DB::raw('sum(stocks.amount) as total_bosta'))
-                    ->join('unions', 'unions.id', '=', 'stocks.union_id')
-                    ->groupBy('stocks.union_id')
-                    ->get(),
-                'months' => Config::get('months.list'),
-                'monthBengali' => $monthBengali,
-                'monthName' => '',
-            ];
-        }
-
+        $monthBengali = '';
+        $data = [
+            'stocks' => DB::table('stocks')
+                ->select('unions.union_name', 'stocks.year','stocks.number_of_card', 'stocks.union_id', DB::raw('sum(stocks.amount) as total_amount'))
+                ->join('unions', 'unions.id', '=', 'stocks.union_id')
+                ->groupBy('stocks.union_id')
+                ->get(),
+            'months' => Config::get('months.list'),
+            'monthBengali' => $monthBengali,
+            'monthName' => '',
+        ];
 
         return view('backend.admin.dashboard')->with($data);
 

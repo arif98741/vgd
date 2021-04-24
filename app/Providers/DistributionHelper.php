@@ -9,34 +9,21 @@ class DistributionHelper extends ServiceProvider
 {
 
     /**
-     * @param $month
      * @param $union_id
      * @param $stock
      * @return array
      */
-    public static function distributed($month, $union_id, $stock)
+    public static function distributed($union_id, $stock): array
     {
-        if ($month != '') {
+        $total_distributed = DB::table('distributions')
+            ->select(DB::raw('((count(distributions.id)) * 450) as total_distributed'))
+            ->where(
+                [
+                    'distributions.union_id' => $union_id,
+                    'distributions.status' => 1
+                ]
+            )->first();
 
-            $total_distributed = DB::table('distributions')
-                ->select(DB::raw('count(distributions.id) as total_distributed'))
-                ->where(
-                    [
-                        'distributions.month' => $month,
-                        'distributions.union_id' => $union_id,
-                        'distributions.status' => 1
-                    ]
-                )->first();
-        } else {
-            $total_distributed = DB::table('distributions')
-                ->select(DB::raw('count(distributions.id) as total_distributed'))
-                ->where(
-                    [
-                        'distributions.union_id' => $union_id,
-                        'distributions.status' => 1
-                    ]
-                )->first();
-        }
         if ($total_distributed == null) {
             $distribution = 0;
         } else {
@@ -52,18 +39,13 @@ class DistributionHelper extends ServiceProvider
 
 
     /**
-     * @param $month
      * @return array
      */
-    public static function distributionAll($month)
+    public static function distributionAll()
     {
         $stockObject = DB::table('stocks')
             ->select(DB::raw('sum(stocks.amount) as stock'))
-            ->where(
-                [
-                    'stocks.month' => $month,
-                ]
-            )->first();
+            ->first();
 
         if ($stockObject == null) {
             $total_stock = 0;
@@ -74,7 +56,6 @@ class DistributionHelper extends ServiceProvider
             ->select(DB::raw('count(distributions.id) as total_distributed'))
             ->where(
                 [
-                    'distributions.month' => $month,
                     'distributions.status' => 1
                 ]
             )->first();

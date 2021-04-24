@@ -9,7 +9,7 @@
                 </div>
                 <div class="media-body">
 
-                    <h4>গুদামে মাল মজুদ করুন</h4>
+                    <h4>ভিজিএফ বরাদ্দ</h4>
                 </div>
             </div><!-- media -->
         </div><!-- pageheader -->
@@ -37,34 +37,32 @@
 
                             <div class="col-sm-2">
                                 <div class="form-group">
-                                    <label class="control-label">মাস</label>
+                                    <label class="control-label">কার্ড সংখ্যা(ইংরেজিতে লিখুন)</label>
+                                    <input type="number" name="number_of_card" id="card_no" class="form-control text-center" required/>
 
-                                    <select data-placeholder="Choose One" name="month" class="form-control" required>
-                                        <option value="">---নির্বাচন করুন---</option>
-                                        @foreach($months as $key=> $month)
-                                            <option value="{{ $key }}">{{ $month }}</option>
-                                        @endforeach
-                                    </select>
-                                </div><!-- form-group -->
-                            </div><!-- col-sm-6 -->
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label class="control-label">টাকার পরিমাণ </label>
+                                    <input type="number" id="amount" name="amount" readonly
+                                           class="form-control text-center"
+                                           required/>
+
+                                </div>
+                            </div>
+
 
                             <div class="col-sm-2">
                                 <div class="form-group">
                                     <label class="control-label">অর্থ বছর</label>
                                     <select data-placeholder="Choose One" name="year" class="form-control" required>
                                         <option value="">---নির্বাচন করুন---</option>
-                                        <option value="2021" selected>২০২১-২০২২</option>
+                                        <option value="{{ date('Y')-1 }}" selected>{{ date('Y')-1 }} - {{ date('Y') }}</option>
                                     </select>
                                 </div><!-- form-group -->
                             </div><!-- col-sm-6 -->
-
-                            <div class="col-sm-2">
-                                <div class="form-group">
-                                    <label class="control-label">পরিমাণ (ইংরেজিতে লিখুন)</label>
-                                    <input type="number" name="amount" class="form-control" required/>
-
-                                </div>
-                            </div>
 
 
                         </div>
@@ -78,7 +76,7 @@
         </div><!-- panel -->
 
         <div class="contentpanel">
-            <h2 class="control-label text-center text-danger"> গুদামে মজুদকৃত চাউল তালিকা </h2>
+            <h2 class="control-label text-center text-danger"> বরাদ্দকৃত টাকা তালিকা </h2>
             {{--            মাস বিতরণ করুন--}}
             <h3></h3>
             <table id="basicTable" class="table table-striped  table-hover">
@@ -86,7 +84,7 @@
                 <tr>
                     <th>ক্রমিক নং</th>
                     <th>ইউনিয়ন</th>
-                    <th>মাস</th>
+                    <th>কার্ড সংখ্যা</th>
                     <th>পরিমাণ</th>
                     <th>সংযোজন তারিখ</th>
                 </tr>
@@ -98,8 +96,8 @@
                     <tr>
                         <td><span style="font-family:SutonnyMJ; font-size: 18px;">{{ ++$key }}</span></td>
                         <td>{{ $stock->union->union_name }}</td>
-                        <td>{{ \App\Providers\HelperProvider::getBengaliName($stock->month) }}</td>
-                        <td><span style="font-family:SutonnyMJ; font-size: 18px;">{{ $stock->amount }}</span></td>
+                        <td><span style="font-family:SutonnyMJ; font-size: 18px;">{{ $stock->number_of_card }}</span> টি</td>
+                        <td><span style="font-family:SutonnyMJ; font-size: 18px;">{{ $stock->amount }}</span> টাকা</td>
                         <td><span
                                 style="font-family:SutonnyMJ; font-size: 18px;">{{ date('d-m-Y',strtotime($stock->created_at)) }}</span>
                         </td>
@@ -109,13 +107,20 @@
 
                 </tbody>
             </table>
-        </div><!-- panel -->
-    </div><!-- mainwrapper -->
+        </div>
+    </div>
 @endsection
 
 @section('script')
     <script>
         $(document).ready(function () {
+
+            $('#card_no').keyup(function () {
+                let card_no = parseInt($(this).val());
+                let amount = card_no * 450;
+                $('#amount').val(amount);
+            });
+
             var table = $('#basicTable').DataTable({
                 pageLength: 25, //hello bos
             });

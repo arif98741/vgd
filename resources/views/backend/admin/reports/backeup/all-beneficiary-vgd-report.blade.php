@@ -20,7 +20,7 @@
                 <div class="title-1">নাংলা ইউনিয়ন পরিষদ কার্যালয়</div>
                 <div class="title-2">মেলান্দহ জামালপুর</div>
                 <div class="title-3">উপকারভোগী ২৭০ জন, প্রদান করা হয়েছে ২৫০ জন,</div>
-                <div class="title-3">গুদামে মজুদ ২০ বস্তা</div>
+                <div class="title-3">গুদামে মজুদ ২০ টাকা</div>
                 <div class="title-3">জানুয়ারী/২০২১</div>
             </td>
             <td width="10%"  align="right" valign="top">&nbsp;</td>

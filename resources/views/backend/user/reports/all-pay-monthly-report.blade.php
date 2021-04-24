@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title','ভিজিডি উপকারভোগী')
+@section('title','ভিজিএফ উপকারভোগী')
 @section('content')
     <div class="mainpanel">
         <div class="pageheader">
@@ -9,7 +9,7 @@
                 </div>
                 <div class="media-body">
 
-                    <h4>দুরমুঠ ইউনিয়নের ভিজিডি উপকারভোগী ভাতা প্রদান প্রতিবেদন</h4>
+                    <h4>দুরমুঠ ইউনিয়নের ভিজিএফ উপকারভোগী ভাতা প্রদান প্রতিবেদন</h4>
                 </div>
             </div><!-- media -->
         </div><!-- pageheader -->
@@ -21,7 +21,7 @@
 
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="control-label">ভিজিডি উপকারভোগী ভাতা প্রদান করা হয়েছে</label>
+                                <label class="control-label">ভিজিএফ উপকারভোগী ভাতা প্রদান করা হয়েছে</label>
                                 <select data-placeholder="Choose One" class="form-control" onchange="location = this.value;">
                                     <option value="">---নির্বাচন করুন---</option>
                                     <option value="{{url('admin/all-beneficiary-vgd-report')}}">জানুয়ারী/২০২১</option>
@@ -38,7 +38,7 @@
 
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="control-label">ভিজিডি উপকারভোগী ভাতা প্রদান করা হয় নি</label>
+                                <label class="control-label">ভিজিএফ উপকারভোগী ভাতা প্রদান করা হয় নি</label>
                                 <select data-placeholder="Choose One" class="form-control" onchange="location = this.value;">
                                     <option value="">---নির্বাচন করুন---</option>
                                     <option value="{{url('admin/all-beneficiary-vgd-report')}}">জানুয়ারী/২০২১</option>

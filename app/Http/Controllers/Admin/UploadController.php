@@ -8,7 +8,6 @@ use App\Imports\UsersImport;
 use App\Models\Distribution;
 use Excel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
 class UploadController extends Controller
@@ -18,9 +17,6 @@ class UploadController extends Controller
      */
     public function uploadBeneficiary()
     {
-        // return Excel::download(new DuplicateExport('hello'), 'export.xlsx');
-
-
         return view('backend.admin.beneficiary.upload-beneficiary');
     }
 
@@ -54,7 +50,6 @@ class UploadController extends Controller
                 return Excel::download(new DuplicateExport($excelArray), $fileName);
 
             } else {
-                $months = Config::get('months.names');
                 if (array_key_exists(0, $rows)) {
                     foreach ($rows[0] as $row) {
 
@@ -70,15 +65,12 @@ class UploadController extends Controller
                                 'nid' => $row['nid'],
                                 'mobile' => $row['mobile'],
                             ]);
-                        foreach ($months as $key => $month) {
 
-                            $data['beneficiary_id'] = $beneficiaryId;
-                            $data['union_id'] = $row['union_id'];
-                            $data['month'] = $key;
-                            $data['status'] = 0;
+                        $data['beneficiary_id'] = $beneficiaryId;
+                        $data['union_id'] = $row['union_id'];
+                        $data['status'] = 0;
 
-                            Distribution::create($data);
-                        }
+                        Distribution::create($data);
                     }
 
                     $notification = array(

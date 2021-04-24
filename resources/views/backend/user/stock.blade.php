@@ -9,13 +9,13 @@
                 </div>
                 <div class="media-body">
 
-                    <h4>গুদামে মজুদকৃত চাউল</h4>
+                    <h4>গুদামে মজুদকৃত টাকা</h4>
                 </div>
             </div><!-- media -->
         </div><!-- pageheader -->
 
         <div class="contentpanel">
-            <h2 class="control-label text-center text-danger"> গুদামে মজুদকৃত চাউলের তালিকা </h2>
+            <h2 class="control-label text-center text-danger"> গুদামে মজুদকৃত টাকাের তালিকা </h2>
             {{--            মাস বিতরণ করুন--}}
             <h3></h3>
             <table id="basicTable" class="table table-striped  table-hover">

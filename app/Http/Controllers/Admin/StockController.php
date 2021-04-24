@@ -5,26 +5,27 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Stock;
 use App\Models\Union;
-use App\Providers\HelperProvider;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class StockController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function StockVgd()
     {
+        numberFormat(12554454545);
+
         $stocks = Stock::with('union')
             ->orderBy('union_id', 'asc')
             ->get();
 
-
         $data = [
             'stocks' => $stocks,
             'unions' => Union::all(),
-            'months' => HelperProvider::monthsUntilNow('months.list'),
         ];
-
         return view('backend.admin.beneficiary.stock')->with($data);
     }
 
@@ -36,22 +37,22 @@ class StockController extends Controller
     {
         $currentUserId = Auth::user()->id;
         $count = Stock::where([
-            'month' => HelperProvider::getMonthByNumber($request->month),
             'year' => $request->year,
             'union_id' => $request->union_id,
         ])->count();
 
         if ($count > 0) {
             $notification = array(
-                'message' => 'ইতোমধ্যে গোডাউনে যুক্ত করা হয়েছে',
+                'message' => 'ইতোমধ্যে বরাদ্ধ হয়েছে',
                 'alert-type' => 'error'
             );
             return redirect()->back()->with($notification);
         }
 
+
         $data = array();
-        $data['month'] = HelperProvider::getMonthByNumber($request->month);
         $data['year'] = $request->year;
+        $data['number_of_card'] = $request->number_of_card;
         $data['amount'] = $request->amount;
         $data['union_id'] = $request->union_id;
         $data['created_at'] = Carbon::now();
