@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Validator;
+use Yajra\DataTables\DataTables;
 
 
 class BeneficiaryController extends Controller
@@ -17,15 +18,33 @@ class BeneficiaryController extends Controller
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request  $request)
     {
-        $data['beneficiaries'] = Beneficiary::with('union')
-            ->where('union_id', User::getUnionId())->get();
+        $currentUserUnionId = User::getUnionId();
+        if ($request->ajax()) {
+            $beneficiaries = Beneficiary::with('union')
+                ->where('union_id', $currentUserUnionId)
+                ->latest()
+                ->get();
+            return Datatables::of($beneficiaries)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
 
-        return view('backend.user.beneficiary.index')->with($data);
+                    $btn = '';
+                    return $btn;
+                })->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('backend.user.beneficiary.index');
     }
 
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function addBeneficiary(Request $request)
     {
         if ($request->isMethod('post')) {

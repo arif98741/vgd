@@ -24,13 +24,28 @@
                             </div>
                             <div style="font-size:17px; text-align: center" class="title-1 ">
 
-                               বিতরণকৃত মাষ্টাররোল
+                                বিতরণকৃত মাষ্টাররোল
                             </div>
                             <div style="font-size:17px; text-align: center" class="title-1 ">
 
-                                মোট টাকা {{ $total_bosta->total_bosta }} টি, প্রদান করা
-                                হয়েছে {{ $total_distribution->total_distributed }} টি, গুদামে
-                                মজুদ {{ $total_bosta->total_bosta  - $total_distribution->total_distributed  }} টি
+                                কার্ডধারী সংখ্যাঃ <span style="font-family:SutonnyMJ;">{{ $total_card }}</span> টি,
+                                প্রদান করা হয়েছেঃ <span style="font-family:SutonnyMJ;">{{ $reports->count() }}</span>
+                                টি,
+                                বাকী আছেঃ
+                                        style="font-family:SutonnyMJ;">{{ $total_card - $reports->count() }}</span> টি
+                            </div>
+
+                            <div style="font-size:17px; text-align: center" class="title-1 ">
+                                মোট বরাদ্দ
+                                <span style="font-family:SutonnyMJ;">{{ $total_amount->total_amount  }}</span> টাকা,
+                                প্রদান করা হয়েছে <span
+                                    style="font-family:SutonnyMJ;">{{ $total_distribution->total_distributed }}</span>
+                                টাকা,
+                                প্রদান করা
+                                হয়নি <span
+                                    style="font-family:SutonnyMJ;">{{ $total_amount->total_amount  - $total_distribution->total_distributed   }}</span>
+                                টাকা
+
                             </div>
 
                     </tr>
@@ -55,7 +70,8 @@
 
                     @foreach( $reports as $key=> $report)
                         <tr style="text-align: center">
-                            <td align="left" style="text-align: center">{{ ++$key }}</td>
+                            <td align="left" style="text-align: center"><span
+                                    style="font-family:SutonnyMJ;"> {{ ++$key }}</span></td>
                             <td align="left">{{ $report->name }}</td>
                             <td align="left" style="text-align: center">{{ $report->card_no }}</td>
                             <td align="left">{{ $report->fh_name }}</td>

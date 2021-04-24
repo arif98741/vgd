@@ -12,8 +12,8 @@
 
     <ul class="custom-menu">
         <li><a href="{{url('/user/dashboard')}}"><i class="fa fa-home"></i> <span>ড্যাশবোর্ড</span></a></li>
-        <li><a href="{{url('user/stock')}}"><i class="fa fa-university"></i> গুদামে মজুদকৃত টাকা</a></li>
-        <li><a href="{{url('user/distribution/all')}}"> <i class="fa fa-share-square-o"></i> উপকারভোগী টাকা
+        <li><a href="{{url('user/stock')}}"><i class="fa fa-university"></i> বরাদ্দকৃত অর্থের পরিমাণ</a></li>
+        <li><a href="{{url('user/distribution')}}"> <i class="fa fa-share-square-o"></i> উপকারভোগী টাকা
                 প্রদান
                 করুন</a>
         <li><a href="{{url('user/reports')}}"> <i class="fa fa-folder"></i>&nbsp;প্রতিবেদন</a>

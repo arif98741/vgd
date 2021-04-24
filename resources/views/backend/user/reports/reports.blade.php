@@ -18,8 +18,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="row">
-                        <h3><a href="{{ url('user/reports/all-union-wise-beneficiaries-dropdown') }}">মাস অনুযায়ী
-                                বিতরণকৃত উপকারভোগীর তালিকা</a></h3>
+                        <h3><a href="{{ url('user/reports/all-union-wise-beneficiaries-dropdown') }}"> বিতরণকৃত উপকারভোগীর তালিকা</a></h3>
                     </div>
                 </div><!-- panel-body -->
             </div><!-- panel -->

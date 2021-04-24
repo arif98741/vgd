@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Distribution;
 use App\Models\Union;
 use App\Providers\HelperProvider;
 use Illuminate\Http\Request;
@@ -34,22 +35,22 @@ class ReportController extends Controller
     public function reportsAllMonthsDropdown(Request $request)
     {
 
-            $reports = DB::table('stocks')
-                ->select('unions.union_name', 'stocks.year', 'stocks.union_id', DB::raw('sum(stocks.amount) as total_amount'))
-                ->join('unions', 'unions.id', '=', 'stocks.union_id')
-                ->groupBy('stocks.union_id') ;
-           /* if ($reports->count() == 0) {
-                $notification = array(
-                    'message' => 'আপনার প্রদানকৃত ' . $monthBengali . ' মাসের জন্য কোন প্রতিবেদন পাওয়া যায়নি',
-                    'alert-type' => 'error'
-                );
-                return redirect('admin/reports/all-months-dropdown')->with($notification);
-            }*/
+        $reports = DB::table('stocks')
+            ->select('unions.union_name', 'stocks.year', 'stocks.union_id', DB::raw('sum(stocks.amount) as total_amount'))
+            ->join('unions', 'unions.id', '=', 'stocks.union_id')
+            ->groupBy('stocks.union_id');
+        /* if ($reports->count() == 0) {
+             $notification = array(
+                 'message' => 'আপনার প্রদানকৃত ' . $monthBengali . ' মাসের জন্য কোন প্রতিবেদন পাওয়া যায়নি',
+                 'alert-type' => 'error'
+             );
+             return redirect('admin/reports/all-months-dropdown')->with($notification);
+         }*/
 
-            $data = [
-                'reports' => $reports->get()
-            ];
-            return view('backend.admin.reports.all-union-report')->with($data);
+        $data = [
+            'reports' => $reports->get()
+        ];
+        return view('backend.admin.reports.all-union-report')->with($data);
 
 
         $data = [
@@ -90,14 +91,17 @@ class ReportController extends Controller
                         ]
                     )->first(),
                 'total_distribution' => DB::table('distributions')
-                    ->select(DB::raw('count(distributions.id) as total_distributed'))
+                    ->select(DB::raw('(count(distributions.id) * 450) as total_distributed'))
                     ->where(
                         [
                             'distributions.union_id' => $request->union_id,
                             'distributions.status' => 1
                         ]
                     )->first(),
+                'total_card' => Distribution::where('union_id', $request->union_id)
+                    ->count(),
             ];
+
             return view('backend.admin.reports.all-beneficiaries-report')->with($data);
         }
 

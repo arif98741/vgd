@@ -20,20 +20,29 @@
                         <td width="41%" valign="top">
                             <div style="font-size:19px; text-align: center" class="title-1 ">
                                 গণপ্রজাতন্ত্রী বাংলাদেশ সরকার <br>
-                                {{ $union->union_name }} ইউনিয়ন পরিষদ <br>
+                                {{ $union }} ইউনিয়ন পরিষদ <br>
                             </div>
                             <div style="font-size:17px; text-align: center" class="title-1 ">
 
-                                {{ \App\Providers\HelperProvider::getBengaliName(\App\Providers\HelperProvider::getMonthByNumber(request()->get('month'))) }}
-                                মাসের বিতরণকৃত মাষ্টাররোল
+                                কার্ডধারী সংখ্যাঃ <span style="font-family:SutonnyMJ;">{{ $total_card }}</span> টি,
+                                প্রদান করা হয়েছেঃ <span style="font-family:SutonnyMJ;">{{ $reports->count() }}</span>
+                                টি,
+                                বাকী আছেঃ
+                                <span style="font-family:SutonnyMJ;">{{ $total_card - $reports->count() }}</span> টি
                             </div>
+
                             <div style="font-size:17px; text-align: center" class="title-1 ">
+                                মোট বরাদ্দ
+                                <span style="font-family:SutonnyMJ;">{{ $total_amount->total_amount  }}</span> টাকা,
+                                প্রদান করা হয়েছে <span
+                                    style="font-family:SutonnyMJ;">{{ $total_distribution->total_distributed }}</span>
+                                টাকা,
+                                প্রদান করা
+                                হয়নি <span
+                                    style="font-family:SutonnyMJ;">{{ $total_amount->total_amount  - $total_distribution->total_distributed   }}</span>
+                                টাকা
 
-                                মোট টাকা {{ $total_bosta->total_bosta }} টি, প্রদান করা
-                                হয়েছে {{ $total_distribution->total_distributed }} টি, গুদামে
-                                মজুদ {{ $total_bosta->total_bosta  - $total_distribution->total_distributed  }} টি
                             </div>
-
                     </tr>
 
                 </table>

@@ -60,7 +60,7 @@ Route::namespace('User')
         Route::get('view-vgd-beneficiaries', 'BeneficiaryController@index');
 
         Route::get('stock', 'StockController@stock');
-        Route::get('distribution/{month}', 'PayController@distribution');
+        Route::get('distribution', 'PayController@distribution');
 
         //reports
         Route::get('reports', 'ReportController@reports');

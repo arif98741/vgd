@@ -22,7 +22,6 @@ class StockController extends Controller
         $data = [
             'stocks' => $stocks,
             'unions' => Union::all(),
-            'months' => HelperProvider::monthsUntilNow('months.list'),
         ];
 
         return view('backend.user.stock')->with($data);

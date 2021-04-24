@@ -7,34 +7,13 @@
         <div class="contentpanel">
             <div class="row">
 
-                <div class="col-md-3 pull-right">
-                    <form action="{{ url('user/dashboard') }}" method="get">
-                        <select name="month" required class="form-control">
-                            <option value="">মাস বাছাই করুন</option>
-                            <option value="all" @if(array_key_exists('month',$_GET) && $_GET['month'] == 'all') selected
-                                @endif>সকল মাস
-                            </option>
-                            @foreach($months as $key=> $month)
-                                @if($key> date('n'))
-                                    @php
-                                        continue;
-                                    @endphp
-                                @endif
-                                <option @if(array_key_exists('month',$_GET) && $_GET['month'] == $key) selected
-                                        @endif value="{{ $key }}">{{ $month }}</option>
-                            @endforeach
-                        </select>
-                        <br>
-                        <button type="submit" class="btn-sm btn-primary">দেখুন</button>
-                    </form>
-                </div>
             </div>
             <br>
             <div class="row row-stat">
 
                 @foreach($stocks as $stock)
 
-                    <div class="col-md-3">
+                    <div class="col-md-6">
 
                         <div class="panel panel-info-alt noborder">
                             <div class="panel-heading noborder">
@@ -45,23 +24,23 @@
                                 <div class="media-body">
 
                                     <h5 class="md-title nomargin">
-                                        {{ $monthBengali  }} <span
+                                     <span
                                             style="font-family:SutonnyMJ; font-size: 18px;"> {{ $stock->year }}</span>-২০২২
                                         অর্থবছরের
                                         টাকা</h5>
-                                    <h2 style="font-family:SutonnyMJ;" class="mt5">{{ $stock->total_bosta }} টাকা</h2>
+                                    <h2 class="mt5"><span style="font-family:SutonnyMJ;" >{{ $stock->total_bosta }}</span> টাকা</h2>
                                     <p style="18px;">{{ $stock->union_name }} ইউনিয়ন</p>
                                 </div><!-- media-body -->
                                 <hr>
                                 <div class="clearfix mt20">
                                     <div class="pull-left">
-                                        <h5 class="md-title nomargin">টাকা গ্রহন করেছে</h5>
+                                        <h5 class="md-title nomargin">টাকা গ্রহণ করেছে</h5>
 
-                                        <h4 style="font-family:SutonnyMJ;" class="nomargin">{{ \App\Providers\DistributionHelper::distributed($monthName, $stock->union_id,$stock->total_bosta)['distribution'] }} টাকা</h4>
+                                        <h4 class="nomargin"><span style="font-family:SutonnyMJ;">{{ \App\Providers\DistributionHelper::distributed($stock->union_id,$stock->total_bosta)['distribution'] }}</span> টাকা</h4>
                                     </div>
                                     <div class="pull-right">
                                         <h5 class="md-title nomargin">টাকা বকেয়া আছে</h5>
-                                        <h4 style="font-family:SutonnyMJ;" class="nomargin">{{ \App\Providers\DistributionHelper::distributed($monthName, $stock->union_id,$stock->total_bosta)['due_distribution'] }} টাকা</h4>
+                                        <h4 class="nomargin"><span style="font-family:SutonnyMJ;">{{ \App\Providers\DistributionHelper::distributed($stock->union_id,$stock->total_bosta)['due_distribution'] }}</span> টাকা</h4>
                                     </div>
                                 </div>
 

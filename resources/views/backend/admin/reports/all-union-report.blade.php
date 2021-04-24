@@ -18,15 +18,18 @@
                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
                     <tr>
                         <td width="41%" valign="top">
-                            <div style="font-size:20px; text-align: center" class="title-1 ">
+                            <div style="font-size:24px; text-align: center" class="title-1 ">
                                 গণপ্রজাতন্ত্রী বাংলাদেশ সরকার <br>
-                                মহিলা বিষয়ক অধিদপ্তর <br>
+                            </div>
+                            <div style="font-size:18px; text-align: center" class="title-1 ">
+
+                                দুযোর্গ ব্যবস্থাপনা ও ত্রাণ মন্ত্রণালয় <br>
 
                             </div>
                             <div style="font-size:18px; text-align: center" class="title-1 ">
                                 উপজেলাঃ মেলান্দহ, জেলাঃ জামালপুর
                             </div>
-                            <div style="font-size:17px; text-align: center" class="title-1 ">
+                            <div style="font-size:18px; text-align: center" class="title-1 ">
                                 সকল
                                 ইউনিয়নের ভিজিএফ টাকা প্রদানের প্রতিবেদন
                             </div>

@@ -5,8 +5,6 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\FebruaryDistribution;
 use App\Models\JanuaryDistribution;
-use App\Providers\DistributionHelper;
-use App\Providers\HelperProvider;
 use Auth;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory as FactoryAlias;
@@ -26,19 +24,11 @@ class PayController extends Controller
      * @throws \Exception
      * @throws \Exception
      */
-    function distribution(Request $request, $month)
+    function distribution(Request $request)
     {
         $currentUnionId = Auth::user()->union_id;
 
-        if ($month > count(HelperProvider::monthsUntilNow())) {
-            abort(404);
-        }
-
         if ($request->ajax()) {
-            if ($month > count(HelperProvider::monthsUntilNow())) {
-                abort(404);
-            }
-            $monthName = HelperProvider::getMonthByNumber($month);
 
 
             $currentUnionId = Auth::user()->union_id;
@@ -46,7 +36,7 @@ class PayController extends Controller
             $distributions = DB::select("select distributions.id as distribution_id,distributions.status,unions.union_name,
                    beneficiaries.* FROM `distributions` join beneficiaries on beneficiaries.id = distributions.beneficiary_id
                        join unions on unions.id = distributions.union_id
-                    where distributions.union_id='$currentUnionId' and month='$monthName'
+                    where distributions.union_id='$currentUnionId'
             ");
             return Datatables::of($distributions)
                 ->addIndexColumn()
@@ -69,17 +59,50 @@ class PayController extends Controller
                 ->make(true);
         }
 
-        $monthName = '';
-        if ($month != 'all')
-            $monthName = HelperProvider::getMonthByNumber($month);
 
         $data = [
-            'month' => $month,
-            'monthName' => $monthName,
-            'distribution' => DistributionHelper::distributionAllUnion($monthName, $currentUnionId),
-            'months' => HelperProvider::monthsUntilNow(),
+            'distribution' => self::distributionAllUnion($currentUnionId)
         ];
-        return view('backend.user.beneficiary.distribution')->with($data);
+        return view('backend.user.beneficiary.distribution1')->with($data);
+    }
+
+
+    private static function distributionAllUnion($union_id)
+    {
+        $stockObject = DB::table('stocks')
+            ->select(DB::raw('sum(stocks.amount) as stock'))
+            ->where(
+                [
+                    'stocks.union_id' => $union_id,
+                ]
+            )->first();
+
+        if ($stockObject == null) {
+            $total_stock = 0;
+        } else {
+            $total_stock = $stockObject->stock;
+        }
+        $distributionObject = DB::table('distributions')
+            ->select(DB::raw('(count(distributions.id)) * 450 as total_distributed'))
+            ->where(
+                [
+                    'distributions.union_id' => $union_id,
+                    'distributions.status' => 1
+                ]
+            )->first();
+
+        if ($distributionObject == null) {
+            $total_distribution = 0;
+        } else {
+            $total_distribution = $distributionObject->total_distributed;
+        }
+
+        return [
+            'distribution' => $total_distribution,
+            'stock' => $total_stock,
+            'due_distribution' => $total_stock - $total_distribution
+        ];
+
     }
 
 
