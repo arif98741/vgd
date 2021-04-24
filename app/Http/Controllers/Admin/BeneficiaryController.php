@@ -9,7 +9,6 @@ use App\Models\Distribution;
 use App\Models\Union;
 use App\Providers\HelperProvider;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
 use Illuminate\View\View;
 use Image;
 use Session;
@@ -82,16 +81,16 @@ class BeneficiaryController extends Controller
 
                 $status = Beneficiary::create($data);
                 if ($status) {
-                    $months = Config::get('months.names');
-                    foreach ($months as $key => $month) {
 
-                        $distributionArray = [
-                            'union_id' => $status->union_id,
-                            'beneficiary_id' => $status->id,
-                            'month' => $key,
-                        ];
-                        Distribution::create($distributionArray);
-                    }
+                    /**
+                     * vgf only accepts one distribution per user.
+                     * vgd accepts 12 distribution in a year. it handled by month
+                     */
+                    $distributionArray = [
+                        'union_id' => $status->union_id,
+                        'beneficiary_id' => $status->id,
+                    ];
+                    Distribution::create($distributionArray);
                     $request->session()->flash('alert-success', 'উপকারভোগী সফলভাবে যুক্ত হয়েছে');
                     return redirect()->route('admin.add-vgd-beneficiary');
 
@@ -100,6 +99,7 @@ class BeneficiaryController extends Controller
                     throw  new \Exception('Error');
                 }
             } catch (\Exception $e) {
+               
                 $request->session()->flash('alert-error', 'Something wrong');
                 return redirect()->route('admin.add-vgd-beneficiary');
             }

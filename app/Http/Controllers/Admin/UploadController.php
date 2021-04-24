@@ -7,6 +7,7 @@ use App\Imports\DuplicateExport;
 use App\Imports\UsersImport;
 use App\Models\Distribution;
 use Excel;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -69,7 +70,6 @@ class UploadController extends Controller
                         $data['beneficiary_id'] = $beneficiaryId;
                         $data['union_id'] = $row['union_id'];
                         $data['status'] = 0;
-
                         Distribution::create($data);
                     }
 
@@ -97,7 +97,7 @@ class UploadController extends Controller
 
     }
 
-    private function duplicatesArray($duplicateMobiles, $duplicateNids)
+    private function duplicatesArray($duplicateMobiles, $duplicateNids): array
     {
         $duplicatesBeneficiaries = DB::table('beneficiaries')
             ->whereIn('mobile', $duplicateMobiles)
