@@ -37,23 +37,6 @@
 
                             </div>
 
-                            <div class="col-sm-4">
-
-                                <div class="form-group">
-                                    <label class="control-label">মাস বাছাই করুন</label>
-                                    <select name="month" data-placeholder="Choose One"
-                                            class="form-control">
-                                        <option value="">---নির্বাচন করুন---</option>
-                                        @foreach( $months as $key=>  $month)
-                                            <option
-                                                value="{{ $key }}">{{ $month }}
-                                            </option>
-                                        @endforeach
-
-                                    </select>
-                                </div>
-
-                            </div>
 
                         </div>
                         <div class="row">

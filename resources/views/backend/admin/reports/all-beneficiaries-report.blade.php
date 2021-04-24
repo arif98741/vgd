@@ -24,8 +24,7 @@
                             </div>
                             <div style="font-size:17px; text-align: center" class="title-1 ">
 
-                                {{ \App\Providers\HelperProvider::getBengaliName(\App\Providers\HelperProvider::getMonthByNumber(request()->get('month'))) }}
-                                মাসের বিতরণকৃত মাষ্টাররোল
+                               বিতরণকৃত মাষ্টাররোল
                             </div>
                             <div style="font-size:17px; text-align: center" class="title-1 ">
 
@@ -71,11 +70,7 @@
 
                     <tr class="custom-design">
                         <td colspan="3">ট্যাগ অফিসারের স্বাক্ষর</td>
-
                         <td colspan="4"></td>
-
-
-
                         <td colspan="2">চেয়ারম্যান/সচিবের স্বাক্ষর</td>
                     </tr>
                 </table>

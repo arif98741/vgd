@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Imports\DuplicateExport;
+use App\Imports\DuplicateExportMobile;
 use App\Imports\UsersImport;
 use App\Models\Distribution;
 use Excel;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,6 +31,23 @@ class UploadController extends Controller
 
         try {
             $rows = Excel::toArray(new UsersImport(), $request->file);
+            $excelNids = array_column($rows[0], 'nid');
+            $excelMobiles = array_column($rows[0], 'mobile');
+
+            //TODO:: this code should be analyszed for unique check in a sheet
+            /*$uniqueMobiles = array_unique($excelMobiles);
+            $duplicatesMobiles = array_diff_assoc($excelMobiles, $uniqueMobiles);
+
+            $uniqueNids = array_unique($excelNids);
+            $duplicatesNids = array_diff_assoc($excelMobiles, $uniqueNids);
+
+
+            if (count($duplicatesMobiles) > 0 || count($duplicatesNids) > 0) {
+                $excelArray = $this->duplicatesArray($duplicatesMobiles, $duplicatesNids);
+                $fileName = 'duplicate_mobile' . '.xlsx';
+                return Excel::download(new DuplicateExportMobile($excelArray), $fileName);
+            }*/
+
             $beneficiaries = DB::table('beneficiaries')
                 ->select('mobile', 'nid')
                 ->get()
@@ -38,14 +55,12 @@ class UploadController extends Controller
             $dbNids = array_column($beneficiaries, 'nid');
             $dbMobiles = array_column($beneficiaries, 'mobile');
 
-            $excelNids = array_column($rows[0], 'nid');
-            $excelMobiles = array_column($rows[0], 'mobile');
 
             $duplicateMobiles = array_intersect($dbMobiles, $excelMobiles);
             $duplicateNids = array_intersect($dbNids, $excelNids);
             $excelArray = $this->duplicatesArray($duplicateMobiles, $duplicateNids);
 
-            if (count($excelArray) > 0) {
+            if (count($duplicateMobiles) > 0 || count($duplicateNids) > 0) {
                 $fileName = 'duplicate ' . '.xlsx';
 
                 return Excel::download(new DuplicateExport($excelArray), $fileName);
@@ -121,4 +136,6 @@ class UploadController extends Controller
 
         return $excelArray;
     }
+
+
 }

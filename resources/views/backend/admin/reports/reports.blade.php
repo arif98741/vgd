@@ -18,7 +18,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="row">
-                        <h3><a href="{{ url('admin/reports/all-months-dropdown') }}">সকল মাসের প্রতিবেদন</a></h3>
+                        <h3><a href="{{ url('admin/reports/all-months-dropdown') }}">সকল ইউনিয়নের প্রতিবেদন</a></h3>
                         <h3><a href="{{ url('admin/reports/all-union-wise-beneficiaries-dropdown') }}">ইউনিয়ন অনুযায়ী বিতরণকৃত উপকারভোগীর তালিকা</a></h3>
                     </div>
                 </div><!-- panel-body -->

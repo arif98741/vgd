@@ -33,34 +33,24 @@ class ReportController extends Controller
      */
     public function reportsAllMonthsDropdown(Request $request)
     {
-        if ($request->has('month')) {
 
-            $monthName = HelperProvider::getMonthByNumber($request->month);
-            $monthBengali = HelperProvider::getBengaliName($monthName);
             $reports = DB::table('stocks')
-                ->select('unions.union_name', 'stocks.year', 'stocks.union_id', DB::raw('sum(stocks.amount) as total_bosta'))
+                ->select('unions.union_name', 'stocks.year', 'stocks.union_id', DB::raw('sum(stocks.amount) as total_amount'))
                 ->join('unions', 'unions.id', '=', 'stocks.union_id')
-                ->groupBy('stocks.union_id')
-                ->where(
-                    [
-                        'stocks.month' => $monthName,
-                    ]
-                );
-            if ($reports->count() == 0) {
+                ->groupBy('stocks.union_id') ;
+           /* if ($reports->count() == 0) {
                 $notification = array(
                     'message' => 'আপনার প্রদানকৃত ' . $monthBengali . ' মাসের জন্য কোন প্রতিবেদন পাওয়া যায়নি',
                     'alert-type' => 'error'
                 );
                 return redirect('admin/reports/all-months-dropdown')->with($notification);
-            }
+            }*/
 
             $data = [
-                'monthName' => $monthName,
-                'months' => HelperProvider::monthsUntilNow('months.list'),
                 'reports' => $reports->get()
             ];
             return view('backend.admin.reports.all-union-report')->with($data);
-        }
+
 
         $data = [
             'months' => HelperProvider::monthsUntilNow('months.list')
@@ -75,16 +65,14 @@ class ReportController extends Controller
      */
     public function reportsBeneficiariesByUnion(Request $request)
     {
-        if ($request->has('month')) {
+        if ($request->has('union_id')) {
 
-            $monthName = HelperProvider::getMonthByNumber($request->get('month'));
             $reports = DB::table('distributions')
                 ->join('unions', 'unions.id', '=', 'distributions.union_id')
                 ->join('beneficiaries', 'beneficiaries.id', '=', 'distributions.beneficiary_id')
                 ->select('beneficiaries.*')
                 ->where(
                     [
-                        'distributions.month' => $monthName,
                         'distributions.union_id' => $request->union_id,
                         'distributions.status' => 1
                     ]
@@ -93,13 +81,11 @@ class ReportController extends Controller
 
             $data = [
                 'union' => Union::find($request->union_id),
-                'months' => HelperProvider::monthsUntilNow('months.list'),
                 'reports' => $reports,
-                'total_bosta' => DB::table('stocks')
-                    ->select(DB::raw('sum(stocks.amount) as total_bosta'))
+                'total_amount' => DB::table('stocks')
+                    ->select(DB::raw('sum(stocks.amount) as total_amount'))
                     ->where(
                         [
-                            'stocks.month' => $monthName,
                             'stocks.union_id' => $request->union_id
                         ]
                     )->first(),
@@ -107,7 +93,6 @@ class ReportController extends Controller
                     ->select(DB::raw('count(distributions.id) as total_distributed'))
                     ->where(
                         [
-                            'distributions.month' => $monthName,
                             'distributions.union_id' => $request->union_id,
                             'distributions.status' => 1
                         ]
@@ -117,7 +102,6 @@ class ReportController extends Controller
         }
 
         $data = [
-            'months' => HelperProvider::monthsUntilNow('months.list'),
             'unions' => Union::all()
         ];
 

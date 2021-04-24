@@ -9,7 +9,7 @@
 <div class="bt-div" id="bt-div">
     <input type="button" class="button blue" title="Print" onclick="printFunc()"
            printfunc()" value="Print">
-    <a class="button blue" href="{{ url('admin/reports/all-months-dropdown') }}">Back</a>
+    <a class="button blue" href="{{ url('admin/reports') }}">Back</a>
 </div>
 <div class="wraper">
     <table width="100%" border="0">
@@ -28,8 +28,7 @@
                             </div>
                             <div style="font-size:17px; text-align: center" class="title-1 ">
                                 সকল
-                                ইউনিয়নের {{ \App\Providers\HelperProvider::getBengaliName(\App\Providers\HelperProvider::getMonthByNumber(request()->get('month'))) }}
-                                মাসের ভিজিএফ টাকা প্রদানের প্রতিবেদন
+                                ইউনিয়নের ভিজিএফ টাকা প্রদানের প্রতিবেদন
                             </div>
 
                     </tr>
@@ -52,22 +51,24 @@
                     @foreach( $reports as $report)
 
                         @php
-                            $distributed  += \App\Providers\DistributionHelper::distributed($monthName, $report->union_id,$report->total_bosta)['distribution'];
-                        $total += \App\Providers\DistributionHelper::distributed($monthName, $report->union_id,$report->total_bosta)['due_distribution'];
-                        $stock += $report->total_bosta;
+                            $distributed  += \App\Providers\DistributionHelper::distributed( $report->union_id,$report->total_amount)['distribution'];
+                        $total += \App\Providers\DistributionHelper::distributed( $report->union_id,$report->total_amount)['due_distribution'];
+                        $stock += $report->total_amount;
                         @endphp
                         <tr style="text-align: center">
                             <td style="text-align: center" align="left">{{ $report->union_name }}</td>
                             <td style="text-align: center"
-                                align="left"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 500;">{{ \App\Providers\DistributionHelper::distributed($monthName, $report->union_id,$report->total_bosta)['distribution'] }}
-                                </span>  টাকা
+                                align="left"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 500;">{{ \App\Providers\DistributionHelper::distributed( $report->union_id,$report->total_amount)['distribution'] }}
+                                </span> টাকা
                             </td>
                             <td style="text-align: center"
-                                align="left"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ \App\Providers\DistributionHelper::distributed($monthName, $report->union_id,$report->total_bosta)['due_distribution'] }}
-                                </span>  টাকা
+                                align="left"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ \App\Providers\DistributionHelper::distributed( $report->union_id,$report->total_amount)['due_distribution'] }}
+                                </span> টাকা
                             </td>
                             <td style="text-align: center"
-                                align="left"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $report->total_bosta  }}</span> টাকা
+                                align="left"><span
+                                    style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $report->total_amount  }}</span>
+                                টাকা
                             </td>
                         </tr>
 
@@ -75,9 +76,16 @@
 
                     <tr>
                         <td style="text-align: center">সর্বমোটঃ</td>
-                        <td style="text-align: center"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $distributed }}</span> টাকা</td>
-                        <td style="text-align: center"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $stock }} </span>টাকা</td>
-                        <td style="text-align: center"><span style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $total }} </span>টাকা</td>
+                        <td style="text-align: center"><span
+                                style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $distributed }}</span>
+                            টাকা
+                        </td>
+                        <td style="text-align: center"><span
+                                style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $stock }} </span>টাকা
+                        </td>
+                        <td style="text-align: center"><span
+                                style="font-family:SutonnyMJ; font-size: 18px; font-weight: 700;">{{ $total }} </span>টাকা
+                        </td>
                     </tr>
                 </table>
             </th>
