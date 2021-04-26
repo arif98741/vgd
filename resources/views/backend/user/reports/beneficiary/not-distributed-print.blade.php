@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>মেলান্দহ সকল ভিজিডি হিসাব</title>
+    <title>অবিতরণকৃত উপকারভোগীর তালিকা</title>
     <link href="{{ asset('asset/backend/css/print.css')}}" rel="stylesheet">
 </head>
 <body>
@@ -25,13 +25,10 @@
                             <div style="font-size:17px; text-align: center" class="title-1 ">
 
                                 {{ \App\Providers\HelperProvider::getBengaliName(\App\Providers\HelperProvider::getMonthByNumber(request()->get('month'))) }}
-                                মাসের বিতরণকৃত মাষ্টাররোল
+                                মাসের অবিতরণকৃত উপকারভোগীর তালিকা
                             </div>
-                            <div style="font-size:17px; text-align: center" class="title-1 ">
-
-                                মোট বস্তা {{ $total_bosta->total_bosta }} টি, প্রদান করা
-                                হয়েছে {{ $total_distribution->total_distributed }} টি, গুদামে
-                                মজুদ {{ $total_bosta->total_bosta  - $total_distribution->total_distributed  }} টি
+                            <div  style="font-size:17px; font-family:SutonnyMJ; text-align: center" class="title-1 ">
+                                মোট সংখ্যাঃ {{ $reports->count() }} জন
                             </div>
 
                     </tr>
@@ -73,7 +70,6 @@
                         <td colspan="3">ট্যাগ অফিসারের স্বাক্ষর ও সিল</td>
 
                         <td colspan="4"></td>
-
 
 
                         <td colspan="2">চেয়ারম্যান/সচিবের স্বাক্ষর ও সিল</td>

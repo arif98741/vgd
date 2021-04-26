@@ -16,27 +16,17 @@ class DistributionHelper extends ServiceProvider
      */
     public static function distributed($month, $union_id, $stock)
     {
-        if ($month != '') {
 
-            $total_distributed = DB::table('distributions')
-                ->select(DB::raw('count(distributions.id) as total_distributed'))
-                ->where(
-                    [
-                        'distributions.month' => $month,
-                        'distributions.union_id' => $union_id,
-                        'distributions.status' => 1
-                    ]
-                )->first();
-        } else {
-            $total_distributed = DB::table('distributions')
-                ->select(DB::raw('count(distributions.id) as total_distributed'))
-                ->where(
-                    [
-                        'distributions.union_id' => $union_id,
-                        'distributions.status' => 1
-                    ]
-                )->first();
-        }
+        $total_distributed = DB::table('distributions')
+            ->select(DB::raw('count(distributions.id) as total_distributed'))
+            ->where(
+                [
+                    'distributions.month' => $month,
+                    'distributions.union_id' => $union_id,
+                    'distributions.status' => 1
+                ]
+            )->first();
+
         if ($total_distributed == null) {
             $distribution = 0;
         } else {

@@ -1,35 +1,10 @@
 @extends('layouts.backend')
-@section('title','Union Dashboard')
+@section('title',\App\User::getUnionName().' ইউনিয়ন ড্যাশবোর্ড')
 @section('content')
     <div class="mainpanel">
         @include('backend.include.pageheader_union')
 
         <div class="contentpanel">
-            <div class="row">
-
-                <div class="col-md-3 pull-right">
-                    <form action="{{ url('user/dashboard') }}" method="get">
-                        <select name="month" required class="form-control">
-                            <option value="">মাস বাছাই করুন</option>
-                            <option value="all" @if(array_key_exists('month',$_GET) && $_GET['month'] == 'all') selected
-                                @endif>সকল মাস
-                            </option>
-                            @foreach($months as $key=> $month)
-                                @if($key> date('n'))
-                                    @php
-                                        continue;
-                                    @endphp
-                                @endif
-                                <option @if(array_key_exists('month',$_GET) && $_GET['month'] == $key) selected
-                                        @endif value="{{ $key }}">{{ $month }}</option>
-                            @endforeach
-                        </select>
-                        <br>
-                        <button type="submit" class="btn-sm btn-primary">দেখুন</button>
-                    </form>
-                </div>
-            </div>
-            <br>
             <div class="row row-stat">
 
                 @foreach($stocks as $stock)
@@ -47,21 +22,20 @@
                                     <h5 class="md-title nomargin">
                                         {{ $monthBengali  }} <span
                                             style="font-family:SutonnyMJ; font-size: 18px;"> {{ $stock->year }}</span>-২০২২
-                                        অর্থবছরের
-                                        চাউল</h5>
-                                    <h2 style="font-family:SutonnyMJ;" class="mt5">{{ $stock->total_bosta }} বস্তা</h2>
-                                    <p style="18px;">{{ $stock->union_name }} ইউনিয়ন</p>
+                                        অর্থ বছরের চাউল</h5>
+                                    <h2 class="mt5"><span style="font-family:SutonnyMJ;">{{ $stock->total_bosta }}</span> বস্তা</h2>
+                                    <p style="font-size: 16px;">{{  \App\Providers\HelperProvider::getBengaliName($stock->month)  }}</p>
                                 </div><!-- media-body -->
                                 <hr>
                                 <div class="clearfix mt20">
                                     <div class="pull-left">
                                         <h5 class="md-title nomargin">চাউল গ্রহন করেছে</h5>
 
-                                        <h4 style="font-family:SutonnyMJ;" class="nomargin">{{ \App\Providers\DistributionHelper::distributed($monthName, $stock->union_id,$stock->total_bosta)['distribution'] }} বস্তা</h4>
+                                        <h4 style="font-family:SutonnyMJ; font-size: 16px;"  class="nomargin">{{ \App\Providers\DistributionHelper::distributed($stock->month, $stock->union_id,$stock->total_bosta)['distribution'] }} বস্তা</h4>
                                     </div>
                                     <div class="pull-right">
                                         <h5 class="md-title nomargin">চাউল বকেয়া আছে</h5>
-                                        <h4 style="font-family:SutonnyMJ;" class="nomargin">{{ \App\Providers\DistributionHelper::distributed($monthName, $stock->union_id,$stock->total_bosta)['due_distribution'] }} বস্তা</h4>
+                                        <h4 style="font-family:SutonnyMJ;" class="nomargin">{{ \App\Providers\DistributionHelper::distributed($stock->month, $stock->union_id,$stock->total_bosta)['due_distribution'] }} বস্তা</h4>
                                     </div>
                                 </div>
 
@@ -70,6 +44,8 @@
                     </div><!-- col-md-4 -->
                 @endforeach
             </div><!-- row -->
+            <br>
+
 
 
         </div><!-- contentpanel -->

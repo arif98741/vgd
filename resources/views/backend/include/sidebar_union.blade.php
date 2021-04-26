@@ -18,7 +18,7 @@
                 করুন</a>
         <li><a href="{{url('user/reports')}}"> <i class="fa fa-folder"></i>&nbsp;প্রতিবেদন</a>
         </li>
-        <li><a href="{{url('user/view-vgd-beneficiaries')}}"> <i class="fa fa-list"></i> উপকারভোগী তালিকা</a></li>
+        <li><a href="{{url('user/view-vgd-beneficiaries')}}"> <i class="fa fa-list"></i> উপকারভোগী তালিকা দেখুন</a></li>
     </ul>
 
 

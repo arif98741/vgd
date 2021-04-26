@@ -28,6 +28,7 @@ class PayController extends Controller
      */
     function distribution(Request $request, $month)
     {
+
         $currentUnionId = Auth::user()->union_id;
 
         if ($month > count(HelperProvider::monthsUntilNow())) {

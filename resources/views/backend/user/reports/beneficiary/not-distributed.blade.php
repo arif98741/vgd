@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title','মাস অনুযায়ী বিতরণকৃত উপকারভোগীর তালিকা')
+@section('title','মাস অনুযায়ী অবিতরণকৃত উপকারভোগীর তালিকা')
 @section('content')
     <div class="mainpanel">
         <div class="pageheader">
@@ -8,7 +8,7 @@
                     <i class="fa fa-users"></i>
                 </div>
                 <div class="media-body">
-                    <h4>মাস অনুযায়ী বিতরণকৃত উপকারভোগীর তালিকা
+                    <h4>মাস অনুযায়ী অবিতরণকৃত উপকারভোগীর তালিকা
                     </h4>
                 </div>
             </div><!-- media -->
@@ -17,7 +17,7 @@
         <div class="contentpanel">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form action="{{ url('user/reports/all-union-wise-beneficiaries-dropdown') }}" method="get">
+                    <form action="{{ url('user/reports/not-distributed') }}" method="get">
                         <div class="row">
                             <div class="col-sm-4">
 

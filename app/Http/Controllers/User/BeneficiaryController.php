@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Validator;
+use Yajra\DataTables\DataTables;
 
 
 class BeneficiaryController extends Controller
@@ -17,12 +18,24 @@ class BeneficiaryController extends Controller
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request  $request)
     {
-        $data['beneficiaries'] = Beneficiary::with('union')
-            ->where('union_id', User::getUnionId())->get();
+        if ($request->ajax()) {
+            $beneficiaries = Beneficiary::with('union')
+                ->where('union_id', User::getUnionId())
+                ->latest()
+                ->get();
+            return Datatables::of($beneficiaries)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
 
-        return view('backend.user.beneficiary.index')->with($data);
+                    $btn = '';
+                    return $btn;
+                })->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('backend.user.beneficiary.index');
     }
 
 

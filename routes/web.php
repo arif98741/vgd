@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('admin', function () {
-    return redirect('login');
-});
+Route::get('vgd-beneficiaries', 'HomeController@vgdBeneficiaries');
+Route::get('vgd-beneficiaries-view/{id}', 'HomeController@vgdBeneficiariesView');
 
 
 /** admin routes start */
@@ -66,6 +65,8 @@ Route::namespace('User')
         Route::get('reports', 'ReportController@reports');
         Route::get('reports/all-months-dropdown', 'ReportController@reportsAllMonthsDropdown');
         Route::get('reports/all-union-wise-beneficiaries-dropdown', 'ReportController@reportsBeneficiariesByUnion');
+        Route::get('reports/not-distributed', 'ReportController@notDistributed');
+
 
     });
 /** user routes end */

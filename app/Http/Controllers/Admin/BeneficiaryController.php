@@ -115,6 +115,7 @@ class BeneficiaryController extends Controller
             'unions' => Union::all(),
             'beneficiary' => Beneficiary::findOrFail($id)
         ];
+
         return view('backend.admin.beneficiary.edit')->with($data);
     }
 

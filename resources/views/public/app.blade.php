@@ -4,6 +4,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content=""/>
+    <meta name="keywords"
+          content="Vgd, VGF, Melandahbhata, ভিজিডি, ভিজিএফ, Jamalpur Vgd, Jamalpur Vgf, জামালপুর ভিজিএফ, জামালপুর ভিজিডি, melandahvgd,vgdmelandah,vgfmelandah">
+    <meta name="author" content="https://vgd.melandahbhata.gov.bd/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     <link rel="icon" href="images/database.png" type="images/database" sizes="16x16">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">

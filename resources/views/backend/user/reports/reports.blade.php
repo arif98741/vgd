@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title','ভিজিডি উপকারভোগী')
+@section('title','প্রতিবেদন')
 @section('content')
     <div class="mainpanel">
         <div class="pageheader">
@@ -20,6 +20,8 @@
                     <div class="row">
                         <h3><a href="{{ url('user/reports/all-union-wise-beneficiaries-dropdown') }}">মাস অনুযায়ী
                                 বিতরণকৃত উপকারভোগীর তালিকা</a></h3>
+                        <h3><a href="{{ url('user/reports/not-distributed') }}">মাস অনুযায়ী
+                                অবিতরণকৃত উপকারভোগীর তালিকা</a></h3>
                     </div>
                 </div><!-- panel-body -->
             </div><!-- panel -->
