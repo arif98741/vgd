@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title','ভিজিএফ উপকারভোগী')
+@section('title','উপকারভোগী টাকা প্রদান করুন')
 @section('content')
     <div class="mainpanel">
         <div class="pageheader">

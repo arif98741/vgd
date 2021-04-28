@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title','Admin Dashboard')
+@section('title','এডমিন ড্যাশবোর্ড')
 @section('content')
     <div class="mainpanel">
 
@@ -22,7 +22,7 @@
 
                                    <h5 class="md-title nomargin"> <span
                                             style="font-family:SutonnyMJ; font-size: 18px;"> {{ $stock->year }} - {{ date('Y') }}</span>
-                                        অর্থবছরের                                        ভিজিএফ</h5>
+                                        অর্থ বছরের ভিজিএফ</h5>
                                     <h2 class="mt5">বরাদ্দঃ <span
                                             style="font-family:SutonnyMJ; font-size: 30px;">{{ $stock->total_amount }}</span>
                                         টাকা </h2>

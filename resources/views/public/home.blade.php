@@ -1,5 +1,5 @@
 @extends('public.app')
-@section('title', 'মেলান্দহ উপজেলার সকল উপকারভোগীর ডাটাবেইজ')
+@section('title', 'মেলান্দহ উপজেলার ভিজিএফ উপকারভোগীর ডাটাবেইজ')
 @section('content')
 
     <div class="container bg-white">
@@ -55,51 +55,51 @@
                         <tbody>
                             <tr>
                                 <td>দুরমুঠ</td>
-                                <td>240</td>
+                                <td>4350</td>
                             </tr>
                             <tr>
                                 <td>কুলিয়া</td>
-                                <td>289</td>
+                                <td>4580</td>
                             </tr>
                             <tr>
                                 <td>মাহমুদপুর</td>
-                                <td>378</td>
+                                <td>7800</td>
                             </tr>
                             <tr>
-                                <td>নাংল</td>
-                                <td>270</td>
+                                <td>নাংলা</td>
+                                <td>4650</td>
                             </tr>
                             <tr>
                                 <td>নয়ানগর</td>
-                                <td>262</td>
+                                <td>4350</td>
                             </tr>
                             <tr>
                                 <td>আদ্রা</td>
-                                <td>273</td>
+                                <td>4250</td>
                             </tr>
                             <tr>
                                 <td>চরবানিপাকুরিয়া</td>
-                                <td>331</td>
+                                <td>6549</td>
                             </tr>
                             <tr>
                                 <td>ফুলকোচা</td>
-                                <td>273</td>
+                                <td>3550</td>
                             </tr>
                             <tr>
                                 <td>ঘোষেরপাড়া</td>
-                                <td>356</td>
+                                <td>7180</td>
                             </tr>
                             <tr>
                                 <td>ঝাউগড়া</td>
-                                <td>287</td>
+                                <td>5970</td>
                             </tr>
                             <tr>
                                 <td>শ্যামপুর</td>
-                                <td>183</td>
+                                <td>3550</td>
                             </tr>
                             <tr>
                                 <td>মোট</td>
-                                <td>3142</td>
+                                <td>57049</td>
                             </tr>
                         <tbody>
                     </table>
