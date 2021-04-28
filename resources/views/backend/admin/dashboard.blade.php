@@ -12,7 +12,6 @@
                 @foreach($stocks as $stock)
 
                     <div class="col-md-4">
-
                         <div class="panel panel-info-alt noborder">
                             <div class="panel-heading noborder">
                                 <div class="panel-btns">
@@ -21,18 +20,17 @@
                                 </div><!-- panel-btns -->
                                 <div class="media-body">
 
-                                    <h5 class="md-title nomargin"> <span
+                                   <h5 class="md-title nomargin"> <span
                                             style="font-family:SutonnyMJ; font-size: 18px;"> {{ $stock->year }} - {{ date('Y') }}</span>
-                                        অর্থবছরের
-                                        ভিজিএফ</h5>
-                                    <h2 class="mt5">মোটঃ <span
+                                        অর্থবছরের                                        ভিজিএফ</h5>
+                                    <h2 class="mt5">বরাদ্দঃ <span
                                             style="font-family:SutonnyMJ; font-size: 30px;">{{ $stock->total_amount }}</span>
                                         টাকা </h2>
-                                    <h3 class="mt5">কার্ড সংখ্যাঃ <span
+                                    <h3 class="mt5">কার্ডঃ <span
                                             style="font-family:SutonnyMJ; font-size: 25px;">{{ $stock->number_of_card }}</span>
-                                        টি </h3>
+                                        টি</h3>
 
-                                    <p>{{ $stock->union_name }} ইউনিয়ন</p>
+                                    <h3>{{ $stock->union_name }} ইউনিয়ন</h3>
                                 </div><!-- media-body -->
                                 <hr>
                                 <div class="clearfix mt20">

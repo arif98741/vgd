@@ -32,7 +32,7 @@ class PayController extends Controller
 
             $distributions = Distribution::with(['beneficiary', 'union'])
                 ->whereYear('created_at', date('Y'))
-                ->limit(19)
+                // ->limit(19)
                 ->get();
             return Datatables::of($distributions)
                 ->addIndexColumn()
