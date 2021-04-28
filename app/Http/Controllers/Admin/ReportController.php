@@ -152,7 +152,7 @@ class ReportController extends Controller
                 'unions' => Union::all(),
             ];
 
-            return view('backend.user.reports.beneficiary.not-distributed-print')->with($data);
+            return view('backend.admin.reports.beneficiary.not-distributed-print')->with($data);
         }
 
         $data = [
@@ -161,7 +161,7 @@ class ReportController extends Controller
         ];
 
 
-        return view('backend.user.reports.beneficiary.not-distributed')->with($data);
+        return view('backend.admin.reports.beneficiary.not-distributed')->with($data);
     }
 
 }

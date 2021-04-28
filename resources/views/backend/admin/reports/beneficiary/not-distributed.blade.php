@@ -17,8 +17,24 @@
         <div class="contentpanel">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form action="{{ url('user/reports/not-distributed') }}" method="get">
+                    <form action="{{ url('admin/reports/not-distributed') }}" method="get">
                         <div class="row">
+                            <div class="col-sm-4">
+
+                                <div class="form-group">
+                                    <label class="control-label">ইউনিয়ন বাছাই করুন</label>
+                                    <select name="union_id" data-placeholder="Choose One"
+                                            class="form-control">
+                                        <option value="">---নির্বাচন করুন---</option>
+                                        @foreach( $unions as $key=>  $union)
+                                            <option
+                                                value="{{ $union->id }}">{{ $union->union_name }}
+                                            </option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
+                            </div>
                             <div class="col-sm-4">
 
                                 <div class="form-group">
