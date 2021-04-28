@@ -9,7 +9,7 @@
             <ul class="navbar-nav mr-auto custom">
 
                 <li class="nav-item"><a class="nav-link" href="{{url('/login')}}">লগইন</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{url('/vgd-beneficiaries')}}">উপকারভোগি তালিকা</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{url('/vgd-beneficiaries')}}">উপকারভোগী তালিকা</a></li>
             </ul>
         </div>
     </nav>

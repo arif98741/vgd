@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Providers\HelperProvider;
+use App\User;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -16,6 +18,7 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
+
         $monthKey = $request->all();
         $currentUnionId = Auth::user()->union_id;
 
@@ -53,9 +56,59 @@ class AdminController extends Controller
             ];
         }
 
-
         return view('backend.admin.dashboard')->with($data);
 
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function uddoktaList()
+    {
+        $data = [
+            'unionUsers' => User::with(['union'])
+                ->orderBy('id', 'asc')->get()
+        ];
+
+        return view('backend.admin.uddokta')->with($data);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function editUddokta(Request $request, $id)
+    {
+        if ($request->isMethod('post')) {
+            $user = User::find($id);
+            $user->name = $request->name;
+            if ($request->has('password')) {
+                $user->password = Hash::make($request->password);
+            }
+
+            if ($user->save()) {
+                $notification = array(
+                    'message' => 'তথ্য সফলভাবে আপডেট হয়েছে',
+                    'alert-type' => 'success'
+                );
+
+            } else {
+                $notification = array(
+                    'message' => 'তথ্য আপডেট ব্যর্থ হয়েছে',
+                    'alert-type' => 'error'
+                );
+            }
+            return redirect('admin/uddokta-list')->with($notification);
+
+        }
+
+        $data = [
+            'user' => User::with(['union'])
+                ->where('id', $id)
+                ->first()
+        ];
+
+
+        return view('backend.admin.edit-uddokta')->with($data);
     }
 
 }

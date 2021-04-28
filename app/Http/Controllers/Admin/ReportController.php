@@ -124,4 +124,44 @@ class ReportController extends Controller
         return view('backend.admin.reports.beneficiary.all-beneficiaries-by-union')->with($data);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function notDistributed(Request $request)
+    {
+        if ($request->has('union_id') || $request->has('month')) {
+            $reports = DB::table('distributions')
+                ->join('unions', 'unions.id', '=', 'distributions.union_id')
+                ->join('beneficiaries', 'beneficiaries.id', '=', 'distributions.beneficiary_id')
+                ->select('beneficiaries.*')
+                ->where('distributions.status', 0);
+            if ($request->has('union_id')) {
+                $reports->where('distributions.union_id', $request->union_id);
+            }
+            if ($request->has('month')) {
+                $monthName = HelperProvider::getMonthByNumber($request->month);
+                $reports->where('distributions.month', $monthName);
+            }
+
+            $reportsData = $reports->get();
+            $data = [
+                'union' => Union::find($request->union_id),
+                'reports' => $reportsData,
+                'months' => HelperProvider::monthsUntilNow('months.list'),
+                'unions' => Union::all(),
+            ];
+
+            return view('backend.user.reports.beneficiary.not-distributed-print')->with($data);
+        }
+
+        $data = [
+            'months' => HelperProvider::monthsUntilNow('months.list'),
+            'unions' => Union::all()
+        ];
+
+
+        return view('backend.user.reports.beneficiary.not-distributed')->with($data);
+    }
+
 }

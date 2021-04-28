@@ -58,5 +58,14 @@ class User extends Authenticatable
             ->first()->union_name;
     }
 
+    /**
+     * Union RElationship with user
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function union()
+    {
+        return $this->belongsTo(Union::class)->withDefault();
+    }
+
 
 }

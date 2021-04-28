@@ -20,6 +20,8 @@ Route::namespace('Admin')
         Route::get('view-vgd-beneficiaries', 'BeneficiaryController@index');
         Route::get('edit-beneficiary/{id}', 'BeneficiaryController@editBeneficiary');
         Route::post('update-beneficiary/{id}', 'BeneficiaryController@updateBeneficiary')->name('update-vgd-beneficiary');
+        Route::get('uddokta-list', 'AdminController@uddoktaList');
+        Route::match(['get', 'post'], 'uddokta/edit/{id}', 'AdminController@editUddokta');
 
 
         Route::post('beneficiary', 'BeneficiaryController@addBeneficiary');
@@ -39,6 +41,7 @@ Route::namespace('Admin')
         Route::get('reports', 'ReportController@reports');
         Route::get('reports/all-months-dropdown', 'ReportController@reportsAllMonthsDropdown');
         Route::get('reports/all-union-wise-beneficiaries-dropdown', 'ReportController@reportsBeneficiariesByUnion');
+        Route::get('reports/not-distributed', 'ReportController@notDistributed');
 
 
         Route::get('/all-envelope-report', 'EnvelopeController@EnvelopeView');
@@ -66,6 +69,7 @@ Route::namespace('User')
         Route::get('reports/all-months-dropdown', 'ReportController@reportsAllMonthsDropdown');
         Route::get('reports/all-union-wise-beneficiaries-dropdown', 'ReportController@reportsBeneficiariesByUnion');
         Route::get('reports/not-distributed', 'ReportController@notDistributed');
+        Route::get('view/notice', 'NoticeController@viewNotice');
 
 
     });

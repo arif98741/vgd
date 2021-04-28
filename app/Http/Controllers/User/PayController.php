@@ -7,7 +7,9 @@ use App\Models\FebruaryDistribution;
 use App\Models\JanuaryDistribution;
 use App\Providers\DistributionHelper;
 use App\Providers\HelperProvider;
+use App\User;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory as FactoryAlias;
 use Illuminate\Http\Request;
@@ -71,14 +73,44 @@ class PayController extends Controller
         }
 
         $monthName = '';
-        if ($month != 'all')
+        if ($month != 'all') {
+
             $monthName = HelperProvider::getMonthByNumber($month);
+        }
+        $todayFrom = date('Y-m-d 00:00:00');
+        $todayTo = Carbon::today()->addHours(23)
+            ->addMinutes(59)
+            ->addSeconds(59)
+            ->format('Y-m-d H:i:s');
+
+        $yesterdayFrom = Carbon::yesterday();
+        $yesterdayTo = $yesterdayFrom
+            ->addHours(23)
+            ->addMinutes(59)
+            ->addSeconds(59)
+            ->format('Y-m-d H:i:s');
+
+        $today = DB::table('distributions')
+            ->select(DB::raw('count(id) as total'))
+            ->where('union_id', User::getUnionId())
+            ->where('status', 1)
+            ->whereBetween('created_at', [$todayFrom, $todayTo])
+            ->first();
+
+        $yesterday = DB::table('distributions')
+            ->select(DB::raw('count(id) as total'))
+            ->where('union_id', User::getUnionId())
+            ->where('status', 1)
+            ->whereBetween('created_at', [$yesterdayFrom, $yesterdayTo])
+            ->first();
 
         $data = [
             'month' => $month,
             'monthName' => $monthName,
             'distribution' => DistributionHelper::distributionAllUnion($monthName, $currentUnionId),
             'months' => HelperProvider::monthsUntilNow(),
+            'today' => $today,
+            'yesterday' => $yesterday,
         ];
         return view('backend.user.beneficiary.distribution')->with($data);
     }

@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>ভিজিডি ভাতা প্রদান লগিন করুন</title>
-
     <link href="{{asset('asset/backend/css/style.default.css')}}" rel="stylesheet">
-
+    <style>
+        body {
+            font-family: SolaimanLipiNormal !important;
+            font-size: 14px !important;
+            color: #636E7B !important;
+            background-color: #798e76 !important;
+        }
+    </style>
 </head>
 
-<body class="signin">
-
+<body>
 
 <section>
 
@@ -48,7 +52,6 @@
                     </span>
                     @enderror
                 </div><!-- input-group -->
-
 
 
         </div><!-- panel-body -->

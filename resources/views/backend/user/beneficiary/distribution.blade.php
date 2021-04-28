@@ -3,15 +3,30 @@
 @section('content')
     <div class="mainpanel">
         <div class="pageheader">
-            <div class="media">
+            <div class="pull-left">
+                <div class="media">
+                    <div class="pageicon pull-left">
+                        <i class="fa fa-users"></i>
+                    </div>
+                    <div class="media-body">
+
+                        <h4> উপকারভোগী চাউল প্রদান করুন</h4>
+                    </div>
+                </div><!-- media -->
+            </div>
+
+            <div class="pull-right">
                 <div class="pageicon pull-left">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-bar-chart-o"></i>
                 </div>
                 <div class="media-body">
-
-                    <h4> উপকারভোগী চাউল প্রদান করুন</h4>
+                    <marquee behavior="" direction="">
+                        <h4>&nbsp; আজকের বিতরণঃ <span
+                                style="font-family:SutonnyMJ; font-size: 25px;">{{ $today->total }}</span> বস্তা, গতকালকের বিতরণঃ <span
+                                style="font-family:SutonnyMJ; font-size: 25px;">{{ $yesterday->total }}</span> বস্তা</h4>
+                    </marquee>
                 </div>
-            </div><!-- media -->
+            </div>
         </div><!-- pageheader -->
 
         <div class="contentpanel">

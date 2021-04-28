@@ -20,9 +20,9 @@
                     <div class="row">
                         <h3><a href="{{ url('admin/reports/all-months-dropdown') }}">সকল মাসের প্রতিবেদন</a></h3>
                         <h3><a href="{{ url('admin/reports/all-union-wise-beneficiaries-dropdown') }}">ইউনিয়ন অনুযায়ী বিতরণকৃত উপকারভোগীর তালিকা</a></h3>
+                        <h3><a href="{{ url('admin/reports/not-distributed') }}">ইউনিয়ন অনুযায়ী অবিতরণকৃত উপকারভোগীর তালিকা</a></h3>
                     </div>
                 </div><!-- panel-body -->
             </div><!-- panel -->
-        </div><!-- panel -->
     </div><!-- mainwrapper -->
 @endsection
