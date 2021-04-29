@@ -75,7 +75,7 @@ Route::namespace('User')
     });
 /** user routes end */
 
-Auth::routes(['register' => true]);
+Auth::routes(['register' => false]);
 
 
 /** public routes start */
