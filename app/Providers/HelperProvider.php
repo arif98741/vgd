@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Stock;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Support\Facades\Config;
@@ -48,6 +49,19 @@ class HelperProvider extends ServiceProvider
         $dateObj = DateTime::createFromFormat('!m', $number);
 
         return strtolower($dateObj->format('F'));
+    }
+
+
+    /**
+     * Get Month List From Stock Table
+     */
+    public static function getStockMonths()
+    {
+        return Stock::orderBy('month', 'asc')
+            ->select('month')
+            ->orderBy('month', 'asc')
+            ->groupBy('month')
+            ->get();
     }
 
     /**

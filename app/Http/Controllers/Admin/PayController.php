@@ -29,17 +29,11 @@ class PayController extends Controller
      */
     function distribution(Request $request, $month)
     {
-        if ($month > count(HelperProvider::monthsUntilNow())) {
-            abort(404);
-        }
 
         if ($request->ajax()) {
-            if ($month > count(HelperProvider::monthsUntilNow())) {
-                abort(404);
-            }
 
             $distributions = Distribution::with(['beneficiary', 'union'])
-                ->where('month', HelperProvider::getMonthByNumber($month))
+                ->where('month', $month)
                 ->whereYear('created_at', date('Y'))
                 ->latest()
                 ->get();
@@ -64,15 +58,20 @@ class PayController extends Controller
                 ->make(true);
         }
 
-        $monthName = HelperProvider::getMonthByNumber($month);
+        if ($month != 'all') {
+
+            $monthName = HelperProvider::getBengaliName($month);
+        } else {
+            $monthName = '';
+        }
 
         $data = [
             'month' => $month,
             'monthName' => $monthName,
-            'distribution' => DistributionHelper::distributionAll($monthName),
-            'months' => HelperProvider::monthsUntilNow(),
+            'distribution' => DistributionHelper::distributionAll($month),
+            'months' => HelperProvider::getStockMonths()
         ];
-        return view('backend.admin.beneficiary.distribution1')->with($data);
+        return view('backend.admin.beneficiary.distribution')->with($data);
     }
 
 

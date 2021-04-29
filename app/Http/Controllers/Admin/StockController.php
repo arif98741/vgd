@@ -18,11 +18,10 @@ class StockController extends Controller
             ->orderBy('union_id', 'asc')
             ->get();
 
-
         $data = [
             'stocks' => $stocks,
             'unions' => Union::all(),
-            'months' => HelperProvider::monthsUntilNow('months.list'),
+            'months' => HelperProvider::getStockMonths()
         ];
 
         return view('backend.admin.beneficiary.stock')->with($data);

@@ -42,7 +42,7 @@
                                     <select data-placeholder="Choose One" name="month" class="form-control" required>
                                         <option value="">---নির্বাচন করুন---</option>
                                         @foreach($months as $key=> $month)
-                                            <option value="{{ $key }}">{{ $month }}</option>
+                                            <option value="{{ $month->month }}">{{ \App\Providers\HelperProvider::getBengaliName($month->month) }}</option>
                                         @endforeach
                                     </select>
                                 </div><!-- form-group -->
