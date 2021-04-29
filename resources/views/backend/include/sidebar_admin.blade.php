@@ -17,6 +17,7 @@
         <li><a href="{{url('admin/stock-beneficiary-vgd')}}"><i class="fa fa-money"></i> টাকা বরাদ্দ করুন</a></li>
         <li><a href="{{url('admin/distribution/')}}"> <i class="fa fa-share-square-o"></i> উপকারভোগী টাকা প্রদান করুন</a></li>
         <li><a href="{{url('admin/view-vgd-beneficiaries')}}"> <i class="fa fa-list"></i> উপকারভোগী তালিকা</a></li>
+        <li><a href="{{url('admin/uddokta-list')}}"> <i class="fa fa-users"></i> উদ্যোক্তা তালিকা দেখুন</a></li>
         <li><a href="{{url('admin/reports')}}"> <i class="fa fa-folder-open"></i> প্রতিবেদন দেখুন</a></li>
 {{--        <li><a href="{{url('admin/all-envelope-report')}}"> <i class="fa fa-envelope"></i> খাম তৈরী করুন</a></li>--}}
     </ul>

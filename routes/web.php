@@ -21,7 +21,8 @@ Route::namespace('Admin')
         Route::get('view-vgd-beneficiaries', 'BeneficiaryController@index');
         Route::get('edit-beneficiary/{id}', 'BeneficiaryController@editBeneficiary');
         Route::post('update-beneficiary/{id}', 'BeneficiaryController@updateBeneficiary')->name('update-vgd-beneficiary');
-
+        Route::get('uddokta-list', 'AdminController@uddoktaList');
+        Route::match(['get', 'post'], 'uddokta/edit/{id}', 'AdminController@editUddokta');
 
         Route::post('beneficiary', 'BeneficiaryController@addBeneficiary');
 
