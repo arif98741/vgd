@@ -22,16 +22,13 @@
                                 গণপ্রজাতন্ত্রী বাংলাদেশ সরকার <br>
                             </div>
                             <div style="font-size:18px; text-align: center" class="title-1 ">
-
                                 দুযোর্গ ব্যবস্থাপনা ও ত্রাণ মন্ত্রণালয় <br>
-
                             </div>
                             <div style="font-size:18px; text-align: center" class="title-1 ">
                                 উপজেলাঃ মেলান্দহ, জেলাঃ জামালপুর
                             </div>
                             <div style="font-size:18px; text-align: center" class="title-1 ">
-                                সকল
-                                ইউনিয়নের ভিজিএফ টাকা প্রদানের প্রতিবেদন
+                                সকল ইউনিয়নের ভিজিএফ টাকা প্রদানের প্রতিবেদন
                             </div>
 
                     </tr>
@@ -44,9 +41,9 @@
                 <table width="100%" class="table" border="0">
                     <tr>
                         <th align="left" style="text-align: center" valign="top">ইউনিয়ন</th>
-                        <th align="left" style="text-align: center" valign="top">বিতরণকৃত</th>
-                        <th align="left" style="text-align: center" valign="top">বিতরণ হয়নি</th>
-                        <th align="left" style="text-align: center" valign="top">মোট</th>
+                        <th align="left" style="text-align: center" valign="top">বিতরণকৃত টাকা</th>
+                        <th align="left" style="text-align: center" valign="top">অবিতরণকৃত টাকা</th>
+                        <th align="left" style="text-align: center" valign="top">মোট টাকা</th>
                     </tr>
                     @php
                         $distributed = $stock = $total = 0;

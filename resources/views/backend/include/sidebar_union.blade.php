@@ -16,7 +16,7 @@
         <li><a href="{{url('user/distribution')}}"> <i class="fa fa-share-square-o"></i> উপকারভোগী টাকা
                 প্রদান
                 করুন</a>
-        <li><a href="{{url('user/reports')}}"> <i class="fa fa-folder"></i>&nbsp;প্রতিবেদন</a>
+        <li><a href="{{url('user/reports')}}"> <i class="fa fa-folder"></i>&nbsp;প্রতিবেদন দেখুন</a>
         </li>
         <li><a href="{{url('user/view-vgd-beneficiaries')}}"> <i class="fa fa-list"></i> উপকারভোগী তালিকা</a></li>
     </ul>

@@ -44,7 +44,7 @@ class OtpController extends Controller
             ->find($request->distribution_id);
         $mobile = $distribution->beneficiary->mobile;
         $otp = rand(1111, 9999);
-        $message = "VGD%20{$otp}%20বাস্তবায়নেঃ-%20মেলান্দহ%20উপজেলা";
+        $message = "VGF%20{$otp}%20বাস্তবায়নেঃ-%20মেলান্দহ%20উপজেলা";
         $status = HelperProvider::sendSMS($mobile, $message);
         if (property_exists($status, 'status_code')) {
             if ($status->status_code == '200') {

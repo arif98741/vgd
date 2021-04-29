@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title','ভিজিএফ উপকারভোগী')
+@section('title','প্রতিবেদন দেখুন')
 @section('content')
     <div class="mainpanel">
         <div class="pageheader">
@@ -9,7 +9,7 @@
                 </div>
                 <div class="media-body">
 
-                    <h4>ইউনিয়ন প্রতিবেদন</h4>
+                    <h4>{{ \App\User::getUnionName() }} ইউনিয়ন প্রতিবেদন</h4>
                 </div>
             </div><!-- media -->
         </div><!-- pageheader -->
