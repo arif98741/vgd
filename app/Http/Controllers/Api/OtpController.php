@@ -9,7 +9,6 @@ use App\Providers\HelperProvider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Crypt;
 use Validator;
 
 class OtpController extends Controller
@@ -46,17 +45,13 @@ class OtpController extends Controller
         $mobile = $distribution->beneficiary->mobile;
         $otp = rand(1111, 9999);
         //otp encryption
-        $encrypted = encrypt($otp);
-        //$encrypted = Crypt::encryptString($otp);
-        //otp encryption end
 
         $message = "VGD%20{$otp}%20বাস্তবায়নেঃ-%20মেলান্দহ%20উপজেলা";
         $status = HelperProvider::sendSMS($mobile, $message);
         if (property_exists($status, 'status_code')) {
             if ($status->status_code == '200') {
                 $data['sent'] = Carbon::now();
-                // $data['code'] = $otp;
-                $data['code'] = $encrypted;
+                $data['code'] = md5(sha1($otp));
                 $data['expiration'] = Carbon::now()
                     ->addMinute($smsConfig['expiration_time'])
                     ->format('Y-m-d H:i:s');
@@ -113,20 +108,16 @@ class OtpController extends Controller
                 'code' => 203
             ]);
         }
-        //$decrypted = Crypt::decryptString($request->code);
-
         $distribution = Otp::where([
             'distribution_id' => $request->distribution_id,
             'purpose' => $request->purpose,
-            //  'code' => $request->code,
-      //      'code' => encrypt($request->code),
+            'code' => md5(sha1($request->code)),
             'status' => 0,
         ])->orderBy('id', 'desc')
             ->first();
 
-        $decrypt = decrypt($distribution->code);
-        if ($decrypt != $request->code)
-        {
+
+        if ($distribution == null) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'আপনি ভুল ওটিপি প্রদান করেছেন। অনুগ্রহ করে আবার চেষ্টা করুন।',
