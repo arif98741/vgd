@@ -16,11 +16,11 @@
         <li><a href="{{url('user/distribution/all')}}"> <i class="fa fa-share-square-o"></i> উপকারভোগী চাউল
                 প্রদান
                 করুন</a>
-        <li><a href="{{url('user/reports')}}"> <i class="fa fa-folder"></i>&nbsp;প্রতিবেদন</a>
         </li>
         <li><a href="{{url('user/view-vgd-beneficiaries')}}"> <i class="fa fa-list"></i> উপকারভোগী তালিকা দেখুন</a></li>
-        <li><a href="{{url('user/view/notice')}}"> <i class="fa fa-list-ul"></i>নোটিশ দেখুন <sup><i>New</i></sup></a></li>
-        <li><a href="{{url('/')}}" target="_blank"> <i class="fa fa-globe"></i> মূল ওয়েবসাইট দেখুন</a></li>
+        <li><a href="{{url('user/reports')}}"> <i class="fa fa-folder"></i>&nbsp;প্রতিবেদন</a>
+        <li style="display:none;"><a href="{{url('user/view/notice')}}"> <i class="fa fa-list-ul"></i>নোটিশ দেখুন <sup><i>New</i></sup></a></li>
+        <li style="display:none;"><a href="{{url('/')}}" target="_blank"> <i class="fa fa-globe"></i> মূল ওয়েবসাইট দেখুন</a></li>
     </ul>
 
 

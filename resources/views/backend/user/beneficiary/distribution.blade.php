@@ -40,7 +40,7 @@
                                     <select id="search_table" class="form-control">
                                         <option value="">মাস বাছাই করুন</option>
                                         @foreach($months as $key => $value)
-                                            <option @if($month == $key) selected @endif value="{{ $key }}">{{ $value }}
+                                            <option @if($value->month == $month) selected @endif value="{{ $value->month }}">{{ \App\Providers\HelperProvider::getBengaliName($value->month) }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -54,7 +54,7 @@
 
         <div class="contentpanel">
             <h2 class="control-label text-center text-danger">@if($month =='all') বিতরণকৃত মাস বাছাই
-                করুন @else {{ $months[$month] }} @endif</h2>
+                করুন @else {{ $monthName }} @endif</h2>
             {{--            মাস বিতরণ করুন--}}
             <h4 class="text-center">বিতরণকৃত চাউলঃ <span
                     style="font-family:SutonnyMJ;"> {{ $distribution['distribution'] }}</span> বস্তা, বিতরণ
@@ -70,7 +70,7 @@
                     <th>কার্ড নং</th>
                     <th>এনআইডি নম্বর</th>
                     <th>পিতার/স্বামীর নাম</th>
-                    <th>মাতার নাম</th>
+{{--                    <th>মাতার নাম</th>--}}
                     <th>গ্রাম</th>
                     <th>ওয়ার্ড</th>
                     <th>মোবাইল নম্বর</th>
@@ -146,7 +146,7 @@
                         {data: 'card_no', name: 'card_no'},
                         {data: 'nid', name: 'nid'},
                         {data: 'fh_name', name: 'fh_name'},
-                        {data: 'mother_name', name: 'mother_name'},
+                        // {data: 'mother_name', name: 'mother_name'},
                         {data: 'village', name: 'village'},
                         {data: 'ward', name: 'ward'},
                         {data: 'mobile', name: 'mobile'},

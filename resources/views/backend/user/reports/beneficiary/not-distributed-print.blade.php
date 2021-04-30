@@ -44,7 +44,7 @@
                         <th align="left" valign="top">নাম</th>
                         <th align="left" valign="top">কার্ড নাম্বার</th>
                         <th align="left" valign="top">পিতা/স্বামী</th>
-                        <th align="left" valign="top">মাতার নাম</th>
+{{--                        <th align="left" valign="top">মাতার নাম</th>--}}
                         <th align="left" valign="top">গ্রাম</th>
                         <th align="left" valign="top">ওয়ার্ড</th>
                         <th align="left" valign="top">এনআইডি</th>
@@ -57,7 +57,7 @@
                             <td align="left">{{ $report->name }}</td>
                             <td align="left" style="text-align: center">{{ $report->card_no }}</td>
                             <td align="left">{{ $report->fh_name }}</td>
-                            <td align="left">{{ $report->mother_name }}</td>
+{{--                            <td align="left">{{ $report->mother_name }}</td>--}}
                             <td align="left">{{ $report->village }}</td>
                             <td align="left">{{ $report->ward }}</td>
                             <td align="left">{{ $report->nid }}</td>

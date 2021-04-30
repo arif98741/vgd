@@ -33,15 +33,8 @@ class PayController extends Controller
 
         $currentUnionId = Auth::user()->union_id;
 
-        if ($month > count(HelperProvider::monthsUntilNow())) {
-            abort(404);
-        }
 
         if ($request->ajax()) {
-            if ($month > count(HelperProvider::monthsUntilNow())) {
-                abort(404);
-            }
-            $monthName = HelperProvider::getMonthByNumber($month);
 
 
             $currentUnionId = Auth::user()->union_id;
@@ -49,7 +42,7 @@ class PayController extends Controller
             $distributions = DB::select("select distributions.id as distribution_id,distributions.status,unions.union_name,
                    beneficiaries.* FROM `distributions` join beneficiaries on beneficiaries.id = distributions.beneficiary_id
                        join unions on unions.id = distributions.union_id
-                    where distributions.union_id='$currentUnionId' and month='$monthName'
+                    where distributions.union_id='$currentUnionId' and month='$month'
             ");
             return Datatables::of($distributions)
                 ->addIndexColumn()
@@ -75,7 +68,7 @@ class PayController extends Controller
         $monthName = '';
         if ($month != 'all') {
 
-            $monthName = HelperProvider::getMonthByNumber($month);
+            $monthName = HelperProvider::getBengaliName($month);
         }
         $todayFrom = date('Y-m-d 00:00:00');
         $todayTo = Carbon::today()->addHours(23)
@@ -104,14 +97,16 @@ class PayController extends Controller
             ->whereBetween('created_at', [$yesterdayFrom, $yesterdayTo])
             ->first();
 
+
         $data = [
             'month' => $month,
-            'monthName' => $monthName,
-            'distribution' => DistributionHelper::distributionAllUnion($monthName, $currentUnionId),
-            'months' => HelperProvider::monthsUntilNow(),
+            'monthName' => ($month != 'all') ? HelperProvider::getBengaliName($month) : '',
+            'distribution' => DistributionHelper::distributionAllUnion($month, $currentUnionId),
+            'months' => HelperProvider::getStockMonths(),
             'today' => $today,
             'yesterday' => $yesterday,
         ];
+
         return view('backend.user.beneficiary.distribution')->with($data);
     }
 

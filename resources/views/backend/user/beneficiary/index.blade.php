@@ -22,7 +22,7 @@
                     <th>এনআইডি নম্বর</th>
                     <th>কার্ড নং</th>
                     <th>পিতার/স্বামীর নাম</th>
-                    <th>মাতার নাম</th>
+{{--                    <th>মাতার নাম</th>--}}
                     <th>গ্রাম</th>
                     <th>ওয়ার্ড নং</th>
                     <th>মোবাইল নম্বর</th>
@@ -51,7 +51,7 @@
                     {data: 'nid', name: 'nid'},
                     {data: 'card_no', name: 'card_no'},
                     {data: 'fh_name', name: 'fh_name'},
-                    {data: 'mother_name', name: 'mother_name'},
+                    // {data: 'mother_name', name: 'mother_name'},
                     {data: 'village', name: 'village'},
                     {data: 'ward', name: 'ward'},
                     {data: 'mobile', name: 'mobile'},

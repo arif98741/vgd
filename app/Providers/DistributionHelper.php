@@ -130,7 +130,6 @@ class DistributionHelper extends ServiceProvider
     }
 
     /**
-     * @param $month
      * @param $union_id
      * @return array
      */
