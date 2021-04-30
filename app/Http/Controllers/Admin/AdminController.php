@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
+
 
 class AdminController extends Controller
 {
@@ -18,7 +20,6 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
-
         $monthKey = $request->all();
         $currentUnionId = Auth::user()->union_id;
 
