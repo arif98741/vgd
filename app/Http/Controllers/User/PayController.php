@@ -29,15 +29,31 @@ class PayController extends Controller
         $currentUnionId = Auth::user()->union_id;
 
         if ($request->ajax()) {
-
-
             $currentUnionId = Auth::user()->union_id;
 
-            $distributions = DB::select("select distributions.id as distribution_id,distributions.status,unions.union_name,
+
+            if ($request->has('search')) {
+
+                $searchKey = $request->search['value'];
+                $distributions = DB::select("select distributions.id as distribution_id,distributions.status,unions.union_name,
                    beneficiaries.* FROM `distributions` join beneficiaries on beneficiaries.id = distributions.beneficiary_id
                        join unions on unions.id = distributions.union_id
-                    where distributions.union_id='$currentUnionId'
+                    where
+                          distributions.union_id='$currentUnionId'
+                    or beneficiaries.mobile like '%$searchKey%'
+                    or beneficiaries.nid like '%$searchKey%'
+                    or beneficiaries.name like '%$searchKey%'
+                    or beneficiaries.fh_name like '%$searchKey%' limit 10;
+                    ");
+
+            } else {
+
+                $distributions = DB::select("select distributions.id as distribution_id,distributions.status,unions.union_name,
+                   beneficiaries.* FROM `distributions` join beneficiaries on beneficiaries.id = distributions.beneficiary_id
+                       join unions on unions.id = distributions.union_id
+                    where distributions.union_id='$currentUnionId' limit 10
             ");
+            }
             return Datatables::of($distributions)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
@@ -53,7 +69,6 @@ class PayController extends Controller
 <i  class="fa fa-money"></i>
 ' . $message . '</a>';
                     }
-
                     return $btn;
                 })->rawColumns(['action'])
                 ->make(true);

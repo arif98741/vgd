@@ -49,7 +49,7 @@ class OtpController extends Controller
         if (property_exists($status, 'status_code')) {
             if ($status->status_code == '200') {
                 $data['sent'] = Carbon::now();
-                $data['code'] = $otp;
+                $data['code'] = md5(sha1($otp));
                 $data['expiration'] = Carbon::now()
                     ->addMinute($smsConfig['expiration_time'])
                     ->format('Y-m-d H:i:s');
@@ -109,7 +109,7 @@ class OtpController extends Controller
         $distribution = Otp::where([
             'distribution_id' => $request->distribution_id,
             'purpose' => $request->purpose,
-            'code' => $request->code,
+            'code' => md5(sha1($request->code)),
             'status' => 0,
         ])->orderBy('id', 'desc')
             ->first();
