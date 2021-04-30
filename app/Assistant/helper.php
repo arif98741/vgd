@@ -56,7 +56,7 @@ if (!function_exists('isUser')) {
  */
 if (!function_exists('numberFormat')) {
 
-    function numberFormat($number)
+    function numberFormat($number): string
     {
         return number_format($number, 0, '.', ',');
 
