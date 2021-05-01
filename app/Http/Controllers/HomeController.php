@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Support\Facades\Artisan;
 
 class HomeController extends Controller
 {
@@ -26,4 +27,6 @@ class HomeController extends Controller
 
         return view('home');
     }
+
+
 }
