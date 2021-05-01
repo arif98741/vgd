@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Union;
 use Illuminate\Contracts\Support\Renderable;
+
 use Illuminate\Support\Facades\DB;
+
 
 class HomeController extends Controller
 {
@@ -28,6 +30,7 @@ class HomeController extends Controller
 
         return view('home');
     }
+
 
     /**
      * Beneficiaries List by gRoups
@@ -60,4 +63,5 @@ class HomeController extends Controller
         ];
         return view('public.beneficiaries-list')->with($data);
     }
+
 }

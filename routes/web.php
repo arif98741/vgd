@@ -3,8 +3,16 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('vgd-beneficiaries', 'HomeController@vgdBeneficiaries');
 Route::get('vgd-beneficiaries-view/{id}', 'HomeController@vgdBeneficiariesView');
+
+Route::get('backup', 'BackupController@backup');
+
+Route::get('admin', function () {
+    return redirect('login');
+});
+
 
 
 /** admin routes start */
