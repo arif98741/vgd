@@ -16,7 +16,7 @@ class DistributionHelper extends ServiceProvider
     public static function distributed($union_id, $stock): array
     {
         $total_distributed = DB::table('distributions')
-            ->select(DB::raw('((count(distributions.id)) * 450) as total_distributed'))
+            ->select(DB::raw('((count(distributions.id)) * 500) as total_distributed'))
             ->where(
                 [
                     'distributions.union_id' => $union_id,

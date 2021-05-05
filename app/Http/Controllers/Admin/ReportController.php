@@ -91,7 +91,7 @@ class ReportController extends Controller
                         ]
                     )->first(),
                 'total_distribution' => DB::table('distributions')
-                    ->select(DB::raw('(count(distributions.id) * 450) as total_distributed'))
+                    ->select(DB::raw('(count(distributions.id) * 500) as total_distributed'))
                     ->where(
                         [
                             'distributions.union_id' => $request->union_id,

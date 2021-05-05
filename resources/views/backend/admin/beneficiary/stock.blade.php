@@ -116,7 +116,7 @@
 
             $('#card_no').keyup(function () {
                 let card_no = parseInt($(this).val());
-                let amount = card_no * 450;
+                let amount = card_no * 500;
                 $('#amount').val(amount);
             });
 
