@@ -39,7 +39,7 @@ class PayController extends Controller
                    beneficiaries.* FROM `distributions` join beneficiaries on beneficiaries.id = distributions.beneficiary_id
                        join unions on unions.id = distributions.union_id
                     where
-                          distributions.union_id='$currentUnionId'
+                          beneficiaries.union_id='$currentUnionId'
                     or beneficiaries.mobile like '%$searchKey%'
                     or beneficiaries.nid like '%$searchKey%'
                     or beneficiaries.name like '%$searchKey%'
