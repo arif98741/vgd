@@ -10,6 +10,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory as FactoryAlias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 use Yajra\DataTables\DataTables;
 
 class PayController extends Controller
@@ -20,7 +21,7 @@ class PayController extends Controller
     }
 
     /**
-     * @return Application|FactoryAlias|\Illuminate\View\View
+     * @return Application|FactoryAlias|View
      * @throws \Exception
      * @throws \Exception
      */
