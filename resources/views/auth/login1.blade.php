@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ভিজিএফ ভাতা প্রদান লগিন করুন</title>
+    <title>জিআরক্যাশ ভাতা প্রদান লগিন করুন</title>
 
     <link href="{{asset('asset/backend/css/style.default.css')}}" rel="stylesheet">
 

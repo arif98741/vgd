@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>মেলান্দহ সকল ভিজিএফ হিসাব</title>
+    <title>মেলান্দহ সকল জিআরক্যাশ হিসাব</title>
     <link href="{{ asset('asset/backend/css/print.css')}}" rel="stylesheet">
 </head>
 <body>

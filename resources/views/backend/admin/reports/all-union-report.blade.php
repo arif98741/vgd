@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>মেলান্দহ সকল ভিজিএফ হিসাব</title>
+    <title>মেলান্দহ সকল জিআরক্যাশ হিসাব</title>
     <link href="{{ asset('asset/backend/css/print.css')}}" rel="stylesheet">
 </head>
 <body>
@@ -28,7 +28,7 @@
                                 উপজেলাঃ মেলান্দহ, জেলাঃ জামালপুর
                             </div>
                             <div style="font-size:18px; text-align: center" class="title-1 ">
-                                সকল ইউনিয়নের ভিজিএফ টাকা প্রদানের প্রতিবেদন
+                                সকল ইউনিয়নের জিআরক্যাশ টাকা প্রদানের প্রতিবেদন
                             </div>
 
                     </tr>

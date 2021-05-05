@@ -1,5 +1,5 @@
 @extends('public.app')
-@section('title', 'মেলান্দহ উপজেলার ভিজিএফ উপকারভোগীর ডাটাবেইজ')
+@section('title', 'মেলান্দহ উপজেলার জিআরক্যাশ উপকারভোগীর ডাটাবেইজ')
 @section('content')
 
     <div class="container bg-white">
@@ -42,13 +42,13 @@
 
         <div class="row">
             <div class="col-md-9">
-                <h2 class="animated fadeInUp">জামালপুর জেলা মেলান্দহ উপজেলা ভিজিএফ উপকারভোগী</h2>
+                <h2 class="animated fadeInUp">জামালপুর জেলা মেলান্দহ উপজেলা জিআরক্যাশ উপকারভোগী</h2>
                 <div class="table-wrapper">
                     <table class="fl-table">
                         <thead>
                         <tr>
                             <th>ইউনিয়নের নাম</th>
-                            <th>ভিজিএফ</th>
+                            <th>জিআরক্যাশ</th>
                         </tr>
                         </thead>
 

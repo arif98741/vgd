@@ -2,7 +2,7 @@
     <div class="headerwrapper">
         <div class="header-left">
             <a href="{{url('/user/dashboard')}}" class="logo">
-               ভিজিএফ সফটওয়্যার
+               জিআরক্যাশ সফটওয়্যার
             </a>
             <div class="pull-right">
                 <a href="" class="menu-collapse">

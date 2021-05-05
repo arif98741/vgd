@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>মেলান্দহ সকল ভিজিএফ হিসাব</title>
+    <title>মেলান্দহ সকল জিআরক্যাশ হিসাব</title>
     <link href="{{ asset('asset/backend/css/print.css')}}" rel="stylesheet">
 </head>
 
@@ -12,7 +12,7 @@
         <tr>
             <td colspan="3" align="center"><table width="100%" border="0" cellpadding="0" cellspacing="0">
                     <tr>
-                        <td width="41%" valign="top"><div style="font-size:20px;" class="title-1">মেলান্দহ উপজেলার সকল ইউনিয়নের ভিজিএফ টাকা প্রদানের হিসাব</div>
+                        <td width="41%" valign="top"><div style="font-size:20px;" class="title-1">মেলান্দহ উপজেলার সকল ইউনিয়নের জিআরক্যাশ টাকা প্রদানের হিসাব</div>
                     </tr>
                 </table>
             </td>

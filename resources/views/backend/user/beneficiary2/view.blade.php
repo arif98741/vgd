@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title','ভিজিএফ উপকারভোগী')
+@section('title','জিআরক্যাশ উপকারভোগী')
 @section('content')
 <div class="mainpanel">
 	<div class="pageheader">
@@ -8,7 +8,7 @@
 				<i class="fa fa-users"></i>
 			</div>
 			<div class="media-body">
-				<h4>নাংলা ইউনিয়ন ভিজিএফ উপকারভোগী তালিকা</h4>
+				<h4>নাংলা ইউনিয়ন জিআরক্যাশ উপকারভোগী তালিকা</h4>
 			</div>
 		</div><!-- media -->
 	</div><!-- pageheader -->

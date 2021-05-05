@@ -5,7 +5,7 @@
         </div>
         <div class="media-body">
 
-            <h4>{{ $unionName }} ইউনিয়ন ভিজিএফ ড্যাশবোর্ড</h4>
+            <h4>{{ $unionName }} ইউনিয়ন জিআরক্যাশ ড্যাশবোর্ড</h4>
         </div>
     </div><!-- media -->
 </div><!-- pageheader -->

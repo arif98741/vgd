@@ -8,7 +8,7 @@
                     <i class="fa fa-users"></i>
                 </div>
                 <div class="media-body">
-                    <h4>ভিজিএফ উপকারভোগী ভাতা প্রদান করুন</h4>
+                    <h4>জিআরক্যাশ উপকারভোগী ভাতা প্রদান করুন</h4>
                 </div>
             </div><!-- media -->
         </div><!-- pageheader -->
@@ -39,7 +39,7 @@
 
         <div class="contentpanel">
             <h2 class="control-label text-center text-danger">@if($month =='all') সব @else {{ $months[$month] }} @endif
-                মাসের ভিজিএফ উপকারভোগী</h2>
+                মাসের জিআরক্যাশ উপকারভোগী</h2>
             <table id="basicTable" class="table table-striped  table-hover">
                 <thead>
                 <tr>

@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title','ভিজিএফ উপকারভোগী সংযোজন')
+@section('title','জিআরক্যাশ উপকারভোগী সংযোজন')
 @section('content')
     <div class="mainpanel">
         <div class="contentpanel">
