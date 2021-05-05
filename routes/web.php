@@ -69,6 +69,7 @@ Route::namespace('User')
         Route::get('reports', 'ReportController@reports');
         Route::get('reports/all-months-dropdown', 'ReportController@reportsAllMonthsDropdown');
         Route::get('reports/all-union-wise-beneficiaries-dropdown', 'ReportController@reportsBeneficiariesByUnion');
+        Route::get('reports/not-distributed', 'ReportController@notDistributed');
 
     });
 /** user routes end */

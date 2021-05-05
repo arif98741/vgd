@@ -7,13 +7,16 @@ use App\Models\Distribution;
 use App\Providers\HelperProvider;
 use App\User;
 use Auth;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class ReportController extends Controller
 {
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function reports()
     {
@@ -22,7 +25,7 @@ class ReportController extends Controller
 
     /**
      * All Months Dropdown
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function reportsAllMonthsDropdown(Request $request)
     {
@@ -64,7 +67,7 @@ class ReportController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function reportsBeneficiariesByUnion(Request $request)
     {
@@ -105,6 +108,49 @@ class ReportController extends Controller
         return view('backend.user.reports.all-beneficiaries-report')->with($data);
 
 
+    }
+
+    /**
+     * @param Request $request
+     * @return Application|Factory|View
+     */
+    public function notDistributed(Request $request)
+    {
+
+        $currentUnionId = Auth::user()->union_id;
+        $reports = DB::table('distributions')
+            ->join('unions', 'unions.id', '=', 'distributions.union_id')
+            ->join('beneficiaries', 'beneficiaries.id', '=', 'distributions.beneficiary_id')
+            ->select('beneficiaries.*')
+            ->where(
+                [
+                    'distributions.union_id' => $currentUnionId,
+                    'distributions.status' => 0
+                ]
+            )->get();
+
+        $data = [
+            'reports' => $reports,
+            'union' => User::getUnionName(),
+            'total_amount' => DB::table('stocks')
+                ->select(DB::raw('sum(stocks.amount) as total_amount'))
+                ->where(
+                    [
+                        'stocks.union_id' => $currentUnionId
+                    ]
+                )->first(),
+            'total_distribution' => DB::table('distributions')
+                ->select(DB::raw('(count(distributions.id)) * 450 as total_distributed'))
+                ->where(
+                    [
+                        'distributions.union_id' => $currentUnionId,
+                        'distributions.status' => 1
+                    ]
+                )->first(),
+            'total_card' => Distribution::where('union_id', $currentUnionId)
+                ->count(),
+        ];
+        return view('backend.user.reports.not-distributed')->with($data);
     }
 
 }

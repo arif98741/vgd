@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>মেলান্দহ সকল জিআরক্যাশ হিসাব</title>
+    <title>মেলান্দহ সকল ভিজিএফ হিসাব</title>
     <link href="{{ asset('asset/backend/css/print.css')}}" rel="stylesheet">
 </head>
 <body>
@@ -23,7 +23,7 @@
                                 {{ $union }} ইউনিয়ন পরিষদ <br>
                             </div>
                             <div style="font-size:19px; text-align: center" class="title-1 ">
-                                বিতরণকৃত মাস্টাররোল
+                               অবিতরণকৃত মাস্টাররোল
                             </div>
                             <div style="font-size:17px; text-align: center" class="title-1 ">
 
@@ -85,6 +85,7 @@
                         <td colspan="3">ট্যাগ অফিসারের স্বাক্ষর</td>
 
                         <td colspan="4"></td>
+
 
 
                         <td colspan="2">চেয়ারম্যান/সচিবের স্বাক্ষর</td>
