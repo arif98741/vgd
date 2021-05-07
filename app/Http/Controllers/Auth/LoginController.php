@@ -57,7 +57,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         if (isAdmin()) {
-            return redirect('admin/dashboard');
+            return redirect('admin/dashboard?month=all');
         }
         if (isUser()) {
             return redirect('user/dashboard');

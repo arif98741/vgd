@@ -11,7 +11,6 @@
                 <div class="col-md-3 pull-right">
                     <form action="{{ url('admin/dashboard') }}" method="get">
                         <select name="month" required class="form-control">
-                            <option value="">মাস বাছাই করুন</option>
                             <option value="all" @if(array_key_exists('month',$_GET) && $_GET['month'] == 'all') selected
                                 @endif>সকল মাস
                             </option>

@@ -20,7 +20,7 @@ class RedirectIfAuthenticated
         if (Auth::guard($guard)->check()) {
             if (isAdmin()) {
 
-                return redirect('admin/dashboard');
+                return redirect('admin/dashboard?month=all');
             }
 
             if (isUser()) {
