@@ -24,7 +24,7 @@
                             </div>
                             <div style="font-size:17px; text-align: center" class="title-1 ">
 
-                                বিতরণকৃত মাষ্টাররোল
+                                ইউনিয়ন অনুযায়ী বিতরণকৃত মাষ্টাররোল
                             </div>
                             <div style="font-size:17px; text-align: center" class="title-1 ">
 

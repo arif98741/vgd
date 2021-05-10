@@ -22,27 +22,36 @@
                 হয়নিঃ <span style="font-family:SutonnyMJ;">{{ $distribution['due_distribution'] }}</span> টাকা, মোট
                 বরাদ্দঃ <span style="font-family:SutonnyMJ;">{{ $distribution['stock'] }}</span>
                 টাকা</h4>
-            <h3></h3>
-            <table id="basicTable" class="table table-striped  table-hover">
-                <thead>
-                <tr>
-                    <th>ক্রমিক নং</th>
-                    <th>নাম</th>
-                    <th>কার্ড নং</th>
-                    <th>এনআইডি নম্বর</th>
-                    <th>পিতার/স্বামীর নাম</th>
-                    <th>মাতার নাম</th>
-                    <th>গ্রাম</th>
-                    <th>ওয়ার্ড</th>
-                    <th>মোবাইল নম্বর</th>
-                    <th>একশন</th>
-                </tr>
-                </thead>
+            <h3>
 
-                <tbody>
+                <h4 class="text-center">বিতরণকৃত কার্ডঃ <span style="font-family:SutonnyMJ; font-size: 18px;">{{ $card['distributed'] }}</span> টি, বিতরণ হয়নিঃ <span style="font-family:SutonnyMJ; font-size: 18px;">{{ $card['not_distributed'] }}</span> টি, মোট কার্ডঃ <span style="font-family:SutonnyMJ; font-size: 18px;">{{ $card['total'] }}</span> টি</h4>
 
-                </tbody>
-            </table>
+
+                <h3>
+
+
+                </h3>
+
+                <table id="basicTable" class="table table-striped  table-hover">
+                    <thead>
+                    <tr>
+                        <th>ক্রমিক নং</th>
+                        <th>নাম</th>
+                        <th>কার্ড নং</th>
+                        <th>এনআইডি নম্বর</th>
+                        <th>পিতার/স্বামীর নাম</th>
+                        <th>মাতার নাম</th>
+                        <th>গ্রাম</th>
+                        <th>ওয়ার্ড</th>
+                        <th>মোবাইল নম্বর</th>
+                        <th>একশন</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    </tbody>
+                </table>
         </div><!-- panel -->
     </div><!-- mainwrapper -->
 

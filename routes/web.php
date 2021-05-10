@@ -42,7 +42,8 @@ Route::namespace('Admin')
 
         Route::get('reports', 'ReportController@reports');
         Route::get('reports/all-months-dropdown', 'ReportController@reportsAllMonthsDropdown');
-        Route::get('reports/all-union-wise-beneficiaries-dropdown', 'ReportController@reportsBeneficiariesByUnion');
+        Route::get('reports/union_wise_distributed', 'ReportController@reportsBeneficiariesByUnion');
+        Route::get('reports/union_wise_not_distributed', 'ReportController@reportsBeneficiariesByUnionNotDistributed');
 
 
         Route::get('/all-envelope-report', 'EnvelopeController@EnvelopeView');

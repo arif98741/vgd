@@ -58,6 +58,11 @@ class PayController extends Controller
 
         $data = [
             'distribution' => DistributionHelper::distributionAll(),
+            'card' => [
+                'total' => Distribution::count(),
+                'distributed' => Distribution::where('status', 1)->count(),
+                'not_distributed' => Distribution::where('status', 0)->count(),
+            ]
         ];
         return view('backend.admin.beneficiary.distribution1')->with($data);
     }

@@ -18,11 +18,11 @@
         <div class="contentpanel">
 
             <h4 class="text-center">বিতরণকৃত টাকাঃ <span
-                    style="font-family:SutonnyMJ;"> {{ $distribution['distribution'] }}</span> টাকা, বিতরণ
-                হয়নিঃ <span style="font-family:SutonnyMJ;">{{ $distribution['due_distribution'] }}</span> টাকা, মোট
-                মজুদঃ <span style="font-family:SutonnyMJ;">{{ $distribution['stock'] }}</span>
+                    style="font-family:SutonnyMJ; font-size: 18px;"> {{ $distribution['distribution'] }}</span> টাকা, বিতরণ
+                হয়নিঃ <span style="font-family:SutonnyMJ; font-size: 18px;">{{ $distribution['due_distribution'] }}</span> টাকা, মোট
+                মজুদঃ <span style="font-family:SutonnyMJ; font-size: 18px;">{{ $distribution['stock'] }}</span>
                 টাকা</h4>
-            <h3></h3>
+           <h4 class="text-center">বিতরণকৃত কার্ডঃ <span style="font-family:SutonnyMJ; font-size: 18px;">{{ $card['distributed'] }}</span> টি, বিতরণ হয়নিঃ <span style="font-family:SutonnyMJ; font-size: 18px;">{{ $card['not_distributed'] }}</span> টি, মোট কার্ডঃ <span style="font-family:SutonnyMJ; font-size: 18px;">{{ $card['total'] }}</span> টি</h4>
             <table id="basicTable" class="table table-striped  table-hover">
                 <thead>
                 <tr>

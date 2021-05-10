@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Distribution;
 use App\Models\FebruaryDistribution;
 use App\Models\JanuaryDistribution;
 use Auth;
@@ -27,13 +28,14 @@ class PayController extends Controller
      */
     function distribution(Request $request)
     {
+
         $currentUnionId = Auth::user()->union_id;
 
         if ($request->ajax()) {
             $currentUnionId = Auth::user()->union_id;
 
 
-            if ($request->has('search')) {
+            if ($request->has('search') && !empty($request->search['value'])) {
 
                 $searchKey = $request->search['value'];
                 $distributions = DB::select("select distributions.id as distribution_id,distributions.status,unions.union_name,
@@ -52,8 +54,7 @@ class PayController extends Controller
                 $distributions = DB::select("select distributions.id as distribution_id,distributions.status,unions.union_name,
                    beneficiaries.* FROM `distributions` join beneficiaries on beneficiaries.id = distributions.beneficiary_id
                        join unions on unions.id = distributions.union_id
-                    where distributions.union_id='$currentUnionId' limit 10
-            ");
+                    where distributions.union_id='$currentUnionId' limit 10");
             }
             return Datatables::of($distributions)
                 ->addIndexColumn()
@@ -77,12 +78,21 @@ class PayController extends Controller
 
 
         $data = [
-            'distribution' => self::distributionAllUnion($currentUnionId)
+            'distribution' => self::distributionAllUnion($currentUnionId),
+            'card' => [
+                'total' => Distribution::where('union_id', $currentUnionId)->count(),
+                'distributed' => Distribution::where(['status' => 1, 'union_id' => $currentUnionId])->count(),
+                'not_distributed' => Distribution::where(['status' => 0, 'union_id' => $currentUnionId])->count(),
+            ]
         ];
         return view('backend.user.beneficiary.distribution1')->with($data);
     }
 
 
+    /**
+     * @param $union_id
+     * @return array
+     */
     private static function distributionAllUnion($union_id)
     {
         $stockObject = DB::table('stocks')

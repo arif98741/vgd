@@ -5,7 +5,7 @@
         </a>
         <div class="media-body">
             <h4 class="media-heading">{{ \Illuminate\Support\Facades\Auth::user()->name }}</h4>
-            <small class="text-muted">ইউনিয়ন উদ্যোক্তা</small>
+            <small class="text-muted">{{ \App\User::getUnionName() }} ইউনিয়ন সচিব</small>
         </div>
     </div><!-- media -->
 

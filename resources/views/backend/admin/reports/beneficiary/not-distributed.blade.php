@@ -8,7 +8,7 @@
                     <i class="fa fa-users"></i>
                 </div>
                 <div class="media-body">
-                    <h4>ইউনিয়ন অনুযায়ী বিতরণকৃত উপকারভোগীর তালিকা</h4>
+                    <h4>ইউনিয়ন অনুযায়ী অবিতরণকৃত মাষ্টাররোল</h4>
                 </div>
             </div><!-- media -->
         </div><!-- pageheader -->
@@ -16,7 +16,7 @@
         <div class="contentpanel">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form action="{{ url('admin/reports/all-union-wise-beneficiaries-dropdown') }}" method="get">
+                    <form action="{{ url()->current() }}" method="get">
                         <div class="row">
 
                             <div class="col-sm-4">
