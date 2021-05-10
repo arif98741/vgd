@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title','উদ্যোক্তা সম্পাদনা')
+@section('title','ইউজার সম্পাদনা ')
 @section('content')
     <div class="mainpanel">
 
@@ -15,7 +15,7 @@
                     @endif
 
                     @if($user->role == 2)
-                        <h4>উদ্যোক্তা সম্পাদনা - {{ $user->union->union_name }} ইউনিয়ন</h4>
+                        <h4>ইউজার সম্পাদনা - {{ $user->union->union_name }} ইউনিয়ন</h4>
                     @endif
 
 

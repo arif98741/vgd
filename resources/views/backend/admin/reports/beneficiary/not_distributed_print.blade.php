@@ -29,7 +29,7 @@
                             <div style="font-size:17px; text-align: center" class="title-1 ">
 
                                 কার্ডধারী সংখ্যাঃ <span style="font-family:SutonnyMJ;">{{ $total_card }}</span> টি,
-                                প্রদান করা হয়েছেঃ <span style="font-family:SutonnyMJ;">{{ $reports->count() }}</span>
+                                প্রদান করা হয়নিঃ <span style="font-family:SutonnyMJ;">{{ $reports->count() }}</span>
                                 টি,
                                 বাকী আছেঃ <span style="font-family:SutonnyMJ;">{{ $total_card - $reports->count() }}</span> টি
                             </div>

@@ -10,7 +10,6 @@
             </div>
             <br>
             <div class="row row-stat">
-
                 @foreach($stocks as $stock)
 
                     <div class="col-md-6">
@@ -27,9 +26,12 @@
                                             style="font-family:SutonnyMJ; font-size: 18px;"> {{ $stock->year }}-{{ date('Y') }}</span>
                                         অর্থ বছরের ভিজিএফ</h5>
                                     <h2 class="mt5"><span style="font-family:SutonnyMJ;" >{{ $stock->total_bosta }}</span> টাকা</h2>
-                                    <p style="font-size: 18px;">{{ $stock->union_name }} ইউনিয়ন</p>
                                 </div><!-- media-body -->
                                 <hr>
+                                <div class="media-body">
+                                    <p>কার্ড সংখ্যাঃ <span style="font-family:SutonnyMJ; font-size: 18px;">{{$card['total']}}</span>টি, বিতরণ করা হয়েছেঃ <span style="font-family:SutonnyMJ; font-size: 18px;">{{$card['distributed']}}</span>টি, বিতরণ হয়নিঃ <span style="font-family:SutonnyMJ; font-size: 18px;">{{$card['not_distributed']}}</span>টি</p>
+                                </div><!-- media-body -->
+
                                 <div class="clearfix mt20">
                                     <div class="pull-left">
                                         <h5 class="md-title nomargin">টাকা দেওয়া হয়েছে</h5>

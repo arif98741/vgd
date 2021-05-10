@@ -41,20 +41,30 @@ class PayController extends Controller
                 $distributions = DB::select("select distributions.id as distribution_id,distributions.status,unions.union_name,
                    beneficiaries.* FROM `distributions` join beneficiaries on beneficiaries.id = distributions.beneficiary_id
                        join unions on unions.id = distributions.union_id
+                    where beneficiaries.union_id='$currentUnionId'
+                    and beneficiaries.mobile like '%$searchKey%'
+                    or beneficiaries.nid like '%$searchKey%'
+                    or beneficiaries.name like '%$searchKey%'
+                    or beneficiaries.fh_name like '%$searchKey%'");
+                /*echo "select distributions.id as distribution_id,distributions.status,unions.union_name,
+                   beneficiaries.* FROM `distributions` join beneficiaries on beneficiaries.id = distributions.beneficiary_id
+                       join unions on unions.id = distributions.union_id
                     where
                           beneficiaries.union_id='$currentUnionId'
                     or beneficiaries.mobile like '%$searchKey%'
                     or beneficiaries.nid like '%$searchKey%'
                     or beneficiaries.name like '%$searchKey%'
                     or beneficiaries.fh_name like '%$searchKey%' limit 10;
-                    ");
+                    ";
+                exit;*/
+
 
             } else {
 
                 $distributions = DB::select("select distributions.id as distribution_id,distributions.status,unions.union_name,
                    beneficiaries.* FROM `distributions` join beneficiaries on beneficiaries.id = distributions.beneficiary_id
                        join unions on unions.id = distributions.union_id
-                    where distributions.union_id='$currentUnionId' limit 10");
+                    where distributions.union_id='$currentUnionId' order by rand() limit 10");
             }
             return Datatables::of($distributions)
                 ->addIndexColumn()

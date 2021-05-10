@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Distribution;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -24,11 +25,14 @@ class UserController extends Controller
                 ->where('stocks.union_id', $currentUnionId)
                 ->get(),
             'monthName' => '',
+            'card' => [
+                'total' => Distribution::where('union_id', $currentUnionId)->count(),
+                'distributed' => Distribution::where(['status' => 1, 'union_id' => $currentUnionId])->count(),
+                'not_distributed' => Distribution::where(['status' => 0, 'union_id' => $currentUnionId])->count(),
+            ]
         ];
 
-
         $data['unionName'] = User::getUnionName();
-
 
         return view('backend.user.dashboard')->with($data);
 

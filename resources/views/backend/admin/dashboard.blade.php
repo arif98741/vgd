@@ -11,6 +11,9 @@
 
                 @foreach($stocks as $stock)
 
+                    @php
+                        $card = \App\Providers\HelperProvider::calculateCard($stock->union_id);
+                    @endphp
                     <div class="col-md-4">
                         <div class="panel panel-info-alt noborder">
                             <div class="panel-heading noborder">
@@ -20,29 +23,35 @@
                                 </div><!-- panel-btns -->
                                 <div class="media-body">
 
-                                   <h5 class="md-title nomargin"> <span
-                                            style="font-family:SutonnyMJ; font-size: 18px;"> {{ $stock->year }} - {{ date('Y') }}</span>
+                                    <h5 class="md-title nomargin"> <span
+                                            style="font-family:SutonnyMJ; font-size: 18px;"></span> {{ $stock->union_name }}
+                                        ইউনিয়ন <span
+                                            style="font-family:SutonnyMJ; font-size: 20px;">{{ $stock->year }}</span> - <span
+                                            style="font-family:SutonnyMJ; font-size: 20px;">{{ date('Y') }}</span></span>
                                         অর্থ বছরের ভিজিএফ</h5>
                                     <h2 class="mt5">বরাদ্দঃ <span
                                             style="font-family:SutonnyMJ; font-size: 30px;">{{ $stock->total_amount }}</span>
                                         টাকা </h2>
-                                    <h3 class="mt5">কার্ডঃ <span
-                                            style="font-family:SutonnyMJ; font-size: 25px;">{{ $stock->number_of_card }}</span>
-                                        টি</h3>
-
-                                    <h3>{{ $stock->union_name }} ইউনিয়ন</h3>
+                                    <h4 class="mt5">বরাদ্দকৃত কার্ডঃ <span
+                                            style="font-family:SutonnyMJ; font-size: 20px;">{{ $card['card']['total'] }}</span>
+                                        টি<br> বিতরণকৃত কার্ডঃ <span
+                                            style="font-family:SutonnyMJ; font-size: 20px;">{{ $card['card']['distributed'] }}</span>টি<br> অবিতরণকৃত
+                                        কার্ডঃ <span
+                                            style="font-family:SutonnyMJ; font-size: 20px;">{{ $card['card']['not_distributed'] }}</span>টি</h4>
                                 </div><!-- media-body -->
-                                <hr>
+
                                 <div class="clearfix mt20">
                                     <div class="pull-left">
                                         <h5 class="md-title nomargin">টাকা দেওয়া হয়েছে</h5>
 
-                                        <h4  class="nomargin"><span style="font-family:SutonnyMJ;">{{ \App\Providers\DistributionHelper::distributed( $stock->union_id,$stock->total_amount)['distribution'] }}</span>
+                                        <h4 class="nomargin"><span
+                                                style="font-family:SutonnyMJ;">{{ \App\Providers\DistributionHelper::distributed( $stock->union_id,$stock->total_amount)['distribution'] }}</span>
                                             টাকা</h4>
                                     </div>
                                     <div class="pull-right">
                                         <h5 class="md-title nomargin">টাকা দেওয়া হয়নি</h5>
-                                        <h4 class="nomargin"><span style="font-family:SutonnyMJ;">{{ \App\Providers\DistributionHelper::distributed( $stock->union_id,$stock->total_amount)['due_distribution'] }}</span>
+                                        <h4 class="nomargin"><span
+                                                style="font-family:SutonnyMJ;">{{ \App\Providers\DistributionHelper::distributed( $stock->union_id,$stock->total_amount)['due_distribution'] }}</span>
                                             টাকা</h4>
                                     </div>
                                 </div>

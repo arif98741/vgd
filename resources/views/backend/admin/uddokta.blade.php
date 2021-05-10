@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title','এডমিন ড্যাশবোর্ড')
+@section('title','সকল ইউনিয়নের ইউজার তালিকা')
 @section('content')
     <div class="mainpanel">
 

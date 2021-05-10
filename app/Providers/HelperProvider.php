@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Distribution;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Support\Facades\Config;
@@ -10,6 +11,10 @@ use Illuminate\Support\ServiceProvider;
 
 class HelperProvider extends ServiceProvider
 {
+    /**
+     * @param string $key
+     * @return array
+     */
     public static function monthsUntilNow($key = 'months.list'): array
     {
         $month = Carbon::now()->month;
@@ -107,7 +112,6 @@ class HelperProvider extends ServiceProvider
      */
     public static function sendSMS($mobile, $message)
     {
-
         $ssl = Config::get('api-config.ssl');
 
         $apiToken = $ssl['apiToken'];
@@ -124,5 +128,20 @@ class HelperProvider extends ServiceProvider
         $smsResult = curl_exec($ch);
         curl_close($ch);
         return json_decode($smsResult);
+    }
+
+    /**
+     * Card Amount Calculation
+     * @param $unionId
+     * @return array
+     */
+    public static function calculateCard($unionId): array
+    {
+        $data ['card'] = [
+            'total' => Distribution::where('union_id', $unionId)->count(),
+            'distributed' => Distribution::where(['status' => 1, 'union_id' => $unionId])->count(),
+            'not_distributed' => Distribution::where(['status' => 0, 'union_id' => $unionId])->count(),
+        ];
+        return $data;
     }
 }
