@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -43,6 +44,10 @@ class LoginController extends Controller
     }
 
 
+    /**
+     * View Login form
+     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showLoginForm()
     {
         return view('auth.login1');

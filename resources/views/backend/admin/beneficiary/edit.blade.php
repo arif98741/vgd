@@ -76,8 +76,7 @@
                             <select name="union_id" class="form-control">
                                 <option value="">---নির্বাচন করুন---</option>
                                 @foreach($unions as $union)
-                                    <option @if($union->id == $beneficiary->union_id) selected
-                                            @endif value="{{ $union->id }}">{{ $union->union_name }}</option>
+                                    <option @if($union->id == $beneficiary->union_id) selected @endif value="{{ $union->id }}">{{ $union->union_name }}</option>
                                 @endforeach
 
                             </select>
@@ -107,7 +106,7 @@
                             <select name="ward" class="form-control">
                                 <option value="">---নির্বাচন করুন---</option>
                                 @for($i=1; $i<=9; $i++)
-                                    <option  @if(!empty(old('ward')) && old('ward') == $i) selected @elseif($beneficiary->union_id == $i)
+                                    <option  @if(!empty(old('ward')) && old('ward') == $i) selected @elseif($beneficiary->ward == $i)
                                         selected @endif  value="{{ $i }}">{{ $i }}
                                     </option>
                                 @endfor

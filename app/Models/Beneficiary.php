@@ -15,7 +15,7 @@ class Beneficiary extends Model
 
     public function union()
     {
-        return $this->belongsTo(Union::class);
+        return $this->belongsTo(Union::class)->withDefault();
     }
 
     public static function getBeneficiary()

@@ -8,6 +8,8 @@ use App\Models\Beneficiary;
 use App\Models\Distribution;
 use App\Models\Union;
 use App\Providers\HelperProvider;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Image;
@@ -20,7 +22,7 @@ class BeneficiaryController extends Controller
 {
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|View
+     * @return Application|Factory|View
      * @throws \Exception
      */
     public function index(Request $request)
@@ -45,7 +47,7 @@ class BeneficiaryController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|View
+     * @return Application|Factory|\Illuminate\Http\RedirectResponse|View
      * @throws \Illuminate\Validation\ValidationException
      */
     public function addBeneficiary(Request $request)
@@ -109,12 +111,19 @@ class BeneficiaryController extends Controller
         return view('backend.admin.beneficiary.add')->with($data);
     }
 
+    /**
+     * Edit Beneficiary
+     * @param Request $request
+     * @param $id
+     * @return Application|Factory|View
+     */
     public function editBeneficiary(Request $request, $id)
     {
         $data = [
             'unions' => Union::all(),
             'beneficiary' => Beneficiary::findOrFail($id)
         ];
+
         return view('backend.admin.beneficiary.edit')->with($data);
     }
 
