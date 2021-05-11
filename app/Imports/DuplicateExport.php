@@ -27,14 +27,15 @@ class DuplicateExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            'Name',
-            'Father/Husband',
-            'Mother',
-            'Union',
-            'Ward',
-            'Card No',
-            'Nid',
-            'Mobile',
+            'name',
+            'fh_name',
+            'mother_name',
+            'union_id',
+            'village',
+            'ward',
+            'card_no',
+            'nid',
+            'mobile',
         ];
     }
 }

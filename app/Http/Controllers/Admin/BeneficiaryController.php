@@ -28,9 +28,21 @@ class BeneficiaryController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $beneficiaries = Beneficiary::with('union')
-                ->latest()
-                ->get();
+
+            if ($request->has('search') && !empty($request->search['value'])) {
+                $searchkey = $request->search['value'];
+                $beneficiaries = Beneficiary::with('union')
+                    ->where('name', 'LIKE', "%{$searchkey}%")
+                    ->orWhere('nid', 'LIKE', "%{$searchkey}%")
+                    ->orWhere('card_no', 'LIKE', "%{$searchkey}%")
+                    ->orWhere('mobile', 'LIKE', "%{$searchkey}%")
+                    ->limit(10)
+                    ->get();
+            } else {
+                $beneficiaries = Beneficiary::with('union')
+                    ->limit(10)
+                    ->get();
+            }
             return Datatables::of($beneficiaries)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {

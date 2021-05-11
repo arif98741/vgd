@@ -43,14 +43,6 @@ class PayController extends Controller
                     or beneficiaries.nid like '%$searchKey%'
                     or beneficiaries.name like '%$searchKey%'
                     or beneficiaries.fh_name like '%$searchKey%' group by beneficiaries.mobile limit 10");
-               /* echo "select distributions.id as distribution_id,distributions.status,unions.union_name,
-                   beneficiaries.* FROM `distributions` join beneficiaries on beneficiaries.id = distributions.beneficiary_id
-                       join unions on unions.id = distributions.union_id
-                    where beneficiaries.mobile like '%$searchKey%'
-                    or beneficiaries.nid like '%$searchKey%'
-                    or beneficiaries.name like '%$searchKey%'
-                    or beneficiaries.fh_name like '%$searchKey%' group by beneficiaries.mobile limit 10";
-                exit;*/
 
             } else {
 
