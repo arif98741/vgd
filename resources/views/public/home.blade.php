@@ -116,6 +116,10 @@
                     <img src="{{asset('/images/zohurul.jpg')}}" alt="">
                     <p>মোঃ জহুরুল ইসলাম <span> <br/> উদ্যোক্তা ও ডেভেলপার <br/> ৪ নং নাংলা ইউপি <br/> মেলান্দহ, জামালপুর।</span></p>
                 </div>
+                <div class="single-team-item animated fadeInUp" data-wow-duration="2s" data-wow-delay="5s">
+                    <img src="{{asset('/images/zohurul.jpg')}}" alt="">
+                    <p>মোঃ জহুরুল ইসলাম <span> <br/> উদ্যোক্তা ও ডেভেলপার <br/> ৪ নং নাংলা ইউপি <br/> মেলান্দহ, জামালপুর।</span></p>
+                </div>
             </div>
         </div>
 
