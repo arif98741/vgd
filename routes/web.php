@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('backup', 'BackupController@backup');
 
+
 Route::get('admin', function () {
     return redirect('login');
 });
