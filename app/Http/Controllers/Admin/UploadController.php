@@ -29,6 +29,7 @@ class UploadController extends Controller
     {
         try {
             $rows = Excel::toArray(new UsersImport(), $request->file);
+
             $excelNids = array_column($rows[0], 'nid');
             $excelMobiles = array_column($rows[0], 'mobile');
 
@@ -38,14 +39,8 @@ class UploadController extends Controller
             $uniqueMobiles = array_unique($excelMobiles);
             $duplicatesMobiles = array_diff_assoc($excelMobiles, $uniqueMobiles);
 
-            $beneficiaries = DB::table('beneficiaries')
-                ->select('mobile', 'nid')
-                ->get()
-                ->toArray();
-            $dbNids = array_column($beneficiaries, 'nid');
-            $dbMobiles = array_column($beneficiaries, 'mobile');
-
-            $duplicateDataArray = [];
+            /**excel duplicate filter**/
+            $duplicateDataArray = $duplicateDataArrayDB = [];
             if (count($duplicatesMobiles) > 0) {  //push if available duplicates mobile
                 foreach ($rows[0] as $key => $row) {
                     if (in_array($row['mobile'], $duplicatesMobiles)) {
@@ -64,6 +59,27 @@ class UploadController extends Controller
 
             $filterMobile = array_column($duplicateDataArray, 'mobile');
             $filterNid = array_column($duplicateDataArray, 'nid');
+            /**excel duplicate filter**/
+
+            $beneficiaries = DB::table('beneficiaries')
+                ->select('mobile', 'nid')
+                ->get()
+                ->toArray();
+            $dbNids = array_column($beneficiaries, 'nid');
+            $dbMobiles = array_column($beneficiaries, 'mobile');
+
+
+            foreach ($rows[0] as $row) {
+
+                if (in_array($row['mobile'], $dbMobiles)) {
+
+                    array_push($duplicateDataArrayDB, $row);
+                }
+                if (in_array($row['nid'], $dbNids)) {
+                    array_push($duplicateDataArrayDB, $row);
+                }
+
+            }
 
             foreach ($rows[0] as $key => $row) {
                 if (in_array($row['nid'], $filterNid) || in_array($row['mobile'], $filterMobile)) {
@@ -90,10 +106,19 @@ class UploadController extends Controller
 
             if (count($duplicateDataArray) > 0) {
 
+
                 return Excel::download(new DuplicateExport($duplicateDataArray), 'duplicate_excel_data' . '.xlsx');
             }
 
-            $duplicateMobiles = array_intersect($dbMobiles, $excelMobiles);
+            $notification = array(
+                'message' => 'ডাটা সফলভাবে আপলোড হয়েছে',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->back()->with($notification);
+            exit;
+            /*
+             $duplicateMobiles = array_intersect($dbMobiles, $excelMobiles);
             $duplicateNids = array_intersect($dbNids, $excelNids);
             $excelArray = $this->duplicatesArray($duplicateMobiles, $duplicateNids);
 
@@ -170,7 +195,7 @@ class UploadController extends Controller
                 } else {
                     throw new \Exception('Error Reading Excel File');
                 }
-            }
+            }*/
 
         } catch (Exception $e) {
 
