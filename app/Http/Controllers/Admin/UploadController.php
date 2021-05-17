@@ -66,7 +66,7 @@ class UploadController extends Controller
             $filterNid = array_column($duplicateDataArray, 'nid');
 
             foreach ($rows[0] as $key => $row) {
-                if (in_array($row['nid'], $filterNid) || in_array($row['mobile'], $filterMobile)) {
+                if (in_array($row['nid'], $filterNid) || in_array($row['mobile'], $filterMobile) || in_array($row['mobile'], $dbMobiles) || ||  in_array($row['nid'], $dbNids)) {
                     continue;
                 }
                 $beneficiaryId = DB::table('beneficiaries')
@@ -93,7 +93,15 @@ class UploadController extends Controller
                 return Excel::download(new DuplicateExport($duplicateDataArray), 'duplicate_excel_data' . '.xlsx');
             }
 
-            $duplicateMobiles = array_intersect($dbMobiles, $excelMobiles);
+            $notification = array(
+                'message' => 'ডাটা সফলভাবে আপলোড হয়েছে',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->back()->with($notification);
+            exit;
+
+            /*$duplicateMobiles = array_intersect($dbMobiles, $excelMobiles);
             $duplicateNids = array_intersect($dbNids, $excelNids);
             $excelArray = $this->duplicatesArray($duplicateMobiles, $duplicateNids);
 
@@ -170,7 +178,7 @@ class UploadController extends Controller
                 } else {
                     throw new \Exception('Error Reading Excel File');
                 }
-            }
+            }*/
 
         } catch (Exception $e) {
 
