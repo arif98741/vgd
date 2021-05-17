@@ -85,7 +85,11 @@ class UploadController extends Controller
                 $data['beneficiary_id'] = $beneficiaryId;
                 $data['union_id'] = $row['union_id'];
                 $data['status'] = 0;
-                Distribution::create($data);
+                DB::table('distributions')->insert([
+                    'beneficiary_id' => $beneficiaryId,
+                    'union_id' => $row['union_id'],
+                    'status' => 0
+                ]);
             }
 
             if (count($duplicateDataArray) > 0) {
