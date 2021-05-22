@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Beneficiary;
 use App\Models\Union;
 use App\User;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Validator;
@@ -16,7 +17,8 @@ class BeneficiaryController extends Controller
 {
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
      */
     public function index(Request  $request)
     {
@@ -42,7 +44,7 @@ class BeneficiaryController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      * @throws \Illuminate\Validation\ValidationException
      */
     public function addBeneficiary(Request $request)

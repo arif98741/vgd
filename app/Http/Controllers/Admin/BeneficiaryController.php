@@ -27,6 +27,11 @@ class BeneficiaryController extends Controller
      */
     public function index(Request $request)
     {
+       /* $beneficiaries = Beneficiary::with(['union','distribution'])
+            ->limit(10)
+            ->get();
+        */
+
         if ($request->ajax()) {
 
             if ($request->has('search') && !empty($request->search['value'])) {
@@ -39,7 +44,10 @@ class BeneficiaryController extends Controller
                     ->limit(10)
                     ->get();
             } else {
-                $beneficiaries = Beneficiary::with('union')
+               /* $beneficiaries = Beneficiary::with('union')
+                    ->limit(10)
+                    ->get();*/
+                $beneficiaries = Beneficiary::with(['union','distribution'])
                     ->limit(10)
                     ->get();
             }
@@ -47,6 +55,7 @@ class BeneficiaryController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
 
+                    dd($row->distribution);
                     $btn = '<a href="' . url("admin/edit-beneficiary/" . $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a>';
 
                     return $btn;
