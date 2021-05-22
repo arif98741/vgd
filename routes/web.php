@@ -6,6 +6,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('backup', 'BackupController@backup');
 
 
+Route::get('test', function () {
+    echo \Illuminate\Support\Facades\Hash::make('123');
+});
+
 Route::get('admin', function () {
     return redirect('login');
 });

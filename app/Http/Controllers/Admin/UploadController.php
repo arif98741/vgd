@@ -67,50 +67,26 @@ class UploadController extends Controller
             foreach ($rows[0] as $key => $row) {
 
                 if (in_array($row['nid'], $filterNid) || in_array($row['mobile'], $filterMobile) || in_array($row['mobile'], $dbMobiles) || in_array($row['nid'], $dbNids)) {
-
-                    $beneficiaryId = DB::table('beneficiaries')
-                        ->insertGetId([
-                            'name' => $row['name'],
-                            'fh_name' => $row['fh_name'],
-                            'mother_name' => $row['mother_name'],
-                            'union_id' => $row['union_id'],
-                            'ward' => $row['ward'],
-                            'village' => $row['village'],
-                            'card_no' => $row['card_no'],
-                            'nid' => $row['nid'],
-                            'mobile' => $row['mobile'],
-                        ]);
-
-                    /*$data['beneficiary_id'] = $beneficiaryId;
-                    $data['union_id'] = $row['union_id'];
-                    $data['status'] = 0;
-                    //Distribution::create($data);*/
-                    DB::table('distributions')->insert([
-                        'beneficiary_id' => $beneficiaryId,
+                    continue;
+                }
+                $beneficiaryId = DB::table('beneficiaries')
+                    ->insertGetId([
+                        'name' => $row['name'],
+                        'fh_name' => $row['fh_name'],
+                        'mother_name' => $row['mother_name'],
                         'union_id' => $row['union_id'],
-                        'status' => 0
+                        'ward' => $row['ward'],
+                        'village' => $row['village'],
+                        'card_no' => $row['card_no'],
+                        'nid' => $row['nid'],
+                        'mobile' => $row['mobile'],
                     ]);
-                }
 
-                if (count($duplicateDataArray) > 0) {
-
-                    return Excel::download(new DuplicateExport($duplicateDataArray), 'duplicate_excel_data' . '.xlsx');
-                }
-                $notification = array(
-                    'message' => 'ডাটা সফলভাবে আপলোড হয়েছে',
-                    'alert-type' => 'success'
-                );
-                return redirect()->back()->with($notification);
-                exit;
-
-
-                $notification = array(
-                    'message' => 'ডাটা সফলভাবে আপলোড হয়েছে',
-                    'alert-type' => 'success'
-                );
-
-                return redirect()->back()->with($notification);
-                exit;
+                DB::table('distributions')->insert([
+                    'beneficiary_id' => $beneficiaryId,
+                    'union_id' => $row['union_id'],
+                    'status' => 0
+                ]);
 
                 /*$duplicateMobiles = array_intersect($dbMobiles, $excelMobiles);
                 $duplicateNids = array_intersect($dbNids, $excelNids);
@@ -192,16 +168,36 @@ class UploadController extends Controller
                 }*/
 
             }
-        catch
-            (Exception $e) {
 
-                $notification = array(
-                    'message' => 'ডাটা আপলোড ব্যর্থ হয়েছে ' . $e->showMessage(),
-                    'alert-type' => 'error'
-                );
+            if (count($duplicateDataArray) > 0) {
 
-                return redirect()->back()->with($notification);
+                return Excel::download(new DuplicateExport($duplicateDataArray), 'duplicate_excel_data' . '.xlsx');
             }
+            $notification = array(
+                'message' => 'ডাটা সফলভাবে আপলোড হয়েছে',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+            exit;
+
+
+            $notification = array(
+                'message' => 'ডাটা সফলভাবে আপলোড হয়েছে',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->back()->with($notification);
+            exit;
+        } catch
+        (Exception $e) {
+
+            $notification = array(
+                'message' => 'ডাটা আপলোড ব্যর্থ হয়েছে ' . $e->showMessage(),
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
 
     }
 
