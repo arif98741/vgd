@@ -87,14 +87,29 @@ class PayController extends Controller
         }
 
 
+        /* $status = Distribution::select('status',DB::raw('count(id) as total'))
+             ->where('union_id',$currentUnionId)
+              ->groupBy('status')
+              ->get()
+              ;
+          return $status;*/
+
         $data = [
-            'distribution' => self::distributionAllUnion($currentUnionId),
+            'distribution' => self::distributionUnion($currentUnionId),
+            'last_distributed' => Distribution::with('beneficiary')
+                ->where(['union_id' => $currentUnionId, 'status' => 1])
+                ->orderBy('updated_at', 'desc')
+                ->first(),
             'card' => [
-                'total' => Distribution::where('union_id', $currentUnionId)->count(),
-                'distributed' => Distribution::where(['status' => 1, 'union_id' => $currentUnionId])->count(),
-                'not_distributed' => Distribution::where(['status' => 0, 'union_id' => $currentUnionId])->count(),
-            ]
+                'distribution' => Distribution::select('status', DB::raw('count(id) as total'))
+                    ->where('union_id', $currentUnionId)
+                    ->groupBy('status')
+                    ->get()
+            ],
+            'union_id' => $currentUnionId
         ];
+
+
         return view('backend.user.beneficiary.distribution1')->with($data);
     }
 
@@ -103,7 +118,7 @@ class PayController extends Controller
      * @param $union_id
      * @return array
      */
-    private static function distributionAllUnion($union_id)
+    private static function distributionUnion($union_id)
     {
         $stockObject = DB::table('stocks')
             ->select(DB::raw('sum(stocks.amount) as stock'))

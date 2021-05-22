@@ -8,50 +8,66 @@
                     <i class="fa fa-users"></i>
                 </div>
                 <div class="media-body">
-
                     <h4>ভিজিএফ উপকারভোগী ভাতা প্রদান করুন</h4>
                 </div>
-            </div><!-- media -->
-        </div><!-- pageheader -->
+            </div>
+        </div>
 
 
         <div class="contentpanel">
 
-            <h4 class="text-center">বিতরণকৃত টাকাঃ <span
-                    style="font-family:SutonnyMJ;"> {{ $distribution['distribution'] }}</span> টাকা, বিতরণ
-                হয়নিঃ <span style="font-family:SutonnyMJ;">{{ $distribution['due_distribution'] }}</span> টাকা, মোট
-                বরাদ্দঃ <span style="font-family:SutonnyMJ;">{{ $distribution['stock'] }}</span>
-                টাকা</h4>
-            <h3>
+            <h4 class="text-center">বিতরণকৃত টাকাঃ <span id="distribution"
+                                                         style="font-family:SutonnyMJ;"> {{ $distribution['distribution'] }}</span>
+                টাকা, বিতরণ
+                হয়নিঃ
+                <spa id="due_distribution" style="font-family:SutonnyMJ;">{{ $distribution['due_distribution'] }}</span>
+                    টাকা, মোট
+                    বরাদ্দঃ <span id="stock" style="font-family:SutonnyMJ;">{{ $distribution['stock'] }}</span>
+                    টাকা
+            </h4>
 
-                <h4 class="text-center">বিতরণকৃত কার্ডঃ <span style="font-family:SutonnyMJ; font-size: 18px;">{{ $card['distributed'] }}</span> টি, বিতরণ হয়নিঃ <span style="font-family:SutonnyMJ; font-size: 18px;">{{ $card['not_distributed'] }}</span> টি, মোট কার্ডঃ <span style="font-family:SutonnyMJ; font-size: 18px;">{{ $card['total'] }}</span> টি</h4>
+            <h4 class="text-center">বিতরণকৃত কার্ডঃ <span
+                    style="font-family:SutonnyMJ; font-size: 18px;">{{ $card['distribution'][1]->total }}</span> টি,
+                বিতরণ হয়নিঃ
+                <span style="font-family:SutonnyMJ; font-size: 18px;">{{ $card['distribution'][0]->total }}</span> টি,
+                মোট
+                কার্ডঃ <span
+                    style="font-family:SutonnyMJ; font-size: 18px;">{{ $card['distribution'][0]->total  + $card['distribution'][1]->total }}</span>
+                টি
+            </h4>
+            <h4 class="text-center">সর্বশেষ ভাতা গ্রহণকারীঃ <span
+                    id="last_distributed_name">{{ $last_distributed->beneficiary->name }}</span>, পিতা/স্বামীঃ <span
+                    id="last_distributed_fh_name">{{ $last_distributed->beneficiary->fh_name }}</span> , কার্ড নম্বরঃ
+                <span
+                    id="last_distributed_card_no"
+                    style="font-family:SutonnyMJ; font-size: 18px;">{{ $last_distributed->beneficiary->card_no }}</span>,
+                এনআইডি নম্বরঃ <span id="last_distributed_nid"
+                                    style="font-family:SutonnyMJ; font-size: 18px;">{{ $last_distributed->beneficiary->nid }}</span>,
+                ওয়ার্ডঃ <span id="last_distributed_ward"
+                              style="font-family:SutonnyMJ; font-size: 18px;">{{ $last_distributed->beneficiary->ward }}</span>
+            </h4>
 
 
-                <h3>
+            <table id="basicTable" class="table table-striped  table-hover">
+                <thead>
+                <tr>
+                    <th>ক্রমিক নং</th>
+                    <th>নাম</th>
+                    <th>কার্ড নং</th>
+                    <th>এনআইডি নম্বর</th>
+                    <th>পিতার/স্বামীর নাম</th>
+                    <th>মাতার নাম</th>
+                    <th>গ্রাম</th>
+                    <th>ওয়ার্ড</th>
+                    <th>মোবাইল নম্বর</th>
+                    <th>একশন</th>
+                </tr>
+                </thead>
 
+                <tbody>
 
-                </h3>
-
-                <table id="basicTable" class="table table-striped  table-hover">
-                    <thead>
-                    <tr>
-                        <th>ক্রমিক নং</th>
-                        <th>নাম</th>
-                        <th>কার্ড নং</th>
-                        <th>এনআইডি নম্বর</th>
-                        <th>পিতার/স্বামীর নাম</th>
-                        <th>মাতার নাম</th>
-                        <th>গ্রাম</th>
-                        <th>ওয়ার্ড</th>
-                        <th>মোবাইল নম্বর</th>
-                        <th>একশন</th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
         </div><!-- panel -->
     </div><!-- mainwrapper -->
 
@@ -219,9 +235,64 @@
             }
 
         });
+
+        setTimeout(function () {
+            lastDistribution();
+            distributionUnion();
+        }, 10000);
+
+        /**
+         * Last Distribution Function
+         * Repeat Call Every 10 seconds
+         */
+        function lastDistribution() {
+            setInterval(function () {
+                $.ajax({
+                    url: '{{ url("api/last-distributed/".$union_id) }}',
+                    method: 'get',
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log(response);
+                        if (response.code == 200) {
+                            $('#last_distributed_name').html(response.data.beneficiary.name);
+                            $('#last_distributed_fh_name').html(response.data.beneficiary.fh_name);
+                            $('#last_distributed_ward').html(response.data.beneficiary.ward);
+                            $('#last_distributed_nid').html(response.data.beneficiary.nid);
+                            $('#last_distributed_card_no').html(response.data.beneficiary.card_no);
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }, 15000);
+        }
+
+        /**
+         * Union Total Distributed Money
+         * Repeat Call Every 10 seconds
+         */
+        function distributionUnion() {
+            setInterval(function () {
+                $.ajax({
+                    url: '{{ url("api/union_distribution/".$union_id) }}',
+                    method: 'get',
+                    dataType: 'json',
+                    success: function (response) {
+                        // console.log(response.distribution);
+                        if (response.code == 200) {
+                            $('#distribution').html(response.distribution);
+                            $('#due_distribution').html(response.due_distribution);
+
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }, 20000);
+        }
+
     </script>
 @endsection
-
-
-
 
