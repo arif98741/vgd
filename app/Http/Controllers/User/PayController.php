@@ -105,6 +105,9 @@ class PayController extends Controller
                     ->where('union_id', $currentUnionId)
                     ->groupBy('status')
                     ->get()
+                /*'total' => Distribution::where('union_id', $currentUnionId)->count(),
+                'distributed' => Distribution::where(['status' => 1, 'union_id' => $currentUnionId])->count(),
+                'not_distributed' => Distribution::where(['status' => 0, 'union_id' => $currentUnionId])->count(),*/
             ],
             'union_id' => $currentUnionId
         ];

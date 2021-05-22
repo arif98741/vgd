@@ -22,6 +22,13 @@
 
             <div class="col-md-3 text-center">
                 <div class="porikolpona-head mb-2 mt-5 animated fadeInDown" data-wow-duration="2s" data-wow-delay="5s">
+                    <h5>উপদেষ্টা</h5>
+                    <img src="{{asset('/images/2140.jpg')}}" alt="">
+                </div>
+                <div class="single-team-item animated fadeInDown" data-wow-duration="2s" data-wow-delay="5s">
+                    <p> আলহাজ্ব মির্জা আজম <br> সংসদ সদস্য <br/> জামালপুর-৩ </p>
+                </div>
+                <div class="porikolpona-head mb-2 mt-5 animated fadeInDown" data-wow-duration="2s" data-wow-delay="5s">
                     <h5>পরিকল্পনায়</h5>
                     <img src="{{asset('/images/chairman.jpg')}}" alt="">
                 </div>
@@ -115,10 +122,6 @@
                 <div class="single-team-item animated fadeInUp" data-wow-duration="2s" data-wow-delay="5s">
                     <img src="{{asset('/images/zohurul.jpg')}}" alt="">
                     <p>মোঃ জহুরুল ইসলাম <span> <br/> উদ্যোক্তা ও ডেভেলপার <br/> ৪ নং নাংলা ইউপি <br/> মেলান্দহ, জামালপুর।</span></p>
-                </div>
-                <div class="single-team-item animated fadeInUp" data-wow-duration="2s" data-wow-delay="5s">
-                    <img src="{{asset('/images/ariful-islam.jpg')}}" alt="">
-                    <p>মোঃ আরিফুল ইসলাম <span> <br/> সফটওয়্যার ইঞ্জিনিয়ার <br/> কালিহাতি, টাংগাইল।</span></p>
                 </div>
             </div>
         </div>

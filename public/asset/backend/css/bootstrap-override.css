@@ -380,7 +380,7 @@ h4, .h4 {
 }
 
 .panel-heading p {
-   font-size: 12px;
+   font-size: 18px;
    margin-top: 5px;
    margin-bottom: 0;
    line-height: 18px;
@@ -907,7 +907,7 @@ h4, .h4 {
 
 .table thead .table-head-alt th {
    text-transform: uppercase;
-   font-size: 12px; 
+   font-size: 12px;
 }
 
 .table tbody tr td .progress {

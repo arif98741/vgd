@@ -9,20 +9,29 @@
     <style type="text/css">
 
         body {
-            margin: 20px auto;
+            margin: 10px auto;
             width: 95%;
         }
 
-        img {
-            width: 50px;
-            height: 50px;
+        /*img {*/
+        /*    width: 50px;*/
+        /*    height: 50px;*/
+        /*}*/
+        .card-div p {
+            margin: 0;
         }
-
 
         .card-div {
             border: 1px solid #000;
-            padding: 5px;
-
+            padding: 10px;
+        }
+        ul {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+        .card-div ul li {
+            font-size: 12px;
         }
     </style>
 </head>
@@ -31,29 +40,22 @@
 <div class="row">
 
     @foreach($Beneficiary as $beni )
-
-        <div class="col-md-4 card-div">
-
-            <div class="row">
-                <div class="col-md-9">
-                    <h5>মাননীয় প্রধানমন্ত্রীর উপহার</h5>
-                    <h6>বাস্তাবায়নে: দুর্যোগ ব্যবস্থাপনা ও ত্রাণ মন্ত্রণালয়</h6>
-                </div>
-
-                <div class="col-md-3">
-                    <img src="https://vgd.melandahbhata.gov.bd/public/images/download.jpg" alt="">
-                </div>
-            </div>
-
-
+        <div class="col-md-3 card-div">
+             <p class="text-center">পবিত্র ঈদ-উল ফিতর উপলক্ষ্যে</p>
             <ul>
-                <li>কার্ড নং: {{ $beni->card_no }}, নামঃ  {{ $beni->name }}</li>
-                <li>পিতা/স্বামীর নামঃ মোঃ  {{ $beni->fh_name }}, মাতার নামঃ  {{ $beni->mother_name }}</li>
-                <li> ইউনিয়নঃ  {{ $beni->union->union_name }}, গ্রামঃ  {{ $beni->village }}, ওয়ার্ড নংঃ  {{ $beni->ward }}</li>
-                <li>আইডি নংঃ  {{ $beni->nid }}, মোবাইল নংঃ  {{ $beni->mobile }}</li>
+                <li>কার্ড: {{ $beni->card_no }}</li>
+                <li>নামঃ {{ $beni->name }}</li>
+                <li>ওয়ার্ডঃ {{ $beni->ward }}</li>
+                <li>পিতা/স্বামীর নামঃ {{ $beni->fh_name }}</li>
+                <li>মাতার নামঃ {{ $beni->mother_name }}</li>
+                <li>গ্রামঃ {{ $beni->village }}</li>
+                <li>আইডিঃ {{ $beni->nid }}</li>
+                <li>মোবাইলঃ {{ $beni->mobile }}</li>
+                <li>বিঃদ্রঃ অবশ্যই মোবাইলটি সাথে নিয়ে আসতে হবে</li>
             </ul>
         </div>
     @endforeach
+{{--    ইউনিয়নঃ  {{ $beni->union->union_name }},--}}
 
 
 </div>
