@@ -16,7 +16,6 @@ class CreateUnionModelsTable extends Migration
         Schema::create('unions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('union_name');
-            $table->integer('amount');
             $table->timestamps();
         });
     }
