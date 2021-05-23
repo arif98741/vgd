@@ -10,7 +10,7 @@
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
     RewriteEngine On
     RewriteCond %{SERVER_PORT} 80
-    RewriteRule ^(.*)$ https://vgd.melandahbhata.gov.bd/$1 [R,L]
+   # RewriteRule ^(.*)$ https://vgd.melandahbhata.gov.bd/$1 [R,L]
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d

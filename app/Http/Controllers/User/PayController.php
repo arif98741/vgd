@@ -100,19 +100,11 @@ class PayController extends Controller
                 ->where(['union_id' => $currentUnionId, 'status' => 1])
                 ->orderBy('updated_at', 'desc')
                 ->first(),
-            'card' => [
-                'distribution' => Distribution::select('status', DB::raw('count(id) as total'))
-                    ->where('union_id', $currentUnionId)
-                    ->groupBy('status')
-                    ->get()
-                /*'total' => Distribution::where('union_id', $currentUnionId)->count(),
-                'distributed' => Distribution::where(['status' => 1, 'union_id' => $currentUnionId])->count(),
-                'not_distributed' => Distribution::where(['status' => 0, 'union_id' => $currentUnionId])->count(),*/
-            ],
+            'distributed' => Distribution::where(['status' => 1, 'union_id' => $currentUnionId])->count(),
+            'not_distributed' => Distribution::where(['status' => 0, 'union_id' => $currentUnionId])->count(),
+            'total' => Distribution::where('union_id', $currentUnionId)->count(),
             'union_id' => $currentUnionId
         ];
-
-
         return view('backend.user.beneficiary.distribution1')->with($data);
     }
 

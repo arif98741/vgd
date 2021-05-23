@@ -57,13 +57,14 @@ class BeneficiaryController extends Controller
                     if ($row->distribution != null) {
 
                         if ($row->distribution->status == 0) {
+                            //$btn = '<a href="' . url("admin/edit-beneficiary/" . $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a>';
                             $btn = '<a href="' . url("admin/edit-beneficiary/" . $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a>';
                         } else {
-                            $btn = '<a href="#" class="btn btn-success btn-sm">প্রদান হয়েছে</a>';
+                            $btn = '<a href="#" disabled="" title="সম্পাদনযোগ্য নয়" class="btn btn-success btn-sm">প্রদান হয়েছে</a>';
                         }
                     } else {
 
-                        $btn = '<a href="#" class="btn btn-success btn-sm">প্রদান হয়েছে</a>';
+                        $btn = '<a href="#" disabled="" title="সম্পাদনযোগ্য নয়" class="btn btn-success btn-sm">প্রদান হয়েছে</a>';
                     }
 
 
