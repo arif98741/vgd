@@ -25,5 +25,9 @@ class Beneficiary extends Model
             ->get();
     }
 
+    public function distribution()
+    {
+        return $this->hasOne(Distribution::class);
+    }
 
 }

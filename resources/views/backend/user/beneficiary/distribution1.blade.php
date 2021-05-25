@@ -27,25 +27,31 @@
             </h4>
 
             <h4 class="text-center">বিতরণকৃত কার্ডঃ <span
-                    style="font-family:SutonnyMJ; font-size: 18px;">{{ $card['distribution'][1]->total }}</span> টি,
+                    style="font-family:SutonnyMJ; font-size: 18px;">{{ $distributed }}</span>
+                টি,
                 বিতরণ হয়নিঃ
-                <span style="font-family:SutonnyMJ; font-size: 18px;">{{ $card['distribution'][0]->total }}</span> টি,
+                <span style="font-family:SutonnyMJ; font-size: 18px;">{{ $not_distributed }}</span> টি,
                 মোট
                 কার্ডঃ <span
-                    style="font-family:SutonnyMJ; font-size: 18px;">{{ $card['distribution'][0]->total  + $card['distribution'][1]->total }}</span>
+                    style="font-family:SutonnyMJ; font-size: 18px;">{{ $total }}</span>
                 টি
             </h4>
-            <h4 class="text-center">সর্বশেষ ভাতা গ্রহণকারীঃ <span
-                    id="last_distributed_name">{{ $last_distributed->beneficiary->name }}</span>, পিতা/স্বামীঃ <span
-                    id="last_distributed_fh_name">{{ $last_distributed->beneficiary->fh_name }}</span> , কার্ড নম্বরঃ
-                <span
-                    id="last_distributed_card_no"
-                    style="font-family:SutonnyMJ; font-size: 18px;">{{ $last_distributed->beneficiary->card_no }}</span>,
-                এনআইডি নম্বরঃ <span id="last_distributed_nid"
-                                    style="font-family:SutonnyMJ; font-size: 18px;">{{ $last_distributed->beneficiary->nid }}</span>,
-                ওয়ার্ডঃ <span id="last_distributed_ward"
-                              style="font-family:SutonnyMJ; font-size: 18px;">{{ $last_distributed->beneficiary->ward }}</span>
-            </h4>
+
+            @if($last_distributed !=null)
+                <h4 class="text-center">সর্বশেষ ভাতা গ্রহণকারীঃ <span
+                        id="last_distributed_name">{{ $last_distributed->beneficiary->name }}</span>, পিতা/স্বামীঃ <span
+                        id="last_distributed_fh_name">{{ $last_distributed->beneficiary->fh_name }}</span> , কার্ড
+                    নম্বরঃ
+                    <span
+                        id="last_distributed_card_no"
+                        style="font-family:SutonnyMJ; font-size: 18px;">{{ $last_distributed->beneficiary->card_no }}</span>,
+                    এনআইডি নম্বরঃ <span id="last_distributed_nid"
+                                        style="font-family:SutonnyMJ; font-size: 18px;">{{ $last_distributed->beneficiary->nid }}</span>,
+                    ওয়ার্ডঃ <span id="last_distributed_ward"
+                                  style="font-family:SutonnyMJ; font-size: 18px;">{{ $last_distributed->beneficiary->ward }}</span>
+                </h4>
+
+            @endif
 
 
             <table id="basicTable" class="table table-striped  table-hover">

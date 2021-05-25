@@ -27,11 +27,16 @@ class BeneficiaryController extends Controller
      */
     public function index(Request $request)
     {
+        /* $beneficiaries = Beneficiary::with(['union','distribution'])
+             ->limit(10)
+             ->get();
+         */
+
         if ($request->ajax()) {
 
             if ($request->has('search') && !empty($request->search['value'])) {
                 $searchkey = $request->search['value'];
-                $beneficiaries = Beneficiary::with('union')
+                $beneficiaries = Beneficiary::with(['union', 'distribution'])
                     ->where('name', 'LIKE', "%{$searchkey}%")
                     ->orWhere('nid', 'LIKE', "%{$searchkey}%")
                     ->orWhere('card_no', 'LIKE', "%{$searchkey}%")
@@ -39,15 +44,29 @@ class BeneficiaryController extends Controller
                     ->limit(10)
                     ->get();
             } else {
-                $beneficiaries = Beneficiary::with('union')
+
+                $beneficiaries = Beneficiary::with(['union', 'distribution'])
                     ->limit(10)
                     ->get();
             }
+
             return Datatables::of($beneficiaries)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
 
-                    $btn = '<a href="' . url("admin/edit-beneficiary/" . $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a>';
+                    if ($row->distribution != null) {
+
+                        if ($row->distribution->status == 0) {
+                            //$btn = '<a href="' . url("admin/edit-beneficiary/" . $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a>';
+                            $btn = '<a href="' . url("admin/edit-beneficiary/" . $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a>';
+                        } else {
+                            $btn = '<a href="#" disabled="" title="সম্পাদনযোগ্য নয়" class="btn btn-success btn-sm">প্রদান হয়েছে</a>';
+                        }
+                    } else {
+
+                        $btn = '<a href="#" disabled="" title="সম্পাদনযোগ্য নয়" class="btn btn-success btn-sm">প্রদান হয়েছে</a>';
+                    }
+
 
                     return $btn;
                 })->rawColumns(['action'])
