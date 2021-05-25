@@ -7,6 +7,7 @@ use App\Models\Distribution;
 use App\Models\FebruaryDistribution;
 use App\Models\JanuaryDistribution;
 use Auth;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory as FactoryAlias;
 use Illuminate\Http\Request;
@@ -23,48 +24,33 @@ class PayController extends Controller
 
     /**
      * @return Application|FactoryAlias|View
-     * @throws \Exception
-     * @throws \Exception
+     * @throws Exception
+     * @throws Exception
      */
     function distribution(Request $request)
     {
-
         $currentUnionId = Auth::user()->union_id;
-
         if ($request->ajax()) {
             $currentUnionId = Auth::user()->union_id;
-
 
             if ($request->has('search') && !empty($request->search['value'])) {
 
                 $searchKey = $request->search['value'];
-                $distributions = DB::select("select distributions.id as distribution_id,distributions.status,unions.union_name,
-                   beneficiaries.* FROM `distributions` join beneficiaries on beneficiaries.id = distributions.beneficiary_id
-                       join unions on unions.id = distributions.union_id
-                    where beneficiaries.union_id='$currentUnionId'
-                    and beneficiaries.mobile like '%$searchKey%'
-                    or beneficiaries.nid like '%$searchKey%'
-                    or beneficiaries.name like '%$searchKey%'
-                    or beneficiaries.fh_name like '%$searchKey%'");
-                /*echo "select distributions.id as distribution_id,distributions.status,unions.union_name,
-                   beneficiaries.* FROM `distributions` join beneficiaries on beneficiaries.id = distributions.beneficiary_id
-                       join unions on unions.id = distributions.union_id
-                    where
-                          beneficiaries.union_id='$currentUnionId'
-                    or beneficiaries.mobile like '%$searchKey%'
-                    or beneficiaries.nid like '%$searchKey%'
-                    or beneficiaries.name like '%$searchKey%'
-                    or beneficiaries.fh_name like '%$searchKey%' limit 10;
-                    ";
-                exit;*/
 
+                $distributions = DB::select("select distributions.id as distribution_id,distributions.status,
+                   beneficiaries.* FROM `distributions` join beneficiaries on beneficiaries.id = distributions.beneficiary_id
+                    where (beneficiaries.mobile like '%$searchKey%' and beneficiaries.union_id='$currentUnionId')
+                    or (beneficiaries.nid like '%$searchKey%' and beneficiaries.union_id='$currentUnionId')
+                    or (beneficiaries.name like '%$searchKey%' and beneficiaries.union_id='$currentUnionId')
+                    or (beneficiaries.fh_name like '%$searchKey%' and beneficiaries.union_id='$currentUnionId')
+                    order by beneficiaries.card_no asc limit 10");
 
             } else {
 
                 $distributions = DB::select("select distributions.id as distribution_id,distributions.status,unions.union_name,
                    beneficiaries.* FROM `distributions` join beneficiaries on beneficiaries.id = distributions.beneficiary_id
                        join unions on unions.id = distributions.union_id
-                    where distributions.union_id='$currentUnionId' order by rand() limit 10");
+                    where distributions.union_id='$currentUnionId' and beneficiaries.union_id='$currentUnionId' order by rand() limit 10");
             }
             return Datatables::of($distributions)
                 ->addIndexColumn()
